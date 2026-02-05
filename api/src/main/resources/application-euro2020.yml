@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      database: euro2020
+
+football-api:
+  league-id: 4
+  season: 2020

@@ -1,0 +1,51 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
+          audiences:
+
+  data:
+    mongodb:
+      uri:
+      database: euro2024
+  # Single Page
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /public*
+  web:
+    resources:
+      add-mappings: true
+
+app:
+  security.allowed-origins:
+
+# OpenAPI
+springdoc.packagesToScan: eu.dreamix
+
+server.tomcat.accesslog.enabled: true
+
+football-api:
+  url: https://v3.football.api-sports.io
+  api-key:
+  api-key-header: x-rapidapi-key
+  league-id: 4
+  season: 2024
+
+#feign
+feign:
+  client:
+    config:
+      football-api:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        requestInterceptors:
+          - eu.dreamix.wcapi.external.fbapi.ApiKeyInterceptor
+
+scheduler:
+  enabled: false
+  match-retrieval.cron: "0 */30 12-23 * * *"
+  standing-retrieval.cron: "0 0 0 * * *"

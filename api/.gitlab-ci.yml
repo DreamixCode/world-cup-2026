@@ -1,0 +1,14 @@
+stages:
+  - build
+
+before_script:
+  - docker info
+
+docker_build:
+  #  only:
+  #    - tags
+  #  except:
+  #    - branches
+  stage: build
+  script:
+    - ./scripts/build-image.sh
