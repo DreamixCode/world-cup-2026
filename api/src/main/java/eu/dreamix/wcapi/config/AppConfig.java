@@ -2,7 +2,7 @@ package eu.dreamix.wcapi.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 
 @ConfigurationProperties("app")

@@ -9,7 +9,7 @@ import org.bson.codecs.pojo.annotations.BsonId;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
