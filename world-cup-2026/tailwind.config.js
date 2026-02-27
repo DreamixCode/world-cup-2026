@@ -31,10 +31,9 @@ const fontSize = {
 const colors = {
   dec: {
     theme: {
-      DEFAULT: "#143cdb",
-      darkBlue: "#000d40",
+      DEFAULT: "#000000",
+      white: "#ffffff",
       middleBlue: "#0e2a99",
-      lightGrey: "#fafafa",
       inactive: "#909dd1",
     },
     background: {

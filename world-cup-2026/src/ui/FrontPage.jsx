@@ -16,7 +16,7 @@ function FrontPage() {
         }}
       >
         <div className="flex flex-col xl:justify-between items-center sm:pt-24 pt-14 2xl:pt-28">
-          <CountdownTimer targetDate={new Date("2024-06-14T22:00:00")} />
+          <CountdownTimer targetDate={new Date("2026-06-11T22:00:00")} />
           <div className="max-w-full w-full">
             <MatchesView frontPage />
             <LeaderBoardView frontPage />

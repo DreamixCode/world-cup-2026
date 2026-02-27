@@ -47,7 +47,7 @@ function Menu() {
     <nav>
       <div
         className={classNames(
-          "fixed top-0 z-30 h-20 flex w-full text-dec-h3 shrink sm:justify-center lg:z-50 md:px-8 px-4 items-center text-dec-theme bg-dec-theme"
+          "fixed top-0 z-30 h-20 flex w-full text-dec-h3 shrink sm:justify-center lg:z-50 md:px-8 px-4 items-center bg-black text-white",
         )}
       >
         {isSmall ? (
