@@ -1,0 +1,30 @@
+import React from "react";
+import CountdownTimer from "./CountDownTimer";
+import { ContentContainer } from "../components";
+import LeaderBoardView from "../components/Leaderboard/LeaderBoardView";
+import { MatchesView } from "../components/Matches";
+
+function FrontPage() {
+  return (
+    <section className="grow">
+      <ContentContainer
+        className="bg-dec-theme max-w-full select-none h-full"
+        style={{
+          backgroundImage: "url(/public/colors-top.png)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "contain",
+        }}
+      >
+        <div className="flex flex-col xl:justify-between items-center sm:pt-24 pt-14 2xl:pt-28">
+          <CountdownTimer targetDate={new Date("2024-06-14T22:00:00")} />
+          <div className="max-w-full w-full">
+            <MatchesView frontPage />
+            <LeaderBoardView frontPage />
+          </div>
+        </div>
+      </ContentContainer>
+    </section>
+  );
+}
+
+export default FrontPage;
