@@ -1,5 +1,4 @@
 import React from "react";
-import { EuroLogo } from "../components/icons/index.jsx";
 import { ContentContainer } from "../components";
 import GoogleLoginBtn from "./GoogleLoginButton";
 

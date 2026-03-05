@@ -165,8 +165,8 @@ function Match({
 
   const inputClassName = classNames(
     "outline-none m-0.5 p-0.5 border-solid border-2 w-7 h-7 text-center text-dec-h4",
-    editMode && "ring-2 ring-dec-theme-inactive",
-    inactive ? "" : "border-dec-theme"
+    editMode && "ring-2 ring-dec-primary-inactive",
+    inactive ? "" : "border-dec-primary"
   );
 
   const started = isAfter(today, new Date(date));
@@ -180,7 +180,7 @@ function Match({
       className={classNames(
         "w-full grid grid-cols-11 relative  border-b-2 font-extrabold px-2 items-center text-dec-sm sm:text-dec-base py-4",
         error?.message && "h-28",
-        className ? className : "bg-dec-theme text-dec-background"
+        className ? className : "bg-dec-primary text-dec-background"
       )}
     >
       {error?.message && (
@@ -212,7 +212,7 @@ function Match({
         <div className="flex items-center">
           <form
             id="bet-form"
-            className="text-center flex md:space-x-2 space-x-1 items-center text-dec-theme-darkBlue sm:items-start"
+            className="text-center flex md:space-x-2 space-x-1 items-center text-dec-primary-darkBlue sm:items-start"
             onSubmit={handleOnSubmit}
           >
             <div className="flex sm:flex-row flex-col">
@@ -284,8 +284,8 @@ function Match({
               <Button
                 type="submit"
                 className={classNames(
-                  "lg:w-16 w-10 h-8 border-2 text-dec-theme-darkBlue",
-                  (bet || inactive || editMode) && "text-dec-theme-inactive"
+                  "lg:w-16 w-10 h-8 border-2 text-dec-primary-darkBlue",
+                  (bet || inactive || editMode) && "text-dec-primary-inactive"
                 )}
                 disabled={
                   !betState?.home ||
@@ -307,7 +307,7 @@ function Match({
                   (((!bet || !betState?.home || !betState?.away || inactive) &&
                     !Boolean(myBet)) ||
                     started) &&
-                    "text-dec-theme-inactive"
+                    "text-dec-primary-inactive"
                 )}
                 onClick={editMode ? handleOnEdit : onEdit}
                 disabled={

@@ -47,11 +47,11 @@ function Menu() {
     <nav>
       <div
         className={classNames(
-          "fixed top-0 z-30 h-20 flex w-full text-dec-h3 shrink sm:justify-center lg:z-50 md:px-8 px-4 items-center bg-black text-white",
+          "fixed top-0 z-30 h-20 flex w-full text-dec-h3 shrink sm:justify-center lg:z-50 md:px-8 px-4 items-center bg-white text-red-500",
         )}
       >
         {isSmall ? (
-          <ul className="uppercase grid grid-flow-col gap-4 lg:gap-8 items-center px-2 text-dec-background">
+          <ul className="uppercase grid grid-flow-col gap-4 lg:gap-8 items-center px-2 text-black">
             {mainMenuItems}
           </ul>
         ) : (
@@ -61,7 +61,7 @@ function Menu() {
           />
         )}
         {isListOpen && !isSmall && (
-          <nav className="absolute right-0 h-auto top-20 bg-dec-background text-dec-theme z-10 overflow-auto md:w-2/3 w-full">
+          <nav className="absolute right-0 h-auto top-20 bg-dec-background text-dec-primary z-10 overflow-auto md:w-2/3 w-full">
             <div className="grid gap-8 border-b-2 pb-3 font-semibold p-4 text-dec-h3 uppercase tracking-widest">
               {mainMenuItems}
             </div>

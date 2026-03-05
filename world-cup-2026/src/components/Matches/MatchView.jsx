@@ -43,9 +43,9 @@ function MatchView() {
 
   return (
     <div
-      className="bg-dec-theme grow uppercase"
+      className="bg-dec-primary grow uppercase"
       style={{
-        backgroundImage: "url(/public/colors-top.png)",
+        backgroundImage: "url(/colors-top.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
       }}
@@ -54,7 +54,7 @@ function MatchView() {
         maxWidthClassName="max-w-4xl"
         className="py-4 grow justify-center select-none h-full"
       >
-        <div className="flex justify-between mt-20 bg-dec-theme-darkBlue text-dec-background">
+        <div className="flex justify-between mt-20 bg-dec-primary-darkBlue text-dec-background">
           <Link to="/matches" className="text-dec-background">
             <div className="flex items-center">
               <ChevronLeft className="w-8 h-8" />
@@ -87,7 +87,7 @@ function MatchView() {
                 guestTeamET={match?.score?.extraTime?.away}
                 longStatus={match?.status?.long}
                 shortStatus={match?.status?.short}
-                className="bg-dec-background text-dec-theme-darkBlue"
+                className="bg-dec-background text-dec-primary-darkBlue"
               />
             </div>
             {isLoadingBets && (
@@ -96,9 +96,9 @@ function MatchView() {
               </div>
             )}
             {isAfter(today, new Date(match?.date)) ? (
-              <table className="bg-dec-theme w-full text-dec-background font-extrabold rounded-md">
+              <table className="bg-dec-primary w-full text-dec-background font-extrabold rounded-md">
                 <thead>
-                  <tr className="border-b-4 border-dec-theme-light h-16 text-dec-h4">
+                  <tr className="border-b-4 border-dec-primary-light h-16 text-dec-h4">
                     <th className="text-left font-extrabold px-2">User</th>
                     <th className="text-left font-extrabold">Bet</th>
                     <th
@@ -116,7 +116,7 @@ function MatchView() {
                     console.log(bet);
                     return (
                       <tr
-                        className=" border-b-4 border-dec-theme-light"
+                        className=" border-b-4 border-dec-primary-light"
                         key={bet.user.email}
                       >
                         <td className="pl-2">

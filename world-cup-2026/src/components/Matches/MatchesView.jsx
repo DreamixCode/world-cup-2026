@@ -55,9 +55,9 @@ function MatchesView({ frontPage }) {
 
   return (
     <div
-      className="bg-dec-theme flex grow uppercase"
+      className="bg-dec-primary flex grow uppercase"
       style={{
-        backgroundImage: !frontPage && "url(/public/colors-top.png)",
+        backgroundImage: !frontPage && "url(/colors-top.png)",
         backgroundRepeat: !frontPage && "no-repeat",
         backgroundSize: !frontPage && "contain",
       }}
@@ -68,11 +68,11 @@ function MatchesView({ frontPage }) {
       >
         {isLoading && (
           <div className={!frontPage ? "sm:mt-24 mt-14 2xl:pt-28" : undefined}>
-            <div className="text-center font-extrabold text-dec-theme-darkBlue bg-transparent text-dec-h3 pb-4 md:text-dec-t2">
+            <div className="text-center font-extrabold text-dec-primary-darkBlue bg-transparent text-dec-h3 pb-4 md:text-dec-t2">
               <h1>{selectTitle()}</h1>
             </div>
             <div className="flex flex-col border-2 ">
-              <div className="grid grid-cols-11 text-dec-theme-darkBlue h-28 w-full bg-dec-background border-b-4 border-dec-theme text-dec-h2.5 font-extrabold px-2 items-center">
+              <div className="grid grid-cols-11 text-dec-primary-darkBlue h-28 w-full bg-dec-background border-b-4 border-dec-primary text-dec-h2.5 font-extrabold px-2 items-center">
                 <div className="col-span-7 md:col-span-5 text-dec-h3.5 sm:text-dec-h2.5">
                   Match
                 </div>

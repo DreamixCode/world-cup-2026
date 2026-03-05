@@ -46,9 +46,9 @@ function UserView() {
   console.log(shownBets);
   return (
     <div
-      className="bg-dec-theme grow uppercase sm:text-dec-base text-dec-2xs"
+      className="bg-dec-primary grow uppercase sm:text-dec-base text-dec-2xs"
       style={{
-        backgroundImage: "url(/public/colors-top.png)",
+        backgroundImage: "url(/colors-top.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
       }}
@@ -85,9 +85,9 @@ function UserView() {
               </div>
             </div>
           ))}
-          <table className="bg-dec-theme w-full text-dec-background font-extrabold rounded-md">
+          <table className="bg-dec-primary w-full text-dec-background font-extrabold rounded-md">
             <thead>
-              <tr className="border-b-4 border-dec-theme-light h-16 text-dec-h4">
+              <tr className="border-b-4 border-dec-primary-light h-16 text-dec-h4">
                 <th className="text-left font-extrabold">Match</th>
                 <th className="text-left font-extrabold">Bet</th>
                 <th className="text-left font-extrabold">Score</th>
@@ -101,7 +101,7 @@ function UserView() {
                   {!isSmall && (
                     <Tooltip
                       id="Points"
-                      textColor="dec-theme"
+                      textColor="dec-primary"
                       backgroundColor="white"
                     />
                   )}
@@ -112,7 +112,7 @@ function UserView() {
               {shownBets?.map((bet) => {
                 return (
                   <tr
-                    className=" border-b-4 border-dec-theme-light"
+                    className=" border-b-4 border-dec-primary-light"
                     key={bet.id}
                   >
                     <td className="pl-2">

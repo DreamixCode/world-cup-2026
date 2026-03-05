@@ -1,2 +1,9 @@
 @config "../tailwind.config.js";
 @import "tailwindcss";
+
+/* Links inherit parent text color so e.g. text-red-500 on the nav bar applies to menu links. */
+@layer base {
+  :where(a, a:link, a:visited) {
+    color: inherit;
+  }
+}

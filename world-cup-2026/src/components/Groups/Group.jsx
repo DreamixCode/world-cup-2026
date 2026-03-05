@@ -46,7 +46,7 @@ function Group({ number, teams, className, singleView, style }) {
     <ContentContainer className="select-none">
       <table
         className={classNames(
-          "items-center w-full text-dec-theme font-extrabold tracking-widest",
+          "items-center w-full text-dec-primary font-extrabold tracking-widest",
           singleView ? "text-lg" : "lg:text-xs",
           className
         )}
@@ -77,7 +77,7 @@ function Group({ number, teams, className, singleView, style }) {
                 >
                   {/* <Tooltip
                     id="Matches"
-                    textColor="dec-theme"
+                    textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
                   M
@@ -90,7 +90,7 @@ function Group({ number, teams, className, singleView, style }) {
                 >
                   {/* <Tooltip
                     id="Wins"
-                    textColor="dec-theme"
+                    textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
                   W
@@ -103,7 +103,7 @@ function Group({ number, teams, className, singleView, style }) {
                 >
                   {/* <Tooltip
                     id="Draws"
-                    textColor="dec-theme"
+                    textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
                   D
@@ -116,7 +116,7 @@ function Group({ number, teams, className, singleView, style }) {
                 >
                   {/* <Tooltip
                     id="Loses"
-                    textColor="dec-theme"
+                    textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
                   L
@@ -129,7 +129,7 @@ function Group({ number, teams, className, singleView, style }) {
                 >
                   {/* <Tooltip
                     id="Points"
-                    textColor="dec-theme"
+                    textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
                   P
@@ -138,7 +138,7 @@ function Group({ number, teams, className, singleView, style }) {
             )}
           </tr>
         </thead>
-        <tbody className="bg-dec-theme text-white border-2 w-full">
+        <tbody className="bg-dec-primary text-white border-2 w-full">
           {singleGroup?.map((group) =>
             group?.teams?.map((team) => {
               const flag = getFlag(team?.name);

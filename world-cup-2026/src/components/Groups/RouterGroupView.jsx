@@ -31,11 +31,11 @@ function GroupView() {
   );
 
   return (
-    <div className="bg-dec-theme grow">
+    <div className="bg-dec-primary grow">
       <ContentContainer
-        className="bg-dec-theme h-full px-8 py-4 space-y-4 flex flex-col justify-center select-none"
+        className="bg-dec-primary h-full px-8 py-4 space-y-4 flex flex-col justify-center select-none"
         style={{
-          backgroundImage: "url(/public/colors-top.png)",
+          backgroundImage: "url(/colors-top.png)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
         }}

@@ -1,83 +1,110 @@
 import {
-  Albania,
+  Algeria,
+  Argentina,
+  Australia,
   Austria,
   Belgium,
+  Brasil,
+  CaboVerde,
+  Canada,
+  Colombia,
+  CotDIvoire,
   Croatia,
-  Czechia,
-  Denmark,
+  Curacao,
+  Ecuador,
+  Egypt,
   England,
   France,
-  Georgia,
   Germany,
-  Hungary,
-  Italy,
+  Ghana,
+  Haiti,
+  Iran,
+  Japan,
+  Jordan,
+  Marocco,
+  Mexico,
   Netherlands,
-  Poland,
+  NewZealand,
+  Norway,
+  Panama,
+  Paraguay,
   Portugal,
-  Romania,
+  Qatar,
+  SaudiArabia,
   Scotland,
-  Serbia,
-  Slovakia,
-  Slovenia,
+  Senegal,
+  SouthAfrica,
+  SouthKorea,
   Spain,
   Switzerland,
-  Türkiye,
-  Ukraine,
+  Tunisia,
+  Uruguay,
+  Usa,
+  Uzbekistan,
 } from "./components/icons/index.jsx";
 
-export function getFlag(id) {
-  const classIcon = "w-8 h-8 rounded-full";
-  switch (id) {
-    case "Albania":
-      return <Albania className={classIcon} />;
-    case "Austria":
-      return <Austria className={classIcon} />;
-    case "Belgium":
-      return <Belgium className={classIcon} />;
-    case "Croatia":
-      return <Croatia className={classIcon} />;
-    case "Czech Republic":
-      return <Czechia className={classIcon} />;
-    case "Denmark":
-      return <Denmark className={classIcon} />;
-    case "England":
-      return <England className={classIcon} />;
-    case "France":
-      return <France className={classIcon} />;
-    case "Georgia":
-      return <Georgia className={classIcon} />;
-    case "Germany":
-      return <Germany className={classIcon} />;
-    case "Hungary":
-      return <Hungary className={classIcon} />;
-    case "Italy":
-      return <Italy className={classIcon} />;
-    case "Netherlands":
-      return <Netherlands className={classIcon} />;
-    case "Poland":
-      return <Poland className={classIcon} />;
-    case "Portugal":
-      return <Portugal className={classIcon} />;
-    case "Romania":
-      return <Romania className={classIcon} />;
-    case "Scotland":
-      return <Scotland className={classIcon} />;
-    case "Serbia":
-      return <Serbia className={classIcon} />;
-    case "Slovakia":
-      return <Slovakia className={classIcon} />;
-    case "Slovenia":
-      return <Slovenia className={classIcon} />;
-    case "Spain":
-      return <Spain className={classIcon} />;
-    case "Switzerland":
-      return <Switzerland className={classIcon} />;
-    case "Türkiye":
-      return <Türkiye className={classIcon} />;
-    case "Ukraine":
-      return <Ukraine className={classIcon} />;
-    default:
-      return null;
-  }
-}
+const FLAGS = {
+  Algeria,
+  Argentina,
+  Australia,
+  Austria,
+  Belgium,
+  Brasil,
+  CaboVerde,
+  Canada,
+  Colombia,
+  CotDIvoire,
+  Croatia,
+  Curacao,
+  Ecuador,
+  Egypt,
+  England,
+  France,
+  Germany,
+  Ghana,
+  Haiti,
+  Iran,
+  Japan,
+  Jordan,
+  Marocco,
+  Mexico,
+  Netherlands,
+  NewZealand,
+  Norway,
+  Panama,
+  Paraguay,
+  Portugal,
+  Qatar,
+  SaudiArabia,
+  Scotland,
+  Senegal,
+  SouthAfrica,
+  SouthKorea,
+  Spain,
+  Switzerland,
+  Tunisia,
+  Uruguay,
+  Usa,
+  Uzbekistan,
+};
 
+const FLAG_ALIASES = {
+  Brazil: Brasil,
+  "Cape Verde": CaboVerde,
+  "Côte d'Ivoire": CotDIvoire,
+  "Ivory Coast": CotDIvoire,
+  Morocco: Marocco,
+  "New Zealand": NewZealand,
+  "Saudi Arabia": SaudiArabia,
+  "South Korea": SouthKorea,
+  USA: Usa,
+  "United States": Usa,
+};
+
+const classIcon = "w-8 h-8 rounded-full";
+
+export function getFlag(id) {
+  const FlagComponent = FLAGS[id] ?? FLAG_ALIASES[id];
+  if (!FlagComponent) return null;
+  return <FlagComponent className={classIcon} />;
+}

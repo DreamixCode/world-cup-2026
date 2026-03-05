@@ -8,9 +8,9 @@ function FrontPage() {
   return (
     <section className="grow">
       <ContentContainer
-        className="bg-dec-theme max-w-full select-none h-full"
+        className="bg-dec-primary max-w-full select-none h-full"
         style={{
-          backgroundImage: "url(/public/colors-top.png)",
+          backgroundImage: "url(/colors-top.png)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "contain",
         }}

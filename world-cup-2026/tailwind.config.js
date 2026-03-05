@@ -30,10 +30,13 @@ const fontSize = {
 
 const colors = {
   dec: {
-    theme: {
+    primary: {
       DEFAULT: "#000000",
       white: "#ffffff",
+      darkBlue: "#000d40",
       middleBlue: "#0e2a99",
+      light: "#fafafa",
+      lightGrey: "#fafafa",
       inactive: "#909dd1",
     },
     background: {
@@ -46,7 +49,7 @@ const colors = {
 };
 
 export default {
-  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  content: ["./index.html", "./src/**/*.{js,jsx}", "!./src/const.js"],
   theme: {
     extend: {
       colors,

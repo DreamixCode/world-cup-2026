@@ -11,7 +11,7 @@ const classBase = [
 
 const styles = {
   primary:
-    "text-dec-theme bg-dec-background hover:bg-dec-theme-inactive disabled:bg-dec-background",
+    "text-dec-primary bg-dec-background hover:bg-dec-primary-inactive disabled:bg-dec-background",
 };
 
 export default function Button({

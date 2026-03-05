@@ -24,7 +24,7 @@ function GroupsView() {
   ));
 
   return (
-    <div className="bg-dec-theme grow">
+    <div className="bg-dec-primary grow">
       {isLoading && (
         <div className="flex justify-center items-center">
           <Spinner className="h-16 w-16" />

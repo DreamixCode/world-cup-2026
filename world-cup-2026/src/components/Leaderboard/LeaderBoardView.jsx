@@ -25,9 +25,9 @@ function LeaderBoardView({ frontPage }) {
 
   return (
     <div
-      className="bg-dec-theme grow uppercase sm:text-dec-base text-dec-2xs"
+      className="bg-dec-primary grow uppercase sm:text-dec-base text-dec-2xs"
       style={{
-        backgroundImage: !frontPage && "url(/public/colors-top.png)",
+        backgroundImage: !frontPage && "url(/colors-top.png)",
         backgroundRepeat: !frontPage && "no-repeat",
         backgroundSize: !frontPage && "contain",
       }}
@@ -43,12 +43,12 @@ function LeaderBoardView({ frontPage }) {
         )}
         {!isLoading && (
           <div className={!frontPage ? "sm:mt-24 mt-10" : undefined}>
-            <div className="text-center font-extrabold bg-transparent text-dec-theme-darkBlue text-dec-h3 pb-4 md:text-dec-t2">
+            <div className="text-center font-extrabold bg-transparent text-dec-primary-darkBlue text-dec-h3 pb-4 md:text-dec-t2">
               <h1>Leaderboard</h1>
             </div>
-            <table className="bg-dec-theme w-full text-dec-background font-extrabold">
+            <table className="bg-dec-primary w-full text-dec-background font-extrabold">
               <thead>
-                <tr className="border-b-4 border-dec-theme-light h-16">
+                <tr className="border-b-4 border-dec-primary-light h-16">
                   <th className="text-left font-extrabold"></th>
                   <th className="text-left font-extrabold">Name</th>
                   <th className="text-left font-extrabold pr-2">Points</th>
@@ -58,7 +58,7 @@ function LeaderBoardView({ frontPage }) {
                 {leadersView?.map((leader, index) => {
                   return (
                     <tr
-                      className="border-b-4 border-dec-theme-light"
+                      className="border-b-4 border-dec-primary-light"
                       key={leader.user.id}
                     >
                       <td className="py-1">
@@ -93,7 +93,7 @@ function LeaderBoardView({ frontPage }) {
                               {!isSmall && (
                                 <Tooltip
                                   id="User"
-                                  textColor="dec-theme"
+                                  textColor="dec-primary"
                                   backgroundColor="white"
                                 />
                               )}

@@ -2,8 +2,8 @@ import ContentContainer from "./ContentContainer";
 
 function Rules() {
   return (
-    <div className="h-full bg-dec-theme p-10">
-      <ContentContainer maxWidthClassName="max-w-2xl text-dec-theme bg-dec-background text-dec-h4 p-4 flex flex-col space-y-4 font-semibold">
+    <div className="h-full bg-dec-primary p-10">
+      <ContentContainer maxWidthClassName="max-w-2xl text-dec-primary bg-dec-background text-dec-h4 p-4 flex flex-col space-y-4 font-semibold">
         <p>
           In the game can participate everyone who is part of Dreamix. It
           doesn't matter if you are a football fan or not, you just have to
