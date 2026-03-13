@@ -3,172 +3,172 @@ import classNames from "classnames";
 import ContentContainer from "../ContentContainer";
 import { useGroups } from "../../api";
 import { getFlag } from "../../utils.jsx";
+import { mockedGroups } from "../../const.js";
 
 function Group({ number, teams, className, singleView, style }) {
-  const { groups } = useGroups();
+  // const { groups } = useGroups();
+  const groups = mockedGroups;
 
   const singleGroup = groups?.filter((group) => group.group === number);
 
   singleGroup?.map(({ teams }) => teams?.sort((a, b) => a.rank - b.rank));
 
-  const colors = {
-    "Group A": {
-      background: "#01ba5d",
-      text: "#ffffff",
-    },
-    "Group B": {
-      background: "#002b93",
-      text: "#ffffff",
-    },
-    "Group C": {
-      background: "#fe0000",
-      text: "#ffffff",
-    },
-    "Group D": {
-      background: "#ffca00",
-      text: "black",
-    },
-    "Group E": {
-      background: "#d4e2eb",
-      text: "black",
-    },
-    "Group F": {
-      background: "#1e1e28",
-      text: "#ffffff",
-    },
-    "Ranking of third-placed teams": {
-      background: "#01ba5d",
-      text: "#ffffff",
-    },
+  const cornerGroupClasses = {
+    "Group A": "bg-dec-groupA",
+    "Group B": "bg-dec-groupB",
+    "Group C": "bg-dec-groupC",
+    "Group D": "bg-dec-groupD",
+    "Group E": "bg-dec-groupE",
+    "Group F": "bg-dec-groupF",
+    "Group G": "bg-dec-groupG",
+    "Group H": "bg-dec-groupH",
+    "Group I": "bg-dec-groupI",
+    "Group J": "bg-dec-groupJ",
+    "Group K": "bg-dec-groupK",
+    "Group L": "bg-dec-groupL",
   };
 
   return (
     <ContentContainer className="select-none">
-      <table
+      <div
         className={classNames(
-          "items-center w-full text-dec-primary font-extrabold tracking-widest",
-          singleView ? "text-lg" : "lg:text-xs",
-          className
+          "relative overflow-hidden rounded-md bg-white shadow-md",
+          className,
         )}
         style={style}
       >
-        <thead className="bg-dec-background border-2">
-          <tr
-            className={classNames(
-              "text-center col-span-7 text-2xl h-12 border-2"
-            )}
-            style={{
-              color: colors[number].text,
-              backgroundColor: colors[number].background,
-            }}
-          >
-            <td colSpan={7}>{`${number.toUpperCase()}`}</td>
-          </tr>
-          <tr>
-            {singleView && (
-              <>
-                <tr></tr>
-                <th></th>
-                <th
-                  className="w-8 text-left"
-                  data-tip="Matches"
-                  data-for="Matches"
-                  data-place="top"
-                >
-                  {/* <Tooltip
+        <div
+          className={classNames(
+            "pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-bl-[99px]",
+            cornerGroupClasses[number],
+          )}
+        />
+        <div
+          className={classNames(
+            "pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-tr-[50%] bg-white",
+          )}
+        />
+
+        <table
+          className={classNames(
+            "relative w-full text-dec-primary font-extrabold tracking-widest",
+            singleView ? "text-lg" : "lg:text-xs",
+          )}
+        >
+          <thead>
+            <tr className="text-2xl">
+              <td colSpan={7} className="px-6 pt-6 pb-3">
+                {`${number.toUpperCase()}`}
+              </td>
+            </tr>
+            <tr>
+              {singleView && (
+                <>
+                  <tr></tr>
+                  <th></th>
+                  <th
+                    className="w-8 text-left"
+                    data-tip="Matches"
+                    data-for="Matches"
+                    data-place="top"
+                  >
+                    {/* <Tooltip
                     id="Matches"
                     textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
-                  M
-                </th>
-                <th
-                  className="w-8 text-left"
-                  data-tip="Wins"
-                  data-for="Wins"
-                  data-place="top"
-                >
-                  {/* <Tooltip
+                    M
+                  </th>
+                  <th
+                    className="w-8 text-left"
+                    data-tip="Wins"
+                    data-for="Wins"
+                    data-place="top"
+                  >
+                    {/* <Tooltip
                     id="Wins"
                     textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
-                  W
-                </th>
-                <th
-                  className="w-8 text-left"
-                  data-tip="Draws"
-                  data-for="Draws"
-                  data-place="top"
-                >
-                  {/* <Tooltip
+                    W
+                  </th>
+                  <th
+                    className="w-8 text-left"
+                    data-tip="Draws"
+                    data-for="Draws"
+                    data-place="top"
+                  >
+                    {/* <Tooltip
                     id="Draws"
                     textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
-                  D
-                </th>
-                <th
-                  className="w-8 text-left"
-                  data-tip="Loses"
-                  data-for="Loses"
-                  data-place="top"
-                >
-                  {/* <Tooltip
+                    D
+                  </th>
+                  <th
+                    className="w-8 text-left"
+                    data-tip="Loses"
+                    data-for="Loses"
+                    data-place="top"
+                  >
+                    {/* <Tooltip
                     id="Loses"
                     textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
-                  L
-                </th>
-                <th
-                  className="w-8 text-left"
-                  data-tip="Points"
-                  data-for="Points"
-                  data-place="top"
-                >
-                  {/* <Tooltip
+                    L
+                  </th>
+                  <th
+                    className="w-8 text-left"
+                    data-tip="Points"
+                    data-for="Points"
+                    data-place="top"
+                  >
+                    {/* <Tooltip
                     id="Points"
                     textColor="dec-primary"
                     backgroundColor="white"
                   /> */}
-                  P
-                </th>
-              </>
-            )}
-          </tr>
-        </thead>
-        <tbody className="bg-dec-primary text-white border-2 w-full">
-          {singleGroup?.map((group) =>
-            group?.teams?.map((team) => {
-              const flag = getFlag(team?.name);
+                    P
+                  </th>
+                </>
+              )}
+            </tr>
+          </thead>
+          <tbody className="w-full bg-white text-black">
+            {singleGroup?.map((group) =>
+              group?.teams?.map((team) => {
+                const flag = getFlag(team?.name);
 
-              return (
-                <tr className="h-10 items-center py-8" key={team?.id}>
-                  <td className="px-2 sm:text-dec-h4 text-dec-sm">
-                    {team?.rank}
-                  </td>
-                  <td className="flex items-center sm:text-dec-h4 text-dec-xs py-4 space-x-2 px-2">
-                    <span>{flag}</span>
-                    <span>{team?.name.toUpperCase()}</span>
-                  </td>
-                  {singleView && (
-                    <>
-                      <td className="text-left">{team?.played}</td>
-                      <td className="text-left">{team?.win}</td>
-                      <td className="text-left">{team?.draw}</td>
-                      <td className="text-left">{team?.lose}</td>
-                    </>
-                  )}
-                  <td className="text-left sm:text-dec-h4 text-dec-sm">
-                    {team?.points}
-                  </td>
-                </tr>
-              );
-            })
-          )}
-        </tbody>
-      </table>
+                return (
+                  <tr className="items-center" key={team?.id}>
+                    <td className="pl-6 pr-2 sm:text-dec-h4 text-dec-sm align-middle">
+                      {team?.rank}
+                    </td>
+                    <td className="sm:text-dec-h4 text-dec-xs py-3 px-2">
+                      <div className="flex items-center gap-2">
+                        <span>{flag}</span>
+                        <span>{team?.name.toUpperCase()}</span>
+                      </div>
+                    </td>
+                    {singleView && (
+                      <>
+                        <td className="text-left">{team?.played}</td>
+                        <td className="text-left">{team?.win}</td>
+                        <td className="text-left">{team?.draw}</td>
+                        <td className="text-left">{team?.lose}</td>
+                      </>
+                    )}
+                    <td className="text-right sm:text-dec-h4 text-dec-sm pr-6 align-middle">
+                      {team?.points}
+                    </td>
+                  </tr>
+                );
+              }),
+            )}
+          </tbody>
+        </table>
+      </div>
     </ContentContainer>
   );
 }

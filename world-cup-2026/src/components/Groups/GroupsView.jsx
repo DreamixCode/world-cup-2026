@@ -4,14 +4,16 @@ import { useGroups } from "../../api";
 import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import { useMedia } from "../../hooks";
+import { mockedGroups } from "../../const";
 
 function GroupsView() {
   const isLarge = useMedia(useMedia.LARGE);
   // const isXLarge = useMedia(useMedia.XLARGE);
 
-  const { groups, isLoading } = useGroups() ?? { groups: [], isLoading: false };
+  // const { groups, isLoading } = useGroups() ?? { groups: [], isLoading: false };
 
-  console.log(groups)
+  const groups = mockedGroups;
+  const isLoading = false;
 
   groups?.sort((a, b) => a.group?.localeCompare(b.group));
 

@@ -45,6 +45,19 @@ const colors = {
     border: {
       DEFAULT: "#000d40",
     },
+
+    groupA: { DEFAULT: "#68c076", text: "#000000" },
+    groupB: { DEFAULT: "#ee1c24", text: "#000000" },
+    groupC: { DEFAULT: "#e8ea7c", text: "#000000" },
+    groupD: { DEFAULT: "#1768b4", text: "#000000" },
+    groupE: { DEFAULT: "#f58021", text: "#000000" },
+    groupF: { DEFAULT: "#006958", text: "#000000" },
+    groupG: { DEFAULT: "#b0a7d1", text: "#000000" },
+    groupH: { DEFAULT: "#56bcb6", text: "#000000" },
+    groupI: { DEFAULT: "#4d3b98", text: "#000000" },
+    groupJ: { DEFAULT: "#f8aa9b", text: "#000000" },
+    groupK: { DEFAULT: "#ef3875", text: "#000000" },
+    groupL: { DEFAULT: "#7f011d", text: "#000000" },
   },
 };
 

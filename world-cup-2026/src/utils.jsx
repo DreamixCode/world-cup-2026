@@ -90,18 +90,20 @@ const FLAGS = {
 
 const FLAG_ALIASES = {
   Brazil: Brasil,
-  "Cape Verde": CaboVerde,
+  "Cabo Verde": CaboVerde,
   "Côte d'Ivoire": CotDIvoire,
+  "Cote d'Ivoire": CotDIvoire,
   "Ivory Coast": CotDIvoire,
   Morocco: Marocco,
   "New Zealand": NewZealand,
   "Saudi Arabia": SaudiArabia,
-  "South Korea": SouthKorea,
+  "Korea Republic": SouthKorea,
+  "South Africa": SouthAfrica,
   USA: Usa,
   "United States": Usa,
 };
 
-const classIcon = "w-8 h-8 rounded-full";
+const classIcon = "w-8 h-6 rounded-tr-[10px] rounded-bl-[10px]";
 
 export function getFlag(id) {
   const FlagComponent = FLAGS[id] ?? FLAG_ALIASES[id];
