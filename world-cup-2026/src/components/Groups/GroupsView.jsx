@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
 import Group from "./Group";
-import { useGroups } from "../../api";
 import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import { useMedia } from "../../hooks";
 import { mockedGroups } from "../../const";
+import { GroupDetails } from "./GroupDetails";
+import { Modal } from "../Modal/Modal";
 
 function GroupsView() {
   const isLarge = useMedia(useMedia.LARGE);
@@ -17,13 +17,24 @@ function GroupsView() {
 
   groups?.sort((a, b) => a.group?.localeCompare(b.group));
 
-  const groupsWC = groups?.map((group) => (
-    <Link to={`/groups/${group?.group?.slice(-1)?.toLowerCase()}`}>
+  const groupsWC = groups?.map((group) => {
+    const groupId = group?.group?.slice(-1)?.toLowerCase();
+    return (
       <li className="w-auto" key={group.group}>
-        <Group number={group.group} singleGroup={group.teams} />
+        <Modal
+          title={group.group}
+          trigger={
+            <button type="button" className="w-full text-left cursor-pointer">
+              <Group number={group.group} singleGroup={group.teams} />
+            </button>
+          }
+          contentClassName="bg-dec-primary border-0 w-[72vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl max-h-[92vh]"
+        >
+          <GroupDetails id={groupId} showBackLink={false} />
+        </Modal>
       </li>
-    </Link>
-  ));
+    );
+  });
 
   return (
     <div className="bg-dec-primary grow">

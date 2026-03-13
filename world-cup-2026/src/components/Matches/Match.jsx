@@ -2,8 +2,8 @@ import classNames from "classnames";
 import { format, isAfter, parseISO } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useCreateBet, useMyBets } from "../../api";
-import { useMedia } from "../../hooks";
+import { useForm } from "react-hook-form";
+import { useCreateBet } from "../../api";
 import { getFlag } from "../../utils.jsx";
 import Button from "../Button";
 import BtnLoader from "../BtnLoader";
@@ -25,20 +25,12 @@ function Match({
   shortStatus,
   className,
 }) {
-  const firstInputRef = useRef();
-  const secondInputRef = useRef();
-
-  const [betState, setBetState] = useState({
-    matchId: id,
-    home: "",
-    away: "",
-  });
+  const firstInputRef = useRef(null);
+  const secondInputRef = useRef(null);
 
   const [bet, setBet] = useState(false);
   const [editMode, setEditMode] = useState(false);
-  const [inactive, setInactive] = useState(false);
-
-  const today = Date.now();
+  const today = new Date();
 
   // const { myBets } = useMyBets();
 
@@ -81,53 +73,39 @@ function Match({
 
   const myBet = myBets?.find((bet) => bet.matchId === id);
 
-  useEffect(() => {
-    document.querySelectorAll('input[type="number"]').forEach((input) => {
-      input.oninput = () => {
-        if (input.value.length > input.maxLength) {
-          input.value = input.value.slice(0, input.maxLength);
-          secondInputRef.current?.select();
-          secondInputRef.current?.focus();
-        }
-        if (firstInputRef?.current?.value === input.value) {
-          secondInputRef.current?.select();
-          secondInputRef.current?.focus();
-        }
-      };
-      if (secondInputRef?.current?.value === input.value) {
-        setBetState((prev) => ({
-          ...prev,
-          home: firstInputRef.current.value,
-          away: secondInputRef.current.value,
-        }));
-      }
-    });
-  }, [editMode]);
+  const { register, handleSubmit, watch, reset } = useForm({
+    mode: "onChange",
+    defaultValues: {
+      home: "",
+      away: "",
+    },
+  });
+
+  const homeRegister = register("home", { required: true });
+  const awayRegister = register("away", { required: true });
+
+  const homeValue = watch("home");
+  const awayValue = watch("away");
 
   useEffect(() => {
-    if (firstInputRef?.current?.value && secondInputRef?.current?.value) {
-      setBetState({
-        matchId: id,
-        home: firstInputRef?.current?.value,
-        away: secondInputRef?.current?.value,
-      });
-    }
-    return;
-  }, [id]);
-
-  useEffect(() => {
-    if (isAfter(today, new Date(date))) {
-      setInactive(true);
-    }
     if (myBet && !editMode) {
-      setInactive(true);
+      reset({
+        home: String(myBet?.bet?.home ?? ""),
+        away: String(myBet?.bet?.away ?? ""),
+      });
+      return;
     }
+    if (!myBet) {
+      reset({ home: "", away: "" });
+    }
+  }, [myBet, editMode, id, reset]);
+
+  useEffect(() => {
     if (myBet && editMode) {
-      setInactive(false);
       firstInputRef.current?.focus();
       firstInputRef.current?.select();
     }
-  }, [date, today, myBet, editMode]);
+  }, [myBet, editMode]);
 
   const { createBet, isLoadingCreate, error } = useCreateBet();
 
@@ -137,28 +115,34 @@ function Match({
     }
   }, [setBet, error?.message]);
 
-  function handleOnSubmit(e) {
-    e.preventDefault();
+  const started = isAfter(today, new Date(date));
+  const finished = longStatus === "Match Finished";
+  const inactive = started || (Boolean(myBet) && !editMode);
+
+  const sanitizeScore = (value) => value.replace(/\D/g, "").slice(0, 1);
+
+  const submitBet = handleSubmit(({ home, away }) => {
     setBet(true);
-    createBet(betState);
-  }
+    createBet({
+      matchId: id,
+      home,
+      away,
+    });
+  });
 
   const onEdit = () => {
     setEditMode(true);
-    firstInputRef.current?.select();
-    firstInputRef.current?.focus();
   };
 
-  function handleOnEdit(e) {
-    e.preventDefault();
+  const submitEdit = handleSubmit(({ home, away }) => {
     setBet(true);
-    createBet(betState);
+    createBet({
+      matchId: id,
+      home,
+      away,
+    });
     setEditMode(false);
-  }
-
-  const isSmall = useMedia(useMedia.SMALL);
-  const isMedium = useMedia(useMedia.MEDIUM);
-  const isLarge = useMedia(useMedia.LARGE);
+  });
 
   const iconHost = getFlag(hostTeam);
   const iconGuest = getFlag(guestTeam);
@@ -166,21 +150,21 @@ function Match({
   const inputClassName = classNames(
     "outline-none m-0.5 p-0.5 border-solid border-2 w-7 h-7 text-center text-dec-h4",
     editMode && "ring-2 ring-dec-primary-inactive",
-    inactive ? "" : "border-dec-primary"
+    inactive ? "" : "border-dec-primary",
   );
-
-  const started = isAfter(today, new Date(date));
-  const finished = longStatus === "Match Finished";
 
   const parsedDate = format?.(parseISO?.(date), "dd-MM-yyyy");
   const parsedTime = format?.(parseISO?.(date), "HH:mm");
+  const canEnterEdit = !started && Boolean(myBet);
+  const canSubmitEdit =
+    Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
 
   return (
     <div
       className={classNames(
-        "w-full grid grid-cols-11 relative  border-b-2 font-extrabold px-2 items-center text-dec-sm sm:text-dec-base py-4",
+        "w-full relative border-b-2 font-extrabold px-2 items-center text-dec-sm sm:text-dec-base py-4 flex justify-center",
         error?.message && "h-28",
-        className ? className : "bg-dec-primary text-dec-background"
+        className ? className : "bg-dec-primary text-dec-background",
       )}
     >
       {error?.message && (
@@ -188,111 +172,98 @@ function Match({
           <p>Oops, something went wrong. Please, try again</p>
         </div>
       )}
-      <div className="sm:col-span-7 col-span-6 md:col-span-5">
-        <Link to={`/matches/${id}`}>
-          <div className="flex justify-between items-center md:pr-2 lg:pr-8">
-            <div className="flex sm:space-x-2 items-start sm:items-center sm:flex-row flex-col space-y-2 sm:space-y-0">
-              <div className="flex space-x-2 items-center">
-                {iconHost}
-                <span>{hostTeam}</span>
-              </div>
-              {isSmall && <span>-</span>}
-              <div className="flex space-x-2 items-center">
-                {!isSmall && iconGuest}
-                <span>{guestTeam}</span>
-                {isSmall && iconGuest}
-              </div>
+
+      <div className="flex items-center gap-3 flex-nowrap overflow-x-auto no-scrollbar">
+        <div className="min-w-[18rem]">
+          <Link to={`/matches/${id}`}>
+            <div className="flex items-center gap-2">
+              {iconHost}
+              <span className="whitespace-nowrap">{hostTeam}</span>
+              <span>-</span>
+              <span>{guestTeam}</span>
+              {iconGuest}
             </div>
-          </div>
-        </Link>
-      </div>
-      {isMedium && <div className="col-span-2">{parsedDate}</div>}
-      {isLarge && <div className="col-span-1">{parsedTime}</div>}
-      {!finished ? (
-        <div className="flex items-center">
+          </Link>
+        </div>
+        <div className="whitespace-nowrap">{parsedDate}</div>
+        <div className="whitespace-nowrap">{parsedTime}</div>
+
+        {!finished ? (
           <form
             id="bet-form"
-            className="text-center flex md:space-x-2 space-x-1 items-center text-dec-primary-darkBlue sm:items-start"
-            onSubmit={handleOnSubmit}
+            className="text-center flex items-center gap-2 text-dec-primary-darkBlue whitespace-nowrap"
           >
-            <div className="flex sm:flex-row flex-col">
+            <div className="flex items-center">
               <input
                 id="home"
                 type="number"
                 name="home"
-                value={
-                  myBet && !editMode && !isLoadingCreate
-                    ? myBet?.bet?.home
-                    : firstInputRef?.current?.value
-                }
-                maxLength={1}
-                className={classNames(inputClassName, styles)}
-                ref={firstInputRef}
+                className={classNames(
+                  inputClassName,
+                  styles,
+                  "bg-white text-black",
+                )}
+                min={0}
+                max={9}
+                {...homeRegister}
+                ref={(element) => {
+                  homeRegister.ref(element);
+                  firstInputRef.current = element;
+                }}
                 onChange={(e) => {
-                  firstInputRef.current.value = e.target.value;
-                  if (firstInputRef.current.value) {
+                  const sanitized = sanitizeScore(e.target.value);
+                  e.target.value = sanitized;
+                  homeRegister.onChange(e);
+
+                  if (sanitized) {
                     secondInputRef.current?.select();
                     secondInputRef.current?.focus();
-                  }
-                  setBetState((prev) => ({
-                    ...prev,
-                    home: firstInputRef.current.value,
-                  }));
-                }}
-                onKeyDown={({ key }) => {
-                  if (key === "Backspace") {
-                    firstInputRef.current.value = "";
-                    firstInputRef.current.focus();
                   }
                 }}
                 disabled={inactive}
               />
-              {isSmall && (
-                <div className={className ? className : "text-white"}>:</div>
-              )}
+              <div className={className ? className : "text-white"}>:</div>
               <input
                 id="away"
                 type="number"
                 name="away"
-                value={
-                  myBet && !editMode && !isLoadingCreate
-                    ? myBet?.bet?.away
-                    : secondInputRef?.current?.value
-                }
-                maxLength={1}
-                className={classNames(inputClassName, styles)}
-                ref={secondInputRef}
+                className={classNames(
+                  inputClassName,
+                  styles,
+                  "bg-white text-black",
+                )}
+                min={0}
+                max={9}
+                {...awayRegister}
+                ref={(element) => {
+                  awayRegister.ref(element);
+                  secondInputRef.current = element;
+                }}
                 onChange={(e) => {
-                  secondInputRef.current.value = e.target.value;
-                  setBetState((prev) => ({
-                    ...prev,
-                    away: secondInputRef.current.value,
-                  }));
+                  const sanitized = sanitizeScore(e.target.value);
+                  e.target.value = sanitized;
+                  awayRegister.onChange(e);
                   e.target.blur();
                 }}
                 disabled={inactive}
-                onKeyDown={({ key }) => {
-                  if (key === "Backspace") {
-                    secondInputRef.current.value = "";
-                    secondInputRef.current.focus();
-                  }
-                }}
               />
             </div>
 
             <div className="flex items-center justify-center">
               <Button
-                type="submit"
+                type="button"
                 className={classNames(
                   "lg:w-16 w-10 h-8 border-2 text-dec-primary-darkBlue",
-                  (bet || inactive || editMode) && "text-dec-primary-inactive"
+                  (bet || inactive || editMode) && "text-dec-primary-inactive",
                 )}
+                onClick={submitBet}
                 disabled={
-                  !betState?.home ||
-                  !betState?.away ||
+                  !homeValue ||
+                  !awayValue ||
                   inactive ||
                   bet ||
-                  editMode
+                  editMode ||
+                  isLoadingCreate
                 }
               >
                 {isLoadingCreate && !editMode && <BtnLoader />}
@@ -303,18 +274,13 @@ function Match({
               <button
                 type="button"
                 className={classNames(
-                  "lg:w-16 w-10 h-8",
-                  (((!bet || !betState?.home || !betState?.away || inactive) &&
-                    !Boolean(myBet)) ||
-                    started) &&
-                    "text-dec-primary-inactive"
+                  "w-6 h-8",
+                  ((editMode && !canSubmitEdit) ||
+                    (!editMode && !canEnterEdit)) &&
+                    "text-dec-primary-inactive",
                 )}
-                onClick={editMode ? handleOnEdit : onEdit}
-                disabled={
-                  ((!bet || !betState?.home || !betState?.away || inactive) &&
-                    !Boolean(myBet)) ||
-                  started
-                }
+                onClick={editMode ? submitEdit : onEdit}
+                disabled={editMode ? !canSubmitEdit : !canEnterEdit}
               >
                 {editMode ? (
                   <Tick className="w-6 h-6" />
@@ -324,41 +290,41 @@ function Match({
               </button>
             </div>
           </form>
-        </div>
-      ) : (
-        <div className="flex items-center justify-between sm:w-48 space-x-12 sm:space-x-8">
-          <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-1 pl-3">
-            <div>{myBet?.bet?.home}</div>
-            <div className="hidden sm:flex">{myBet && ":"}</div>
-            <div>{myBet?.bet?.away}</div>
-          </div>
-          <div className="sm:flex sm:flex-row flex-col space-y-2 sm:space-y-0 sm:space-x-2">
-            <div>FT</div>
-            <div className="w-10">
-              <div>
-                {hostTeamScore} : {guestTeamScore}
-              </div>
+        ) : (
+          <div className="flex items-center justify-between sm:w-48 space-x-12 sm:space-x-8">
+            <div className="flex flex-col space-y-4 sm:space-y-0 sm:flex-row sm:space-x-1 pl-3">
+              <div>{myBet?.bet?.home}</div>
+              <div className="hidden sm:flex">{myBet && ":"}</div>
+              <div>{myBet?.bet?.away}</div>
             </div>
-            {shortStatus === "PEN" && (
-              <>
-                <div>PEN</div>
-                <div className="w-10">
-                  {hostTeamPen} : {guestTeamPen}
+            <div className="sm:flex sm:flex-row flex-col space-y-2 sm:space-y-0 sm:space-x-2">
+              <div>FT</div>
+              <div className="w-10">
+                <div>
+                  {hostTeamScore} : {guestTeamScore}
                 </div>
-              </>
-            )}
-            {shortStatus === "AET" && (
-              <>
-                <div>ET</div>
-                <div className="w-10">
-                  {Number(hostTeamScore) + Number(hostTeamET)} :{" "}
-                  {Number(guestTeamScore) + Number(guestTeamET)}
-                </div>
-              </>
-            )}
+              </div>
+              {shortStatus === "PEN" && (
+                <>
+                  <div>PEN</div>
+                  <div className="w-10">
+                    {hostTeamPen} : {guestTeamPen}
+                  </div>
+                </>
+              )}
+              {shortStatus === "AET" && (
+                <>
+                  <div>ET</div>
+                  <div className="w-10">
+                    {Number(hostTeamScore) + Number(hostTeamET)} :{" "}
+                    {Number(guestTeamScore) + Number(guestTeamET)}
+                  </div>
+                </>
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
