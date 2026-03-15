@@ -7,20 +7,21 @@ spring:
           jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
           audiences:
 
-  data:
-    mongodb:
-      uri:
-      database: euro2024
+  mongodb:
+    uri: mongodb://root:wc-dreamix@localhost:27017/euro2024?authSource=admin
+    database: euro2024
   # Single Page
   mvc:
-    throw-exception-if-no-handler-found: true
     static-path-pattern: /public*
   web:
     resources:
       add-mappings: true
 
 app:
-  security.allowed-origins:
+  security:
+    allowed-origins:
+      - http://localhost:3000
+#      We gonna add the Frontend from Tancheto here as well
 
 # OpenAPI
 springdoc.packagesToScan: eu.dreamix
