@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.Value;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
