@@ -2,9 +2,8 @@ import classNames from "classnames";
 import { format, isAfter, isEqual, parseISO } from "date-fns";
 import Match from "./Match";
 import { useMedia } from "../../hooks";
-import { useMatches } from "../../api";
 import ContentContainer from "../ContentContainer";
-import Spinner from "../Spinner";
+import { matchess } from "@/const";
 
 function MatchesView({ frontPage }) {
   const isMedium = useMedia(useMedia.MEDIUM);
@@ -13,40 +12,41 @@ function MatchesView({ frontPage }) {
   const today = new Date();
 
   // const { isLoading } = useMatches();
+  const matches = matchess;
   const isLoading = false;
 
   matches?.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
   const todayMatches = matches?.filter((match) =>
     isEqual(
       new Date(format(parseISO(match?.date), "yyyy-MM-dd")),
-      new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd"))
-    )
+      new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")),
+    ),
   );
 
   const nextMatches = matches?.filter((match) =>
     isAfter(
       new Date(format(parseISO(match?.date), "yyyy-MM-dd")),
-      new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")) //replace with today
-    )
+      new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")),
+    ),
   );
 
   function selectTitle() {
-    if (frontPage && Boolean(todayMatches?.length)) {
+    if (frontPage && todayMatches?.length) {
       return `Today's matches`;
-    } else if (frontPage && !Boolean(todayMatches?.length)) {
+    } else if (frontPage && !todayMatches?.length) {
       return "Next matches";
     } else {
-      return "Matches";
+      return "";
     }
   }
 
   function selectMatchesShown() {
-    if (frontPage && Boolean(todayMatches?.length)) {
+    if (frontPage && todayMatches?.length) {
       return todayMatches;
-    } else if (frontPage && !Boolean(todayMatches?.length)) {
+    } else if (frontPage && !todayMatches?.length) {
       return nextMatches?.slice(0, 4);
     } else {
       return matches;
@@ -55,7 +55,7 @@ function MatchesView({ frontPage }) {
 
   return (
     <div
-      className="bg-dec-primary flex grow uppercase"
+      className="flex grow uppercase"
       style={{
         backgroundImage: !frontPage && "url(/colors-top.png)",
         backgroundRepeat: !frontPage && "no-repeat",
@@ -63,21 +63,24 @@ function MatchesView({ frontPage }) {
       }}
     >
       <ContentContainer
-        className={classNames("sm:p-4 select-none", frontPage ? "" : "h-full")}
+        className={classNames(
+          "sm:p-4 select-none bg-white",
+          frontPage ? "" : "h-full",
+        )}
         maxWidthClassName="max-w-5xl px-4"
       >
-        {isLoading && (
+        {!isLoading && (
           <div className={!frontPage ? "sm:mt-24 mt-14 2xl:pt-28" : undefined}>
-            <div className="text-center font-extrabold text-dec-primary-darkBlue bg-transparent text-dec-h3 pb-4 md:text-dec-t2">
+            <div className="text-center font-extrabold text-white bg-transparent text-dec-h3 pb-4 md:text-dec-t2">
               <h1>{selectTitle()}</h1>
             </div>
             <div className="flex flex-col border-2 ">
               <div className="grid grid-cols-11 text-dec-primary-darkBlue h-28 w-full bg-dec-background border-b-4 border-dec-primary text-dec-h2.5 font-extrabold px-2 items-center">
-                <div className="col-span-7 md:col-span-5 text-dec-h3.5 sm:text-dec-h2.5">
+                <div className="col-span-6 md:col-span-5 text-dec-h3.5 sm:text-dec-h2.5 flex justify-start pl-20">
                   Match
                 </div>
-                {isMedium && <div className="col-span-2">Date</div>}
-                {isLarge && <div className="col-span-1">Time</div>}
+                {isMedium && <div className="col-span-1"></div>}
+                {isLarge && <div className="col-span-2 pl-4">Time</div>}
                 <div className="sm:col-span-3 col-span-4 text-dec-h3.5 sm:text-dec-h2.5">
                   Your bet
                 </div>

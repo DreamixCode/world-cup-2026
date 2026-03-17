@@ -1,5 +1,5 @@
 import { Tooltip } from "react-tooltip";
-import { useStandings } from "../../api";
+// import { useStandings } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
@@ -25,7 +25,7 @@ function LeaderBoardView({ frontPage }) {
 
   return (
     <div
-      className="bg-dec-primary grow uppercase sm:text-dec-base text-dec-2xs"
+      className="bg-white grow uppercase sm:text-dec-base text-dec-2xs"
       style={{
         backgroundImage: !frontPage && "url(/colors-top.png)",
         backgroundRepeat: !frontPage && "no-repeat",

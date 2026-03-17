@@ -368,7 +368,7 @@ export const matchess = [
       },
       away: {
         id: 104,
-        name: "Czechia/Denmark/North Macedonia/Republic of Ireland",
+        name: "Korea Republic",
         logo: "",
       },
     },
@@ -402,7 +402,7 @@ export const matchess = [
       },
       away: {
         id: 106,
-        name: "Bosnia and Herzegovina/Italy/Northern Ireland/Wales",
+        name: "Italy",
         logo: "",
       },
     },
@@ -504,7 +504,7 @@ export const matchess = [
       },
       away: {
         id: 112,
-        name: "Kosovo/Romania/Slovakia/Türkiye",
+        name: "Slovakia",
         logo: "",
       },
     },
@@ -703,7 +703,7 @@ export const matchess = [
     teams: {
       home: {
         id: 123,
-        name: "Albania/Poland/Sweden/Ukraine",
+        name: "Sweden",
         logo: "",
       },
       away: {
@@ -896,7 +896,7 @@ export const matchess = [
     status: { elapsed: 0, long: "Upcoming", short: "UP" },
     teams: {
       home: { id: 27, name: "Portugal" },
-      away: { id: 28, name: "Congo DR/Jamaica/New Caledonia" },
+      away: { id: 28, name: "Congo" },
     },
     score: {
       goals: { home: 0, away: 0, symbol: "-" },
@@ -2835,709 +2835,75 @@ export const matches = [
   },
 ];
 
-export const myBets = [
-  // {
-  //   matchId: 855736,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855735,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 0, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855734,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 0, away: 3, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 866681,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 3,
-  // },
-  // {
-  //   matchId: 855737,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 5, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855739,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855738,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 1, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 871850,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 4, away: 1, symbol: "1" },
-  //   points: 3,
-  // },
-  // {
-  //   matchId: 855740,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 2, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855741,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 871851,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 0, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855742,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 4, away: 0, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855743,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 2, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855744,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855745,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855746,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 1, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 866682,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855749,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855747,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 3, symbol: "2" },
-  //   points: 3,
-  // },
-  // {
-  //   matchId: 855748,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855750,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855752,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 0, symbol: "1" },
-  //   points: 3,
-  // },
-  // {
-  //   matchId: 871852,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 2, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855751,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 1, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 871853,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855755,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 2, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855753,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 3, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855754,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855756,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855758,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855757,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 0, away: 2, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855759,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 2, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855760,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 4, away: 0, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855761,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 3, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855762,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 866683,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 0, away: 2, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855763,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 0, away: 2, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 871854,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 2, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855765,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855764,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 2, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855768,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 3, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 871855,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 0, away: 3, symbol: "2" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855766,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 855767,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855770,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855769,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 2, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855772,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 0, symbol: "1" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 855771,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 976533,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 976642,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
-  //   },
-  //   bet: { home: 4, away: 0, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 976534,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/AEdFTp6ziZwqtSSrgVfcYHgWNP-Bm6TwjFxUVpFS4p8g=s96-c",
-  //   },
-  //   bet: { home: 1, away: 1, symbol: "X" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 976643,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/AEdFTp6ziZwqtSSrgVfcYHgWNP-Bm6TwjFxUVpFS4p8g=s96-c",
-  //   },
-  //   bet: { home: 2, away: 1, symbol: "1" },
-  //   points: 1,
-  // },
-  // {
-  //   matchId: 977344,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/AEdFTp6ziZwqtSSrgVfcYHgWNP-Bm6TwjFxUVpFS4p8g=s96-c",
-  //   },
-  //   bet: { home: 2, away: 3, symbol: "2" },
-  //   points: 0,
-  // },
-  // {
-  //   matchId: 977705,
-  //   user: {
-  //     id: "112529453352592387904",
-  //     firstName: "Tania",
-  //     lastName: "Kasabova",
-  //     email: "tania.kasabova@dreamix.eu",
-  //     picture:
-  //       "https://lh3.googleusercontent.com/a/AEdFTp6ziZwqtSSrgVfcYHgWNP-Bm6TwjFxUVpFS4p8g=s96-c",
-  //   },
-  //   bet: { home: 3, away: 1, symbol: "1" },
-  //   points: null,
-  // },
+export const myBets1 = [
+  {
+    matchId: 1,
+    user: {
+      firstName: "Tania",
+      lastName: "Kasabova",
+      email: "tania.kasabova@gmail.com",
+      picture:
+        "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
+      id: "112529453352592387904",
+    },
+    bet: {
+      home: 1,
+      away: 0,
+      symbol: "1",
+    },
+    points: 0,
+  },
+  {
+    matchId: 2,
+    user: {
+      firstName: "Tania",
+      lastName: "Kasabova",
+      email: "tania.kasabova@gmail.com",
+      picture:
+        "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
+      id: "112529453352592387904",
+    },
+    bet: {
+      home: 2,
+      away: 1,
+      symbol: "2",
+    },
+    points: 3,
+  },
+  {
+    matchId: 3,
+    user: {
+      firstName: "Tania",
+      lastName: "Kasabova",
+      email: "tania.kasabova@gmail.com",
+      picture:
+        "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
+      id: "112529453352592387904",
+    },
+    bet: {
+      home: 0,
+      away: 0,
+      symbol: "X",
+    },
+    points: 1,
+  },
+  {
+    matchId: 4,
+    user: {
+      firstName: "Tania",
+      lastName: "Kasabova",
+      email: "tania.kasabova@gmail.com",
+      picture:
+        "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
+      id: "112529453352592387904",
+    },
+    bet: {
+      home: 2,
+      away: 2,
+      symbol: "X",
+    },
+    points: 0,
+  },
 ];
 
 export const myBetss = [
