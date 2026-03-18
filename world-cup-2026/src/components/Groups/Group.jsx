@@ -4,6 +4,7 @@ import ContentContainer from "../ContentContainer";
 import { useGroups } from "../../api";
 import { getFlag } from "../../utils.jsx";
 import { mockedGroups } from "../../const.js";
+import { Tooltip } from "react-tooltip";
 
 function Group({ number, teams, className, singleView, style }) {
   // const { groups } = useGroups();
@@ -45,7 +46,7 @@ function Group({ number, teams, className, singleView, style }) {
         />
         <div
           className={classNames(
-            "pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-tr-[50%] bg-white",
+            "pointer-events-none absolute top-0 right-0 h-40 w-41 rounded-tr-[50%] bg-white",
           )}
         />
 
@@ -72,11 +73,11 @@ function Group({ number, teams, className, singleView, style }) {
                     data-for="Matches"
                     data-place="top"
                   >
-                    {/* <Tooltip
-                    id="Matches"
-                    textColor="dec-primary"
-                    backgroundColor="white"
-                  /> */}
+                    <Tooltip
+                      id="Matches"
+                      textColor="dec-primary"
+                      backgroundColor="red"
+                    />
                     M
                   </th>
                   <th
@@ -159,7 +160,7 @@ function Group({ number, teams, className, singleView, style }) {
                         <td className="text-left">{team?.lose}</td>
                       </>
                     )}
-                    <td className="text-right sm:text-dec-h4 text-dec-sm pr-6 align-middle">
+                    <td className="text-right sm:text-dec-h4 text-dec-md pr-6 align-middle">
                       {team?.points}
                     </td>
                   </tr>

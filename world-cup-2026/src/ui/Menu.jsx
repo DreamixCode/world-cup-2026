@@ -4,6 +4,7 @@ import GoogleLoginBtn from "./GoogleLoginButton";
 import { MenuNavLink } from "./MenuItem";
 import { useMedia } from "../hooks";
 import HamburgerMenu from "./HamburgerMenu";
+import { LogoBlack, LogoWhite } from "@/components/icons";
 
 function Menu() {
   const isSmall = useMedia(useMedia.MEDIUM);
@@ -47,11 +48,12 @@ function Menu() {
     <nav>
       <div
         className={classNames(
-          "fixed top-0 z-30 h-20 flex w-full text-dec-h3 shrink sm:justify-center lg:z-50 md:px-8 px-4 items-center bg-black text-red-500",
+          "fixed top-0 z-30 h-20 flex w-full text-dec-h3 shrink sm:justify-center lg:z-50 md:px-8 px-4 items-center bg-white",
         )}
       >
+        <LogoWhite className="w-12 h-12 absolute left-4 top-4" />
         {isSmall ? (
-          <ul className="uppercase grid grid-flow-col gap-4 lg:gap-8 items-center px-2 text-white bg-black">
+          <ul className="uppercase grid grid-flow-col gap-4 lg:gap-8 items-center px-2 text-black bg-white">
             {mainMenuItems}
           </ul>
         ) : (

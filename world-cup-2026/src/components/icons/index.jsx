@@ -27,6 +27,8 @@ export { default as Iran } from "./iran.svg?react";
 export { default as Japan } from "./japan.svg?react";
 export { default as Jordan } from "./jordan.svg?react";
 export { default as Loading } from "./loading.svg?react";
+export { default as LogoBlack } from "./logo-black.svg?react";
+export { default as LogoWhite } from "./logo-white.svg?react";
 export { default as Marocco } from "./marocco.svg?react";
 export { default as Menu } from "./menu.svg?react";
 export { default as Mexico } from "./mexico.svg?react";

@@ -25,7 +25,7 @@ function LeaderBoardView({ frontPage }) {
 
   return (
     <div
-      className="bg-white grow uppercase sm:text-dec-base text-dec-2xs"
+      className="bg-black grow uppercase sm:text-dec-base text-dec-2xs"
       style={{
         backgroundImage: !frontPage && "url(/colors-top.png)",
         backgroundRepeat: !frontPage && "no-repeat",

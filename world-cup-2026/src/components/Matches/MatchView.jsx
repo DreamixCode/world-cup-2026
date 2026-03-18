@@ -38,7 +38,7 @@ function MatchView() {
     teams.map((team) => {
       if (team.name.includes(match?.teams?.home?.name)) groupName = group;
       return null;
-    })
+    }),
   );
 
   return (
@@ -150,11 +150,6 @@ function MatchView() {
             ) : (
               <div className="flex flex-col justify-center text-center text-dec-background text-dec-h3 space-y-4">
                 <p>You'll see all the bets when the match starts!</p>
-                <img
-                  src={import.meta.env.PUBLIC_URL + "/ec-2024-mascot.jpg"}
-                  alt="groups"
-                  className="w-full"
-                />
               </div>
             )}
           </div>

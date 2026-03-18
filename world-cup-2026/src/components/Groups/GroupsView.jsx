@@ -28,7 +28,7 @@ function GroupsView() {
               <Group number={group.group} singleGroup={group.teams} />
             </button>
           }
-          contentClassName="bg-dec-primary border-0 w-[72vw] sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl max-h-[92vh]"
+          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl max-h-[92vh]"
         >
           <GroupDetails id={groupId} showBackLink={false} />
         </Modal>
@@ -47,15 +47,6 @@ function GroupsView() {
         className="py-12 h-full justify-center select-none flex"
         maxWidthClassName="max-w-full"
       >
-        {isLarge && (
-          <div>
-            <img
-              src={import.meta.env.PUBLIC_URL + "/logo.jpg"}
-              alt="groups"
-              className="w-full"
-            />
-          </div>
-        )}
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 xl:grid-cols-3 px-8 justify-center w-full">
           {groupsWC}
         </ul>

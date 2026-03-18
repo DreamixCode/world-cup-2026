@@ -54,19 +54,9 @@ function MatchesView({ frontPage }) {
   }
 
   return (
-    <div
-      className="flex grow uppercase"
-      style={{
-        backgroundImage: !frontPage && "url(/colors-top.png)",
-        backgroundRepeat: !frontPage && "no-repeat",
-        backgroundSize: !frontPage && "contain",
-      }}
-    >
+    <div className="flex grow uppercase bg-black">
       <ContentContainer
-        className={classNames(
-          "sm:p-4 select-none bg-white",
-          frontPage ? "" : "h-full",
-        )}
+        className={classNames("sm:p-4 select-none", frontPage ? "" : "h-full")}
         maxWidthClassName="max-w-5xl px-4"
       >
         {!isLoading && (
