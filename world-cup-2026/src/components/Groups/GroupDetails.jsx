@@ -17,8 +17,7 @@ function getMascotForGroup(groupId) {
     .slice(0, 1)
     .toLowerCase();
 
-  const index =
-    letter >= "a" && letter <= "z" ? letter.charCodeAt(0) - 97 : 0;
+  const index = letter >= "a" && letter <= "z" ? letter.charCodeAt(0) - 97 : 0;
 
   return GROUP_MASCOTS[index % GROUP_MASCOTS.length];
 }
@@ -50,17 +49,19 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
   const mascot = getMascotForGroup(id);
 
   return (
-    <ContentContainer className="bg-dec-primary h-full px-8 py-4 space-y-4 flex flex-col justify-center select-none">
-      <div className="flex flex-col space-y-4 items-center">
-        <div className="flex items-center space-x-1 w-full">
-          {isSmall && (
+    <ContentContainer className="bg-dec-primary px-8 py-4 space-y-4 flex flex-col select-none">
+      <div className="flex flex-col space-y-4 items-center min-h-0">
+        {isSmall && (
+          <div className="absolute top-20 left-20">
             <img
               src={`${import.meta.env.BASE_URL}images/${mascot.file}`}
               alt={mascot.alt}
-              className="h-[200px] w-auto"
+              className="h-[200px] w-auto flex shrink-0"
             />
-          )}
-          <div className="w-full items-center flex max-w-xl">
+          </div>
+        )}
+        <div className="flex items-center justify-center gap-4 w-full">
+          <div className="flex-1 flex justify-center items-center min-w-0 max-w-xl">
             {group?.map((group) => (
               <Group
                 singleView
@@ -71,7 +72,7 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
             ))}
           </div>
         </div>
-        {groupMatches?.map((match) => {
+        {groupMatches.concat(groupMatches)?.map((match) => {
           return (
             <Match
               key={match?.id}

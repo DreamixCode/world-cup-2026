@@ -7,7 +7,7 @@ import { GroupDetails } from "./GroupDetails";
 import { Modal } from "../Modal/Modal";
 
 function GroupsView() {
-  const isLarge = useMedia(useMedia.LARGE);
+  const _isLarge = useMedia(useMedia.LARGE);
   // const isXLarge = useMedia(useMedia.XLARGE);
 
   // const { groups, isLoading } = useGroups() ?? { groups: [], isLoading: false };
@@ -28,7 +28,7 @@ function GroupsView() {
               <Group number={group.group} singleGroup={group.teams} />
             </button>
           }
-          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl max-h-[92vh]"
+          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
         >
           <GroupDetails id={groupId} showBackLink={false} />
         </Modal>

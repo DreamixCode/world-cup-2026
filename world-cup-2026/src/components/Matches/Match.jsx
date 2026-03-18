@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { format, isAfter, parseISO } from "date-fns";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 import { useCreateBet } from "../../api";
 import { getFlag } from "../../utils.jsx";
@@ -11,6 +12,7 @@ import ScoreDisplay from "./ScoreDisplay";
 
 import { myBets1 } from "@/const";
 import styles from "./Match.module.css";
+import { useMedia } from "@/hooks";
 
 function Match({
   hostTeam,
@@ -31,6 +33,7 @@ function Match({
   const secondInputRef = useRef(null);
   const [_, setBet] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const isLarge = useMedia(useMedia.LARGE);
   const today = new Date();
 
   const myBets = myBets1;
@@ -71,6 +74,7 @@ function Match({
   const inactive = started || (Boolean(myBet) && !editMode);
 
   const sanitizeScore = (value) => value.replace(/\D/g, "").slice(0, 1);
+
   const handleBetSubmit = (data) => {
     setBet(true);
     createBet({ matchId: id, home: data.home, away: data.away });
@@ -93,6 +97,64 @@ function Match({
   const canSubmitEdit =
     Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
 
+  const matchLink = (
+    <MatchLink
+      id={id}
+      hostTeam={hostTeam}
+      guestTeam={guestTeam}
+      iconHost={iconHost}
+      iconGuest={iconGuest}
+    />
+  );
+
+  const dateTime = (
+    <>
+      <div className="whitespace-nowrap">{parsedDate}</div>
+      <div className="whitespace-nowrap">{parsedTime}</div>
+    </>
+  );
+
+  const defaultBetInputClassName =
+    "outline-none m-0.5 p-0.5 border-solid rounded-sm border-2 w-7 h-7 text-center text-dec-h4";
+
+  const BetFormView = (props) => (
+    <BetForm
+      homeRegister={homeRegister}
+      awayRegister={awayRegister}
+      homeValue={homeValue}
+      awayValue={awayValue}
+      inactive={inactive}
+      handleBet={handleBetSubmit}
+      handleEdit={handleEditSubmit}
+      isLoading={isLoadingCreate}
+      editMode={editMode}
+      canEnterEdit={canEnterEdit}
+      canSubmitEdit={canSubmitEdit}
+      onEdit={onEdit}
+      firstInputRef={firstInputRef}
+      secondInputRef={secondInputRef}
+      sanitizeScore={sanitizeScore}
+      className={styles}
+      styles={styles}
+      inputClassName={props?.inputClassName ?? defaultBetInputClassName}
+      {...props}
+    />
+  );
+
+  const ScoreDisplayView = (props) => (
+    <ScoreDisplay
+      myBet={myBet}
+      hostTeamScore={hostTeamScore}
+      guestTeamScore={guestTeamScore}
+      shortStatus={shortStatus}
+      hostTeamPen={hostTeamPen}
+      guestTeamPen={guestTeamPen}
+      hostTeamET={hostTeamET}
+      guestTeamET={guestTeamET}
+      {...props}
+    />
+  );
+
   return (
     <div
       className={classNames(
@@ -107,51 +169,83 @@ function Match({
         </div>
       )}
 
-      <div className="flex items-center gap-3 flex-nowrap overflow-x-auto no-scrollbar">
-        <MatchLink
-          id={id}
-          hostTeam={hostTeam}
-          guestTeam={guestTeam}
-          iconHost={iconHost}
-          iconGuest={iconGuest}
-        />
+      {isLarge ? (
+        <div className="flex items-center gap-3 flex-nowrap overflow-x-auto no-scrollbar">
+          {matchLink}
+          {dateTime}
+          {!finished ? <BetFormView /> : <ScoreDisplayView />}
+        </div>
+      ) : (
+        <div className="w-full flex items-center justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            {!finished ? (
+              <BetFormView
+                layout="rows"
+                inputClassName="outline-none border-solid rounded-sm border-2 w-8 h-8 text-center bg-white text-black"
+                homeRow={
+                  <Link to={`/matches/${id}`} className="block min-w-0">
+                    <div className="min-w-0 flex items-center gap-2">
+                      {iconHost}
+                      <span className="truncate">{hostTeam}</span>
+                    </div>
+                  </Link>
+                }
+                awayRow={
+                  <Link to={`/matches/${id}`} className="block min-w-0">
+                    <div className="min-w-0 flex items-center gap-2">
+                      {iconGuest}
+                      <span className="truncate">{guestTeam}</span>
+                    </div>
+                  </Link>
+                }
+              />
+            ) : (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between gap-3">
+                  <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
+                    <div className="min-w-0 flex items-center gap-2">
+                      {iconHost}
+                      <span className="truncate">{hostTeam}</span>
+                    </div>
+                  </Link>
+                  <div className="tabular-nums w-8 text-right">
+                    {hostTeamScore ?? "-"}
+                  </div>
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
+                    <div className="min-w-0 flex items-center gap-2">
+                      {iconGuest}
+                      <span className="truncate">{guestTeam}</span>
+                    </div>
+                  </Link>
+                  <div className="tabular-nums w-8 text-right">
+                    {guestTeamScore ?? "-"}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
 
-        <div className="whitespace-nowrap">{parsedDate}</div>
-        <div className="whitespace-nowrap">{parsedTime}</div>
-
-        {!finished ? (
-          <BetForm
-            homeRegister={homeRegister}
-            awayRegister={awayRegister}
-            homeValue={homeValue}
-            awayValue={awayValue}
-            inactive={inactive}
-            handleBet={handleBetSubmit}
-            handleEdit={handleEditSubmit}
-            isLoading={isLoadingCreate}
-            editMode={editMode}
-            canEnterEdit={canEnterEdit}
-            canSubmitEdit={canSubmitEdit}
-            onEdit={onEdit}
-            firstInputRef={firstInputRef}
-            secondInputRef={secondInputRef}
-            sanitizeScore={sanitizeScore}
-            className={styles}
-            inputClassName="outline-none m-0.5 p-0.5 border-solid rounded-sm border-2 w-7 h-7 text-center text-dec-h4"
-          />
-        ) : (
-          <ScoreDisplay
-            myBet={myBet}
-            hostTeamScore={hostTeamScore}
-            guestTeamScore={guestTeamScore}
-            shortStatus={shortStatus}
-            hostTeamPen={hostTeamPen}
-            guestTeamPen={guestTeamPen}
-            hostTeamET={hostTeamET}
-            guestTeamET={guestTeamET}
-          />
-        )}
-      </div>
+          {!finished ? (
+            <div className="flex flex-col justify-center items-center gap-2">
+              <BetFormView
+                layout="compact"
+                handleBet={() =>
+                  handleBetSubmit({ home: homeValue, away: awayValue })
+                }
+                handleEdit={() =>
+                  handleEditSubmit({ home: homeValue, away: awayValue })
+                }
+              />
+            </div>
+          ) : (
+            <div className="flex items-center justify-center">
+              <ScoreDisplayView layout="compact" />
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

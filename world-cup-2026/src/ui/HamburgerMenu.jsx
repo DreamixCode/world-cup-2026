@@ -6,9 +6,9 @@ function HamburgerMenu({ children }) {
 
 function HamburgerMenuToggle({ open, ...props }) {
   return (
-    <div className="bg-dec-primary text-black w-12 h-12 relative">
+    <div className="bg-white text-black w-12 h-12 relative">
       <button
-        className="absolute right-3 text-dec-background top-3 smd-focus-visible-primary rounded outline-none items-center"
+        className="absolute right-3 text-black top-3 smd-focus-visible-primary rounded outline-none items-center"
         {...props}
       >
         {open ? (

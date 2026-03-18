@@ -1,12 +1,13 @@
 import classNames from "classnames";
 
 import ContentContainer from "../ContentContainer";
-import { useGroups } from "../../api";
 import { getFlag } from "../../utils.jsx";
 import { mockedGroups } from "../../const.js";
 import { Tooltip } from "react-tooltip";
+import { useMedia } from "@/hooks";
 
-function Group({ number, teams, className, singleView, style }) {
+function Group({ number, teams: _teams, className, singleView, style }) {
+  const isSmall = useMedia(useMedia.SMALL);
   // const { groups } = useGroups();
   const groups = mockedGroups;
 
@@ -46,95 +47,68 @@ function Group({ number, teams, className, singleView, style }) {
         />
         <div
           className={classNames(
-            "pointer-events-none absolute top-0 right-0 h-40 w-41 rounded-tr-[50%] bg-white",
+            "pointer-events-none absolute top-0 right-0 h-40 w-41 rounded-tr-[40%] sm:rounded-tr-[50%] bg-white",
           )}
         />
 
         <table
           className={classNames(
             "relative w-full text-dec-primary font-extrabold tracking-widest",
-            singleView ? "text-lg" : "lg:text-xs",
+            "text-xs lg:text-lg",
           )}
         >
           <thead>
-            <tr className="text-2xl">
+            <tr className="text-xs lg:text-lg">
               <td colSpan={7} className="px-6 pt-6 pb-3">
                 {`${number.toUpperCase()}`}
               </td>
             </tr>
-            <tr>
-              {singleView && (
-                <>
-                  <tr></tr>
-                  <th></th>
-                  <th
-                    className="w-8 text-left"
-                    data-tip="Matches"
-                    data-for="Matches"
-                    data-place="top"
-                  >
-                    <Tooltip
-                      id="Matches"
-                      textColor="dec-primary"
-                      backgroundColor="red"
-                    />
-                    M
-                  </th>
-                  <th
-                    className="w-8 text-left"
-                    data-tip="Wins"
-                    data-for="Wins"
-                    data-place="top"
-                  >
-                    {/* <Tooltip
-                    id="Wins"
-                    textColor="dec-primary"
-                    backgroundColor="white"
-                  /> */}
-                    W
-                  </th>
-                  <th
-                    className="w-8 text-left"
-                    data-tip="Draws"
-                    data-for="Draws"
-                    data-place="top"
-                  >
-                    {/* <Tooltip
-                    id="Draws"
-                    textColor="dec-primary"
-                    backgroundColor="white"
-                  /> */}
-                    D
-                  </th>
-                  <th
-                    className="w-8 text-left"
-                    data-tip="Loses"
-                    data-for="Loses"
-                    data-place="top"
-                  >
-                    {/* <Tooltip
-                    id="Loses"
-                    textColor="dec-primary"
-                    backgroundColor="white"
-                  /> */}
-                    L
-                  </th>
-                  <th
-                    className="w-8 text-left"
-                    data-tip="Points"
-                    data-for="Points"
-                    data-place="top"
-                  >
-                    {/* <Tooltip
-                    id="Points"
-                    textColor="dec-primary"
-                    backgroundColor="white"
-                  /> */}
-                    P
-                  </th>
-                </>
-              )}
-            </tr>
+            {singleView && isSmall && (
+              <tr className="opacity-70">
+                <th className="pl-6 pr-2 text-left"></th>
+                <th className="py-3 px-2 text-left"></th>
+                <th
+                  className="w-8 text-left cursor-help"
+                  data-tooltip-id="group-stats-tooltip"
+                  data-tooltip-content="Matches played"
+                  data-tooltip-place="top"
+                >
+                  M
+                </th>
+                <th
+                  className="w-8 text-left cursor-help"
+                  data-tooltip-id="group-stats-tooltip"
+                  data-tooltip-content="Wins"
+                  data-tooltip-place="top"
+                >
+                  W
+                </th>
+                <th
+                  className="w-8 text-left cursor-help"
+                  data-tooltip-id="group-stats-tooltip"
+                  data-tooltip-content="Draws"
+                  data-tooltip-place="top"
+                >
+                  D
+                </th>
+                <th
+                  className="w-8 text-left cursor-help"
+                  data-tooltip-id="group-stats-tooltip"
+                  data-tooltip-content="Losses"
+                  data-tooltip-place="top"
+                >
+                  L
+                </th>
+                <th
+                  className="pr-6 text-right cursor-help"
+                  data-tooltip-id="group-stats-tooltip"
+                  data-tooltip-content="Points"
+                  data-tooltip-place="top"
+                >
+                  P
+                </th>
+              </tr>
+            )}
           </thead>
           <tbody className="w-full bg-white text-black">
             {singleGroup?.map((group) =>
@@ -152,7 +126,7 @@ function Group({ number, teams, className, singleView, style }) {
                         <span>{team?.name.toUpperCase()}</span>
                       </div>
                     </td>
-                    {singleView && (
+                    {singleView && isSmall && (
                       <>
                         <td className="text-left">{team?.played}</td>
                         <td className="text-left">{team?.win}</td>
@@ -169,6 +143,11 @@ function Group({ number, teams, className, singleView, style }) {
             )}
           </tbody>
         </table>
+        <Tooltip
+          id="group-stats-tooltip"
+          className="bg-dec-primary! text-white! px-2! py-1! rounded-md! shadow-lg! text-xs!"
+          opacity={1}
+        />
       </div>
     </ContentContainer>
   );

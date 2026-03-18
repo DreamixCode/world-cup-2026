@@ -7,8 +7,23 @@ export default function ScoreDisplay({
   guestTeamPen,
   hostTeamET,
   guestTeamET,
+  layout = "desktop",
 }) {
-  console.log(myBet);
+  if (layout === "compact") {
+    const betHome = myBet?.bet?.home ?? "-";
+    const betAway = myBet?.bet?.away ?? "-";
+    const statusLabel = shortStatus || "FT";
+
+    return (
+      <div className="flex flex-col items-end justify-center gap-1 whitespace-nowrap">
+        <div className="opacity-80 text-xs">{statusLabel}</div>
+        <div className="tabular-nums">
+          {betHome} : {betAway}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center justify-between sm:w-48 space-x-12 sm:space-x-8">
       {/* Bet info */}

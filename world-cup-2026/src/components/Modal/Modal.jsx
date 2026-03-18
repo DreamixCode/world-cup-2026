@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 
 export function Modal({
-  header,
+  header = true,
   title,
   description,
   children,
@@ -26,19 +26,19 @@ export function Modal({
       </DialogTrigger>
       <DialogContent
         className={cn(
-          "w-full max-w-none p-0 overflow-hidden",
+          "w-full max-w-none p-0 flex! flex-col max-h-[calc(100dvh-1rem)] sm:max-h-[92vh] gap-0",
           contentClassName,
         )}
       >
-        {header && (
-          <DialogHeader className="px-4 pt-4">
-            {title && <DialogTitle>{title}</DialogTitle>}
+        {header && title != null && (
+          <DialogHeader className="flex shrink-0 px-4 pt-4">
+            <DialogTitle>{title}</DialogTitle>
             {description && (
               <DialogDescription>{description}</DialogDescription>
             )}
           </DialogHeader>
         )}
-        <div className="no-scrollbar max-h-[85vh] overflow-y-auto">
+        <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain no-scrollbar">
           {children}
         </div>
       </DialogContent>
