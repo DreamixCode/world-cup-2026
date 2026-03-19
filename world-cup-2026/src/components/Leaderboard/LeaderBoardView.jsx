@@ -42,16 +42,25 @@ function LeaderBoardView({ frontPage }) {
           </div>
         )}
         {!isLoading && (
-          <div className={!frontPage ? "sm:mt-24 mt-10" : undefined}>
-            <div className="text-center font-extrabold bg-transparent text-dec-primary-darkBlue text-dec-h3 pb-4 md:text-dec-t2">
-              <h1>Leaderboard</h1>
+          <div className={!frontPage ? "sm:mt-24" : undefined}>
+            <div className="sm:absolute sm:top-10 sm:left-0 flex justify-center sm:justify-start">
+              <img
+                src="/images/trio-mascots-2.jpg"
+                alt="Leaderboard"
+                className="w-10/12 sm:w-[40%]"
+              />
             </div>
+            {isSmall && (
+              <div className="text-center font-extrabold bg-transparent text-white text-dec-h3 pb-4 md:text-dec-t2 tracking-widest">
+                <h1>Leaderboard</h1>
+              </div>
+            )}
             <table className="bg-dec-primary w-full text-dec-background font-extrabold">
               <thead>
-                <tr className="border-b-4 border-dec-primary-light h-16">
+                <tr className="border-b-4 border-dec-primary-light h-8">
                   <th className="text-left font-extrabold"></th>
                   <th className="text-left font-extrabold">Name</th>
-                  <th className="text-left font-extrabold pr-2">Points</th>
+                  <th className="text-right font-extrabold pr-2">Points</th>
                 </tr>
               </thead>
               <tbody className="sm:text-dec-base text-dec-2xs">
@@ -81,7 +90,7 @@ function LeaderBoardView({ frontPage }) {
                               src={leader?.user?.picture}
                               alt={leader.user.firstName}
                               referrerPolicy="no-referrer"
-                              className="rounded-full w-12 h-12"
+                              className="w-8 h-8 rounded-tr-[10px] rounded-bl-[10px]"
                             />
                             <div
                               className="truncate max-w-[20ch] sm:max-w-full"

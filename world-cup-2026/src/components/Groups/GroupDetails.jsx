@@ -72,7 +72,7 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
             ))}
           </div>
         </div>
-        {groupMatches.concat(groupMatches)?.map((match) => {
+        {groupMatches?.map((match) => {
           return (
             <Match
               key={match?.id}
@@ -84,6 +84,7 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
               guestTeamScore={match?.score?.goals?.away}
               longStatus={match?.status?.long}
               shortStatus={match?.status?.short}
+              isLink
             />
           );
         })}

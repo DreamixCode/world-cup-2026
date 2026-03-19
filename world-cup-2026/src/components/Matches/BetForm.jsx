@@ -32,9 +32,13 @@ export default function BetForm({
     const sanitized = sanitizeScore(e.target.value);
     e.target.value = sanitized;
     homeRegister.onChange(e);
-    if (sanitized) {
-      secondInputRef.current?.select();
-      secondInputRef.current?.focus();
+    if (sanitized && secondInputRef?.current) {
+      const scrollY = window.scrollY;
+      requestAnimationFrame(() => {
+        secondInputRef.current?.select();
+        secondInputRef.current?.focus({ preventScroll: true });
+        window.scrollTo(0, scrollY);
+      });
     }
   };
 
@@ -43,6 +47,15 @@ export default function BetForm({
     e.target.value = sanitized;
     awayRegister.onChange(e);
     e.target.blur();
+
+    if (secondInputRef?.current) {
+      const scrollY = window.scrollY;
+      requestAnimationFrame(() => {
+        secondInputRef.current?.select();
+        secondInputRef.current?.focus({ preventScroll: true });
+        window.scrollTo(0, scrollY);
+      });
+    }
   };
 
   const homeInput = (

@@ -6,10 +6,21 @@ export default function MatchLink({
   guestTeam,
   iconHost,
   iconGuest,
+  isLink,
 }) {
   return (
     <div className="min-w-md">
-      <Link to={`/matches/${id}`}>
+      {isLink ? (
+        <Link to={`/matches/${id}`}>
+          <div className="flex items-center gap-2">
+            {iconHost}
+            <span className="whitespace-nowrap">{hostTeam}</span>
+            <span>-</span>
+            <span>{guestTeam}</span>
+            {iconGuest}
+          </div>
+        </Link>
+      ) : (
         <div className="flex items-center gap-2">
           {iconHost}
           <span className="whitespace-nowrap">{hostTeam}</span>
@@ -17,7 +28,7 @@ export default function MatchLink({
           <span>{guestTeam}</span>
           {iconGuest}
         </div>
-      </Link>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { format, isAfter, parseISO } from "date-fns";
 import { useForm } from "react-hook-form";
@@ -13,6 +13,9 @@ import ScoreDisplay from "./ScoreDisplay";
 import { myBets1 } from "@/const";
 import styles from "./Match.module.css";
 import { useMedia } from "@/hooks";
+import { Modal } from "../Modal/Modal";
+
+const LazyMatchView = lazy(() => import("./MatchView"));
 
 function Match({
   hostTeam,
@@ -27,12 +30,14 @@ function Match({
   guestTeamET,
   longStatus,
   shortStatus,
+  isLink = true,
   className,
 }) {
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
   const [_, setBet] = useState(false);
   const [editMode, setEditMode] = useState(false);
+  const [open, setOpen] = useState(false);
   const isLarge = useMedia(useMedia.LARGE);
   const today = new Date();
 
@@ -69,7 +74,8 @@ function Match({
 
   const { createBet, isLoadingCreate, error } = useCreateBet();
 
-  const started = isAfter(today, new Date(date));
+  const matchDate = date ? new Date(date) : null;
+  const started = matchDate ? isAfter(today, matchDate) : false;
   const finished = longStatus === "Match Finished";
   const inactive = started || (Boolean(myBet) && !editMode);
 
@@ -90,21 +96,42 @@ function Match({
   const iconHost = getFlag(hostTeam);
   const iconGuest = getFlag(guestTeam);
 
-  const parsedDate = format?.(parseISO?.(date), "dd-MM-yyyy");
-  const parsedTime = format?.(parseISO?.(date), "HH:mm");
+  const parsedISODate = date ? parseISO(date) : null;
+  const parsedDate = parsedISODate ? format(parsedISODate, "dd-MM-yyyy") : "--";
+  const parsedTime = parsedISODate ? format(parsedISODate, "HH:mm") : "--:--";
 
   const canEnterEdit = !started && Boolean(myBet);
   const canSubmitEdit =
     Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
 
   const matchLink = (
-    <MatchLink
-      id={id}
-      hostTeam={hostTeam}
-      guestTeam={guestTeam}
-      iconHost={iconHost}
-      iconGuest={iconGuest}
-    />
+    <>
+      {isLink ? (
+        <MatchLink
+          id={id}
+          hostTeam={hostTeam}
+          guestTeam={guestTeam}
+          iconHost={iconHost}
+          iconGuest={iconGuest}
+          isLink
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="text-left cursor-pointer"
+        >
+          <MatchLink
+            id={id}
+            hostTeam={hostTeam}
+            guestTeam={guestTeam}
+            iconHost={iconHost}
+            iconGuest={iconGuest}
+            isLink={false}
+          />
+        </button>
+      )}
+    </>
   );
 
   const dateTime = (
@@ -163,6 +190,21 @@ function Match({
         className ?? "bg-dec-primary text-dec-background",
       )}
     >
+      {!isLink && (
+        <Modal
+          title="Match details"
+          trigger={null}
+          open={open}
+          onOpenChange={setOpen}
+          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
+          closeButtonClassName="text-white sm:text-white "
+          overlayClassName="bg-white/30 supports-backdrop-filter:backdrop-blur-md"
+        >
+          <Suspense fallback={<div className="p-4 text-white">Loading…</div>}>
+            <LazyMatchView matchId={id} embedded />
+          </Suspense>
+        </Modal>
+      )}
       {error?.message && (
         <div className="absolute top-0 w-full pt-1 text-center items-center z-1">
           <p>Oops, something went wrong. Please, try again</p>
@@ -183,42 +225,96 @@ function Match({
                 layout="rows"
                 inputClassName="outline-none border-solid rounded-sm border-2 w-8 h-8 text-center bg-white text-black"
                 homeRow={
-                  <Link to={`/matches/${id}`} className="block min-w-0">
-                    <div className="min-w-0 flex items-center gap-2">
+                  isLink ? (
+                    <Link to={`/matches/${id}`} className="block min-w-0">
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconHost}
+                        <span className="truncate">{hostTeam}</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setOpen(true)}
+                      className="min-w-0 flex items-center gap-2 text-left cursor-pointer"
+                    >
                       {iconHost}
                       <span className="truncate">{hostTeam}</span>
-                    </div>
-                  </Link>
+                    </button>
+                  )
                 }
                 awayRow={
-                  <Link to={`/matches/${id}`} className="block min-w-0">
-                    <div className="min-w-0 flex items-center gap-2">
+                  isLink ? (
+                    <Link to={`/matches/${id}`} className="block min-w-0">
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconGuest}
+                        <span className="truncate">{guestTeam}</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setOpen(true)}
+                      className="min-w-0 flex items-center gap-2 text-left cursor-pointer"
+                    >
                       {iconGuest}
                       <span className="truncate">{guestTeam}</span>
-                    </div>
-                  </Link>
+                    </button>
+                  )
                 }
               />
             ) : (
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between gap-3">
-                  <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
-                    <div className="min-w-0 flex items-center gap-2">
-                      {iconHost}
-                      <span className="truncate">{hostTeam}</span>
-                    </div>
-                  </Link>
+                  {isLink ? (
+                    <Link
+                      to={`/matches/${id}`}
+                      className="block min-w-0 flex-1"
+                    >
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconHost}
+                        <span className="truncate">{hostTeam}</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setOpen(true)}
+                      className="block min-w-0 flex-1 text-left cursor-pointer"
+                    >
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconHost}
+                        <span className="truncate">{hostTeam}</span>
+                      </div>
+                    </button>
+                  )}
                   <div className="tabular-nums w-8 text-right">
                     {hostTeamScore ?? "-"}
                   </div>
                 </div>
                 <div className="flex items-center justify-between gap-3">
-                  <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
-                    <div className="min-w-0 flex items-center gap-2">
-                      {iconGuest}
-                      <span className="truncate">{guestTeam}</span>
-                    </div>
-                  </Link>
+                  {isLink ? (
+                    <Link
+                      to={`/matches/${id}`}
+                      className="block min-w-0 flex-1"
+                    >
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconGuest}
+                        <span className="truncate">{guestTeam}</span>
+                      </div>
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setOpen(true)}
+                      className="block min-w-0 flex-1 text-left cursor-pointer"
+                    >
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconGuest}
+                        <span className="truncate">{guestTeam}</span>
+                      </div>
+                    </button>
+                  )}
                   <div className="tabular-nums w-8 text-right">
                     {guestTeamScore ?? "-"}
                   </div>

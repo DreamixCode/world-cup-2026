@@ -66,12 +66,12 @@ function MatchesView({ frontPage }) {
             </div>
             <div className="flex flex-col border-2 ">
               <div className="grid grid-cols-11 text-dec-primary-darkBlue h-28 w-full bg-dec-background border-b-4 border-dec-primary text-dec-h2.5 font-extrabold px-2 items-center">
-                <div className="col-span-6 md:col-span-5 text-dec-h3.5 sm:text-dec-h2.5 flex justify-start pl-20">
+                <div className="col-span-6 md:col-span-5 text-dec-h3.5 sm:text-dec-h2.5 flex justify-start lg:pl-20">
                   Match
                 </div>
                 {isMedium && <div className="col-span-1"></div>}
                 {isLarge && <div className="col-span-2 pl-4">Time</div>}
-                <div className="sm:col-span-3 col-span-4 text-dec-h3.5 sm:text-dec-h2.5">
+                <div className="sm:col-span-3 col-span-4 text-dec-h3.5 sm:text-dec-h2.5 flex justify-end lg:justify-start lg:pl-0 pl-4">
                   Your bet
                 </div>
               </div>
@@ -83,6 +83,7 @@ function MatchesView({ frontPage }) {
                     guestTeam={match?.teams?.away?.name}
                     date={match?.date}
                     id={match?.id}
+                    isLink={false}
                     hostTeamScore={match?.score?.goals?.home}
                     guestTeamScore={match?.score?.goals?.away}
                     hostTeamPen={match?.score?.penalty?.home}

@@ -1,26 +1,32 @@
+import classNames from "classnames";
 import { Link, useParams } from "react-router-dom";
-import { isAfter } from "date-fns";
+import { isAfter, isBefore } from "date-fns";
 import Match from "./Match";
-import { useBets, useGroups, useMatches } from "../../api";
+import { useBets } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
 import { ChevronLeft, ChevronRight } from "../icons/index.jsx";
 import Spinner from "../Spinner";
-import { matches } from "./MatchesView";
+import { bets2026, matchess, mockedGroups } from "@/const";
 
-function MatchView() {
-  const { id } = useParams();
+function MatchView({ matchId, embedded = false }) {
+  const params = useParams();
+  const id = matchId ?? params?.id;
   // const { isLoading } = useMatches();
   const isLoading = false;
-  const { groups } = useGroups();
+  // const { groups } = useGroups();
+  const groups = mockedGroups;
 
   const isSmall = useMedia(useMedia.SMALL);
   const today = new Date();
+  const matches = matchess;
 
   const match = matches?.find((match) => match?.id === Number(id));
 
   let merged = [];
   const { isLoadingBets } = useBets();
+
+  const bets = bets2026;
 
   const matchBets = bets?.filter((bet) => bet?.matchId === Number(id));
 
@@ -52,25 +58,30 @@ function MatchView() {
     >
       <ContentContainer
         maxWidthClassName="max-w-4xl"
-        className="py-4 grow justify-center select-none h-full"
+        className={classNames(
+          "py-4 grow justify-center select-none h-full",
+          embedded && "mt-0",
+        )}
       >
-        <div className="flex justify-between mt-20 bg-dec-primary-darkBlue text-dec-background">
-          <Link to="/matches" className="text-dec-background">
-            <div className="flex items-center">
-              <ChevronLeft className="w-8 h-8" />
-              <span>Back to all matches</span>
-            </div>
-          </Link>
-          <Link
-            to={`/groups/${groupName?.slice(-1)?.toLowerCase()}`}
-            className="text-dec-background"
-          >
-            <div className="flex items-center">
-              <span>Go to group</span>
-              <ChevronRight className="w-8 h-8" />
-            </div>
-          </Link>
-        </div>
+        {!embedded && (
+          <div className="flex justify-between mt-20 bg-dec-primary-darkBlue text-dec-background">
+            <Link to="/matches" className="text-dec-background">
+              <div className="flex items-center">
+                <ChevronLeft className="w-8 h-8" />
+                <span>Back to all matches</span>
+              </div>
+            </Link>
+            <Link
+              to={`/groups/${groupName?.slice(-1)?.toLowerCase()}`}
+              className="text-dec-background"
+            >
+              <div className="flex items-center">
+                <span>Go to group</span>
+                <ChevronRight className="w-8 h-8" />
+              </div>
+            </Link>
+          </div>
+        )}
         {!isLoading && (
           <div className="flex flex-col space-y-8 sm:space-y-0">
             <div className="h-full pb-2 sm:pb-4">
@@ -79,6 +90,7 @@ function MatchView() {
                 guestTeam={match?.teams?.away?.name}
                 date={match?.date}
                 id={match?.id}
+                isLink={!embedded}
                 hostTeamScore={match?.score?.goals?.home}
                 guestTeamScore={match?.score?.goals?.away}
                 hostTeamPen={match?.score?.penalty?.home}
@@ -87,7 +99,6 @@ function MatchView() {
                 guestTeamET={match?.score?.extraTime?.away}
                 longStatus={match?.status?.long}
                 shortStatus={match?.status?.short}
-                className="bg-dec-background text-dec-primary-darkBlue"
               />
             </div>
             {isLoadingBets && (
@@ -95,7 +106,7 @@ function MatchView() {
                 <Spinner className="h-16 w-16" />
               </div>
             )}
-            {isAfter(today, new Date(match?.date)) ? (
+            {isBefore(today, new Date(match?.date)) ? (
               <table className="bg-dec-primary w-full text-dec-background font-extrabold rounded-md">
                 <thead>
                   <tr className="border-b-4 border-dec-primary-light h-16 text-dec-h4">
@@ -125,7 +136,7 @@ function MatchView() {
                               <img
                                 src={bet?.user?.picture}
                                 alt={bet?.user?.firstName}
-                                className="rounded-full w-12 h-12"
+                                className="w-8 h-8 rounded-tr-[10px] rounded-bl-[10px]"
                               />
                               <div className="flex space-x-1">
                                 <span>{bet?.user?.firstName}</span>
@@ -141,7 +152,7 @@ function MatchView() {
                             <div>{bet?.bet?.away}</div>
                           </div>
                         </td>
-                        <td>{bet?.points}</td>
+                        <td className="pr-4">{bet?.points}</td>
                       </tr>
                     );
                   })}
@@ -150,6 +161,11 @@ function MatchView() {
             ) : (
               <div className="flex flex-col justify-center text-center text-dec-background text-dec-h3 space-y-4">
                 <p>You'll see all the bets when the match starts!</p>
+                <img
+                  src="/images/trio-mascots.jpg"
+                  alt="Match start"
+                  className="w-1/2 mx-auto"
+                />
               </div>
             )}
           </div>

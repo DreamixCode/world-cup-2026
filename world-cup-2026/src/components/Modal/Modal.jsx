@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -16,19 +15,25 @@ export function Modal({
   children,
   trigger,
   contentClassName,
+  closeButtonClassName,
+  overlayClassName,
   open,
   onOpenChange,
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
-        {trigger ?? <Button variant="outline">Open</Button>}
-      </DialogTrigger>
+      {trigger ? (
+        <DialogTrigger asChild>{trigger}</DialogTrigger>
+      ) : (
+        <></>
+      )}
       <DialogContent
         className={cn(
           "w-full max-w-none p-0 flex! flex-col max-h-[calc(100dvh-1rem)] sm:max-h-[92vh] gap-0",
           contentClassName,
         )}
+        closeButtonClassName={closeButtonClassName}
+        overlayClassName={overlayClassName}
       >
         {header && title != null && (
           <DialogHeader className="flex shrink-0 px-4 pt-4">

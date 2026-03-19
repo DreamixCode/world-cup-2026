@@ -317,6 +317,126 @@ export const groupByGroup = (teams, key) => {
   }, {});
 };
 
+export const bets2026 = [
+  {
+    matchId: 1,
+    user: {
+      id: "108660143969251608578",
+      firstName: "Stefan",
+      lastName: "Borislavov Stefanov",
+      email: "stefan.borislavov@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/AEdFTp7FY79bBEcAcTK1piwZXbPiUZ91Bv11c5It6Kl5=s96-c",
+    },
+    bet: { home: 2, away: 1, symbol: "1" },
+    points: 0,
+  },
+  {
+    matchId: 1,
+    user: {
+      id: "112529453352592387904",
+      firstName: "Tania",
+      lastName: "Kasabova",
+      email: "tania.kasabova@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
+    },
+    bet: { home: 1, away: 0, symbol: "1" },
+    points: 0,
+  },
+  {
+    matchId: 1,
+    user: {
+      id: "109427602538919890177",
+      firstName: "Aleksandar",
+      lastName: "Sergiev",
+      email: "aleksandar.sergiev@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu1Vke8Tw_Yw9aepTy_tsm4dVXDFDfJW7QZyNbZo=s96-c",
+    },
+    bet: { home: 0, away: 2, symbol: "2" },
+    points: 3,
+  },
+  {
+    matchId: 2,
+    user: {
+      id: "109427602538919890177",
+      firstName: "Aleksandar",
+      lastName: "Sergiev",
+      email: "aleksandar.sergiev@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu1Vke8Tw_Yw9aepTy_tsm4dVXDFDfJW7QZyNbZo=s96-c",
+    },
+    bet: { home: 0, away: 1, symbol: "2" },
+    points: 0,
+  },
+  {
+    matchId: 2,
+    user: {
+      id: "112234122112559224622",
+      firstName: "Nikolay",
+      lastName: "Petkov",
+      email: "nikolay.petkov@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu2lENou7YBCZxY56x8KffQTXPotxyeNWh99kYUf=s96-c",
+    },
+    bet: { home: 0, away: 2, symbol: "2" },
+    points: 3,
+  },
+  {
+    matchId: 3,
+    user: {
+      id: "112529453352592387904",
+      firstName: "Tania",
+      lastName: "Kasabova",
+      email: "tania.kasabova@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu3J7yH5S8lwi3k9Ckux4hKXLYa3ot6Jk0M4GPjp=s96-c",
+    },
+    bet: { home: 1, away: 3, symbol: "2" },
+    points: 1,
+  },
+  {
+    matchId: 3,
+    user: {
+      id: "109427602538919890177",
+      firstName: "Aleksandar",
+      lastName: "Sergiev",
+      email: "aleksandar.sergiev@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu1Vke8Tw_Yw9aepTy_tsm4dVXDFDfJW7QZyNbZo=s96-c",
+    },
+    bet: { home: 0, away: 2, symbol: "2" },
+    points: 0,
+  },
+  {
+    matchId: 4,
+    user: {
+      id: "109427602538919890177",
+      firstName: "Aleksandar",
+      lastName: "Sergiev",
+      email: "aleksandar.sergiev@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu1Vke8Tw_Yw9aepTy_tsm4dVXDFDfJW7QZyNbZo=s96-c",
+    },
+    bet: { home: 0, away: 1, symbol: "2" },
+    points: 0,
+  },
+  {
+    matchId: 4,
+    user: {
+      id: "112234122112559224622",
+      firstName: "Nikolay",
+      lastName: "Petkov",
+      email: "nikolay.petkov@dreamix.eu",
+      picture:
+        "https://lh3.googleusercontent.com/a/ALm5wu2lENou7YBCZxY56x8KffQTXPotxyeNWh99kYUf=s96-c",
+    },
+    bet: { home: 0, away: 2, symbol: "2" },
+    points: 3,
+  },
+];
+
 export const matchess = [
   {
     id: 1,
