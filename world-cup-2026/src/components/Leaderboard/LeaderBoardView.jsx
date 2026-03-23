@@ -43,13 +43,15 @@ function LeaderBoardView({ frontPage }) {
         )}
         {!isLoading && (
           <div className={!frontPage ? "sm:mt-24" : undefined}>
-            <div className="sm:absolute sm:top-10 sm:left-0 flex justify-center sm:justify-start">
-              <img
-                src="/images/trio-mascots-2.jpg"
-                alt="Leaderboard"
-                className="w-10/12 sm:w-[40%]"
-              />
-            </div>
+            {!frontPage && (
+              <div className="sm:absolute sm:top-10 sm:left-0 flex justify-center sm:justify-start">
+                <img
+                  src="/images/trio-mascots-2.jpg"
+                  alt="Leaderboard"
+                  className="w-10/12 sm:w-[40%]"
+                />
+              </div>
+            )}
             {isSmall && (
               <div className="text-center font-extrabold bg-transparent text-white text-dec-h3 pb-4 md:text-dec-t2 tracking-widest">
                 <h1>Leaderboard</h1>

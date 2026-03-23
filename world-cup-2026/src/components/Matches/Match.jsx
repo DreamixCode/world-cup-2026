@@ -31,6 +31,7 @@ function Match({
   longStatus,
   shortStatus,
   isLink = true,
+  disableInteraction = false,
   className,
 }) {
   const firstInputRef = useRef(null);
@@ -103,6 +104,7 @@ function Match({
   const canEnterEdit = !started && Boolean(myBet);
   const canSubmitEdit =
     Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
+  const canOpenModal = !isLink && !disableInteraction;
 
   const matchLink = (
     <>
@@ -115,7 +117,7 @@ function Match({
           iconGuest={iconGuest}
           isLink
         />
-      ) : (
+      ) : canOpenModal ? (
         <button
           type="button"
           onClick={() => setOpen(true)}
@@ -130,6 +132,15 @@ function Match({
             isLink={false}
           />
         </button>
+      ) : (
+        <MatchLink
+          id={id}
+          hostTeam={hostTeam}
+          guestTeam={guestTeam}
+          iconHost={iconHost}
+          iconGuest={iconGuest}
+          isLink={false}
+        />
       )}
     </>
   );
@@ -190,7 +201,7 @@ function Match({
         className ?? "bg-dec-primary text-dec-background",
       )}
     >
-      {!isLink && (
+      {canOpenModal && (
         <Modal
           title="Match details"
           trigger={null}
@@ -232,7 +243,7 @@ function Match({
                         <span className="truncate">{hostTeam}</span>
                       </div>
                     </Link>
-                  ) : (
+                  ) : canOpenModal ? (
                     <button
                       type="button"
                       onClick={() => setOpen(true)}
@@ -241,6 +252,11 @@ function Match({
                       {iconHost}
                       <span className="truncate">{hostTeam}</span>
                     </button>
+                  ) : (
+                    <div className="min-w-0 flex items-center gap-2">
+                      {iconHost}
+                      <span className="truncate">{hostTeam}</span>
+                    </div>
                   )
                 }
                 awayRow={
@@ -251,7 +267,7 @@ function Match({
                         <span className="truncate">{guestTeam}</span>
                       </div>
                     </Link>
-                  ) : (
+                  ) : canOpenModal ? (
                     <button
                       type="button"
                       onClick={() => setOpen(true)}
@@ -260,6 +276,11 @@ function Match({
                       {iconGuest}
                       <span className="truncate">{guestTeam}</span>
                     </button>
+                  ) : (
+                    <div className="min-w-0 flex items-center gap-2">
+                      {iconGuest}
+                      <span className="truncate">{guestTeam}</span>
+                    </div>
                   )
                 }
               />
@@ -276,7 +297,7 @@ function Match({
                         <span className="truncate">{hostTeam}</span>
                       </div>
                     </Link>
-                  ) : (
+                  ) : canOpenModal ? (
                     <button
                       type="button"
                       onClick={() => setOpen(true)}
@@ -287,6 +308,13 @@ function Match({
                         <span className="truncate">{hostTeam}</span>
                       </div>
                     </button>
+                  ) : (
+                    <div className="block min-w-0 flex-1 text-left">
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconHost}
+                        <span className="truncate">{hostTeam}</span>
+                      </div>
+                    </div>
                   )}
                   <div className="tabular-nums w-8 text-right">
                     {hostTeamScore ?? "-"}
@@ -303,7 +331,7 @@ function Match({
                         <span className="truncate">{guestTeam}</span>
                       </div>
                     </Link>
-                  ) : (
+                  ) : canOpenModal ? (
                     <button
                       type="button"
                       onClick={() => setOpen(true)}
@@ -314,6 +342,13 @@ function Match({
                         <span className="truncate">{guestTeam}</span>
                       </div>
                     </button>
+                  ) : (
+                    <div className="block min-w-0 flex-1 text-left">
+                      <div className="min-w-0 flex items-center gap-2">
+                        {iconGuest}
+                        <span className="truncate">{guestTeam}</span>
+                      </div>
+                    </div>
                   )}
                   <div className="tabular-nums w-8 text-right">
                     {guestTeamScore ?? "-"}

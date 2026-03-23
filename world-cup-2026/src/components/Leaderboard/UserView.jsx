@@ -1,14 +1,28 @@
 import { Link, useParams } from "react-router-dom";
-import { useBets, useMatches, useStandings } from "../../api";
+// import { useBets, useMatches, useStandings } from "../../api";
 import { useMedia } from "../../hooks";
-import { isAfter } from "date-fns";
+import { isBefore } from "date-fns";
 import ContentContainer from "../ContentContainer";
 import { ChevronLeft } from "../icons/index.jsx";
 import { Tooltip } from "react-tooltip";
 
-import { bets } from "../Matches/MatchView";
-import { matches } from "../Matches/MatchesView";
+// import { bets } from "../Matches/MatchView";
+// import { matches } from "../Matches/MatchesView";
 import { getFlag } from "../../utils.jsx";
+import { bets2026, matchess, standings } from "@/const";
+import { ChevronRight } from "lucide-react";
+
+const USER_MASCOTS = [
+  { file: "clutch.jpg", alt: "Clutch" },
+  { file: "maple.jpg", alt: "Maple" },
+  { file: "zayu.jpg", alt: "Zayu" },
+];
+
+function getMascotForUser(userId) {
+  const id = String(userId ?? "").trim();
+  const hash = [...id].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return USER_MASCOTS[hash % USER_MASCOTS.length];
+}
 
 function UserView() {
   // const { matches } = useMatches();
@@ -19,14 +33,14 @@ function UserView() {
   const today = new Date();
 
   // const { standings } = useStandings();
-  const standings = standingss
+  const standingss = standings;
 
-  const user = standings?.filter((user) => user.user.id === id);
+  const user = standingss?.filter((user) => user.user.id === id);
 
   let merged = [];
 
   // const { bets } = useBets();
-  const userBets = bets?.filter((bet) => bet?.user?.id === id);
+  const userBets = bets2026?.filter((bet) => bet?.user?.id === id);
 
   for (let i = 0; i < matches?.length; i++) {
     merged.push({
@@ -36,11 +50,12 @@ function UserView() {
   }
 
   const shownBets = merged.filter(
-    (match) => isAfter(today, new Date(match.date)) && match.bet
+    // (match) => isAfter(today, new Date(match.date)) && match.bet,
+    (match) => isBefore(today, new Date(match.date)) && match.bet,
   );
 
   shownBets.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
   console.log(shownBets);
@@ -57,38 +72,50 @@ function UserView() {
         className=" h-full text-dec-background p-4 select-none"
         maxWidthClassName="max-w-5xl"
       >
+        <Link to="/standings" className="text-dec-background">
+          <div className="flex items-end justify-end sm:pl-6 pb-2 sm:pb-0">
+            <span>Back to standings</span>
+          </div>
+        </Link>
         <div className="flex flex-col xl:justify-between sm:p-8 items-center space-y-8">
-          {user?.map((user) => (
-            <div className="flex md:flex-row flex-col space-y-4 md:space-y-0 md:pt-20 2xl:pt-40 pt-8 items-center space-x-8">
-              <Link to="/standings" className="text-dec-background">
-                <div className="flex items-center sm:pl-6 pb-2 sm:pb-0">
-                  <ChevronLeft className="w-8 h-8" />
-                  <span>Back to standings</span>
-                </div>
-              </Link>
-              <div className="flex justify-between space-x-4">
-                <img
-                  src={user?.user?.picture}
-                  alt={user.user.firstName}
-                  referrerPolicy="no-referrer"
-                  className="rounded-full w-24 h-24"
-                />
-                <div className="flex sm:items-center flex-col justify-center items-start text-dec-base md:text-dec-h2 font-bold">
-                  <div className="flex flex-col sm:flex-row space-x-2">
-                    <div className="pl-2">{user.user.firstName}</div>
-                    <div>{user.user.lastName}</div>
+          {user?.map((user) => {
+            const mascot = getMascotForUser(user?.user?.id);
+
+            return (
+              <div className="flex md:flex-row flex-col space-y-4 md:space-y-0 pt-8 items-center space-x-8">
+                {isSmall && (
+                  <div className="absolute top-0 left-0">
+                    <img
+                      src={`${import.meta.env.BASE_URL}images/${mascot.file}`}
+                      alt={mascot.alt}
+                      className="h-[200px] w-auto flex shrink-0"
+                    />
                   </div>
-                  <div className="items-center pl-2 sm:justify-center flex justify-start">
-                    {user.totalPoints} Points
+                )}
+                <div className="flex justify-between space-x-4">
+                  <img
+                    src={user?.user?.picture}
+                    alt={user.user.firstName}
+                    referrerPolicy="no-referrer"
+                    className="rounded-tr-[10px] rounded-bl-[10px] w-24 h-24"
+                  />
+                  <div className="flex sm:items-center flex-col justify-center items-start text-dec-base md:text-dec-h2 font-bold">
+                    <div className="flex flex-col sm:flex-row space-x-2">
+                      <div className="pl-2">{user.user.firstName}</div>
+                      <div>{user.user.lastName}</div>
+                    </div>
+                    <div className="items-center pl-2 sm:justify-center flex justify-start">
+                      {user.totalPoints} Points
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
           <table className="bg-dec-primary w-full text-dec-background font-extrabold rounded-md">
             <thead>
-              <tr className="border-b-4 border-dec-primary-light h-16 text-dec-h4">
-                <th className="text-left font-extrabold">Match</th>
+              <tr className="border-b-4 border-dec-primary-light h-16 text-dec-h4 bg-white text-black rounded-md">
+                <th className="text-left font-extrabold px-2">Match</th>
                 <th className="text-left font-extrabold">Bet</th>
                 <th className="text-left font-extrabold">Score</th>
                 <th
