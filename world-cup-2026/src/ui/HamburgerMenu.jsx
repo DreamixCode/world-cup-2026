@@ -1,7 +1,40 @@
 import { Close, Menu } from "../components/icons/index.jsx";
+import { MenuNavLink } from "./MenuItem";
 
 function HamburgerMenu({ children }) {
   return <div className="grid items-start gap-2">{children}</div>;
+}
+
+function HamburgerMenuItems({ onItemClick, isSmall }) {
+  const handleClick = () => {
+    onItemClick?.();
+  };
+
+  return (
+    <>
+      <MenuNavLink to="/" end onClick={handleClick}>
+        Home
+      </MenuNavLink>
+      <MenuNavLink to="/groups" onClick={handleClick}>
+        Groups
+      </MenuNavLink>
+      <MenuNavLink to="/matches" onClick={handleClick}>
+        Matches
+      </MenuNavLink>
+      <MenuNavLink to="/standings" onClick={handleClick}>
+        Standings
+      </MenuNavLink>
+      <MenuNavLink to="/topscorer" onClick={handleClick}>
+        Top-scorer
+      </MenuNavLink>
+      <MenuNavLink to="/champion" onClick={handleClick}>
+        Champion
+      </MenuNavLink>
+      <MenuNavLink to="/rules" onClick={handleClick}>
+        Rules
+      </MenuNavLink>
+    </>
+  );
 }
 
 function HamburgerMenuToggle({ open, ...props }) {
@@ -22,5 +55,6 @@ function HamburgerMenuToggle({ open, ...props }) {
 }
 
 HamburgerMenu.Toggle = HamburgerMenuToggle;
+HamburgerMenu.Items = HamburgerMenuItems;
 
 export default HamburgerMenu;

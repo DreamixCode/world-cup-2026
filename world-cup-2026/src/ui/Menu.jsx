@@ -1,10 +1,9 @@
 import classNames from "classnames";
 import { useState } from "react";
 import GoogleLoginBtn from "./GoogleLoginButton";
-import { MenuNavLink } from "./MenuItem";
 import { useMedia } from "../hooks";
 import HamburgerMenu from "./HamburgerMenu";
-import { LogoBlack, LogoWhite } from "@/components/icons";
+import { LogoWhite } from "@/components/icons";
 
 function Menu() {
   const isSmall = useMedia(useMedia.MEDIUM);
@@ -12,36 +11,10 @@ function Menu() {
   const [isListOpen, setIsListOpen] = useState(false);
 
   const mainMenuItems = (
-    <>
-      <MenuNavLink to="/" end onClick={() => !isSmall && setIsListOpen(false)}>
-        Home
-      </MenuNavLink>
-      {/* {isSmall && <Separator className="w-4" fill="#faaf3b" />} */}
-      <MenuNavLink
-        to="/groups"
-        onClick={() => !isSmall && setIsListOpen(false)}
-      >
-        Groups
-      </MenuNavLink>
-      {/* {isSmall && <Separator className="w-4" fill="#6a22d5" />} */}
-      <MenuNavLink
-        to="/matches"
-        onClick={() => !isSmall && setIsListOpen(false)}
-      >
-        Matches
-      </MenuNavLink>
-      {/* {isSmall && <Separator className="w-4" fill="#f11857" />} */}
-      <MenuNavLink
-        to="/standings"
-        onClick={() => !isSmall && setIsListOpen(false)}
-      >
-        Standings
-      </MenuNavLink>
-      {/* {isSmall && <Separator className="w-4" fill="#fc7a4c" />} */}
-      <MenuNavLink to="/rules" onClick={() => !isSmall && setIsListOpen(false)}>
-        Rules
-      </MenuNavLink>
-    </>
+    <HamburgerMenu.Items
+      isSmall={isSmall}
+      onItemClick={() => !isSmall && setIsListOpen(false)}
+    />
   );
 
   return (

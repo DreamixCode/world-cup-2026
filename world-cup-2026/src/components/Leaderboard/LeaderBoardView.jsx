@@ -4,8 +4,9 @@ import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import { BronzeMedal, GoldMedal, SilverMedal } from "../icons/index.jsx";
-import { Link } from "react-router-dom";
 import { standings } from "../../const.js";
+import { Modal } from "../Modal/Modal";
+import UserView from "./UserView";
 
 function LeaderBoardView({ frontPage }) {
   const isSmall = useMedia(useMedia.SMALL);
@@ -86,31 +87,42 @@ function LeaderBoardView({ frontPage }) {
                       </td>
 
                       <td className="py-1">
-                        <Link to={`/user/${leader?.user?.id}`}>
-                          <div className="flex items-center space-x-2">
-                            <img
-                              src={leader?.user?.picture}
-                              alt={leader.user.firstName}
-                              referrerPolicy="no-referrer"
-                              className="w-8 h-8 rounded-tr-[10px] rounded-bl-[10px]"
-                            />
-                            <div
-                              className="truncate max-w-[20ch] sm:max-w-full"
-                              data-tip={`${leader.user.firstName} ${leader.user.lastName}`}
-                              data-for="User"
-                              data-place="top"
+                        <Modal
+                          title={`${leader.user.firstName} ${leader.user.lastName}`}
+                          trigger={
+                            <button
+                              type="button"
+                              className="flex items-center space-x-2 text-left cursor-pointer"
                             >
-                              {leader.user.firstName} {leader.user.lastName}
-                              {!isSmall && (
-                                <Tooltip
-                                  id="User"
-                                  textColor="dec-primary"
-                                  backgroundColor="white"
-                                />
-                              )}
-                            </div>
-                          </div>
-                        </Link>
+                              <img
+                                src={leader?.user?.picture}
+                                alt={leader.user.firstName}
+                                referrerPolicy="no-referrer"
+                                className="w-8 h-8 rounded-tr-[10px] rounded-bl-[10px]"
+                              />
+                              <div
+                                className="truncate max-w-[20ch] sm:max-w-full"
+                                data-tip={`${leader.user.firstName} ${leader.user.lastName}`}
+                                data-for="User"
+                                data-place="top"
+                              >
+                                {leader.user.firstName} {leader.user.lastName}
+                                {!isSmall && (
+                                  <Tooltip
+                                    id="User"
+                                    textColor="dec-primary"
+                                    backgroundColor="white"
+                                  />
+                                )}
+                              </div>
+                            </button>
+                          }
+                          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
+                          closeButtonClassName="text-white sm:text-white hover:text-white/90 sm:hover:text-white/90"
+                          overlayClassName="bg-white/20 supports-backdrop-filter:backdrop-blur-md"
+                        >
+                          <UserView userId={leader?.user?.id} embedded />
+                        </Modal>
                       </td>
 
                       <td className="text-right pr-4">{leader.totalPoints}</td>

@@ -3898,6 +3898,84 @@ export const standings = [
     totalPoints: 0,
   },
 ];
+
+export const mockedTopScorers = [
+  {
+    id: "ts-1",
+    firstName: "Kylian",
+    lastName: "Mbappé",
+    country: "France",
+    goals: 6,
+    coefficient: 4.5,
+  },
+  {
+    id: "ts-2",
+    firstName: "Erling",
+    lastName: "Haaland",
+    country: "Norway",
+    goals: 5,
+    coefficient: 5.25,
+  },
+  {
+    id: "ts-3",
+    firstName: "Harry",
+    lastName: "Kane",
+    country: "England",
+    goals: 5,
+    coefficient: 6.0,
+  },
+  {
+    id: "ts-4",
+    firstName: "Vinícius",
+    lastName: "Júnior",
+    country: "Brazil",
+    goals: 4,
+    coefficient: 7.75,
+  },
+  {
+    id: "ts-5",
+    firstName: "Jude",
+    lastName: "Bellingham",
+    country: "England",
+    goals: 4,
+    coefficient: 9.0,
+  },
+  {
+    id: "ts-6",
+    firstName: "Lautaro",
+    lastName: "Martínez",
+    country: "Argentina",
+    goals: 4,
+    coefficient: 10.5,
+  },
+  {
+    id: "ts-7",
+    firstName: "Robert",
+    lastName: "Lewandowski",
+    country: "Poland",
+    goals: 3,
+    coefficient: 12.0,
+  },
+  {
+    id: "ts-8",
+    firstName: "Mohamed",
+    lastName: "Salah",
+    country: "Egypt",
+    goals: 3,
+    coefficient: 13.25,
+  },
+];
+
+export const mockedChampions = [
+  { id: "ch-1", name: "France", coefficient: 6.25 },
+  { id: "ch-2", name: "Brazil", coefficient: 6.75 },
+  { id: "ch-3", name: "Argentina", coefficient: 7.0 },
+  { id: "ch-4", name: "England", coefficient: 7.5 },
+  { id: "ch-5", name: "Spain", coefficient: 8.5 },
+  { id: "ch-6", name: "Germany", coefficient: 9.0 },
+  { id: "ch-7", name: "Portugal", coefficient: 11.0 },
+  { id: "ch-8", name: "Netherlands", coefficient: 13.0 },
+];
 export const bets = [
   {
     matchId: 855736,

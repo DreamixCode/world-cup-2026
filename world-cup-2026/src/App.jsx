@@ -13,6 +13,8 @@ import LeaderBoardView from "./components/Leaderboard/LeaderBoardView";
 import UserView from "./components/Leaderboard/UserView";
 import { getToken } from "./api/queries";
 import Unauthenticated from "./ui/Unauthenticated";
+import TopScorerView from "./components/TopScorer/TopScorerView";
+import ChampionView from "./components/Champion/ChampionView";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +37,8 @@ function AppRoutes() {
                 <Route path="/matches" element={<MatchesView />} />
                 <Route path="/matches/:id" element={<MatchView />} />
                 <Route path="/standings" element={<LeaderBoardView />} />
+                <Route path="/topscorer" element={<TopScorerView />} />
+                <Route path="/champion" element={<ChampionView />} />
                 <Route path="/user/:id" element={<UserView />} />
                 <Route path="/" element={<FrontPage />} />
                 <Route path="/rules" element={<Rules />} />

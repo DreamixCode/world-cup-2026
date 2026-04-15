@@ -13,6 +13,8 @@ export const queryKeys = {
   users: () => ["users"],
   userById: (id) => [...queryKeys.users(), id],
   standings: () => ["standings"],
+  topScorers: () => ["topScorers"],
+  champions: () => ["champions"],
 };
 
 const defaultQueryOptions = {
@@ -107,6 +109,28 @@ export function useStandings() {
   return { standings, ...rest };
 }
 
+export function useTopScorers() {
+  const { data: topScorers, ...rest } = useQuery({
+    queryKey: queryKeys.topScorers(),
+    queryFn: () => EuroCupApi.getTopScorers(),
+    keepPreviousData: true,
+    ...defaultQueryOptions,
+  });
+
+  return { topScorers, ...rest };
+}
+
+export function useChampions() {
+  const { data: champions, ...rest } = useQuery({
+    queryKey: queryKeys.champions(),
+    queryFn: () => EuroCupApi.getChampions(),
+    keepPreviousData: true,
+    ...defaultQueryOptions,
+  });
+
+  return { champions, ...rest };
+}
+
 export function useMyBets() {
   const { data: myBets, ...rest } = useQuery({
     queryKey: queryKeys.myBets(),
@@ -150,4 +174,38 @@ export function useCreateBet() {
   });
 
   return { createBet, isLoadingCreate, ...rest };
+}
+
+export function useSelectTopScorer() {
+  const queryClient = useQueryClient();
+  const {
+    mutate: selectTopScorer,
+    isLoading: isLoadingSelect,
+    ...rest
+  } = useMutation({
+    mutationFn: (payload) => EuroCupApi.selectTopScorer(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries(queryKeys.topScorers());
+    },
+    ...defaultQueryOptions,
+  });
+
+  return { selectTopScorer, isLoadingSelect, ...rest };
+}
+
+export function useSelectChampion() {
+  const queryClient = useQueryClient();
+  const {
+    mutate: selectChampion,
+    isLoading: isLoadingSelect,
+    ...rest
+  } = useMutation({
+    mutationFn: (payload) => EuroCupApi.selectChampion(payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries(queryKeys.champions());
+    },
+    ...defaultQueryOptions,
+  });
+
+  return { selectChampion, isLoadingSelect, ...rest };
 }

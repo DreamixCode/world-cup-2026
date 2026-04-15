@@ -35,6 +35,18 @@ const buildApi = (axios) => ({
   getUserById(id) {
     return axios.get(`${baseURL}/users/${id}`).then(({ data }) => data);
   },
+  getTopScorers() {
+    return axios.get(`${baseURL}/topscorer`).then(({ data }) => data);
+  },
+  selectTopScorer(payload) {
+    return axios.post(`${baseURL}/topscorer`, payload).then(({ data }) => data);
+  },
+  getChampions() {
+    return axios.get(`${baseURL}/champion`).then(({ data }) => data);
+  },
+  selectChampion(payload) {
+    return axios.post(`${baseURL}/champion`, payload).then(({ data }) => data);
+  },
   createBet(bet) {
     return axios.post(`${baseURL}/bets`, bet).then(({ data }) => data);
   },
