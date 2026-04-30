@@ -228,7 +228,7 @@ export const matches = [
     teams: {
       home: {
         id: 768,
-        name: "Italy",
+        name: "Bosnia And Herzegovina",
         logo: "https://media.api-sports.io/football/teams/768.png",
         winner: true,
       },
@@ -567,7 +567,7 @@ export const matches = [
       },
       away: {
         id: 768,
-        name: "Italy",
+        name: "Bosnia And Herzegovina",
         logo: "https://media.api-sports.io/football/teams/768.png",
         winner: null,
       },
@@ -863,7 +863,7 @@ export const matches = [
       },
       away: {
         id: 768,
-        name: "Italy",
+        name: "Bosnia And Herzegovina",
         logo: "https://media.api-sports.io/football/teams/768.png",
         winner: null,
       },

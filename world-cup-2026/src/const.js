@@ -522,7 +522,7 @@ export const matchess = [
       },
       away: {
         id: 106,
-        name: "Italy",
+        name: "Bosnia And Herzegovina",
         logo: "",
       },
     },
@@ -1072,7 +1072,7 @@ export const matchess = [
     status: { elapsed: 0, long: "Upcoming", short: "UP" },
     teams: {
       home: { id: 35, name: "Portugal" },
-      away: { id: 36, name: "Congo DR/Jamaica/New Caledonia" },
+      away: { id: 36, name: "Congo DR/Congo DR/New Caledonia" },
     },
     score: {
       goals: { home: 0, away: 0, symbol: "-" },
@@ -1111,7 +1111,7 @@ export const matchess = [
     status: { elapsed: 0, long: "Upcoming", short: "UP" },
     teams: {
       home: { id: 65, name: "France" },
-      away: { id: 66, name: "Bolivia/Iraq/Suriname" },
+      away: { id: 66, name: "Iraq/Iraq/Suriname" },
     },
     score: { goals: { home: 0, away: 0, symbol: "-" }, penalty: null },
     round: "Group I",
@@ -1199,7 +1199,7 @@ export const matchess = [
     status: { elapsed: 0, long: "Upcoming", short: "UP" },
     teams: {
       home: { id: 81, name: "France" },
-      away: { id: 82, name: "Bolivia/Iraq/Suriname" },
+      away: { id: 82, name: "Iraq/Iraq/Suriname" },
     },
     score: { goals: { home: 0, away: 0, symbol: "-" }, penalty: null },
     round: "Group I",
@@ -1473,7 +1473,7 @@ export const matches = [
     teams: {
       home: {
         id: 26,
-        name: "Italy",
+        name: "Bosnia And Herzegovina",
         logo: "https://media.api-sports.io/football/teams/26.png",
         winner: false,
       },
@@ -2875,7 +2875,7 @@ export const matches = [
     status: { elapsed: 0, long: "Upcoming", short: "UP" },
     teams: {
       home: { id: 27, name: "Portugal" },
-      away: { id: 28, name: "Congo DR/Jamaica/New Caledonia" },
+      away: { id: 28, name: "Congo DR/Congo DR/New Caledonia" },
     },
     score: {
       goals: { home: 0, away: 0, symbol: "-" },
@@ -2931,7 +2931,7 @@ export const matches = [
     status: { elapsed: 0, long: "Upcoming", short: "UP" },
     teams: {
       home: { id: 35, name: "Portugal" },
-      away: { id: 36, name: "Congo DR/Jamaica/New Caledonia" },
+      away: { id: 36, name: "Congo DR/Congo DR/New Caledonia" },
     },
     score: {
       goals: { home: 0, away: 0, symbol: "-" },
@@ -37737,7 +37737,7 @@ export const mockedGroups = [
       },
       {
         id: 1104,
-        name: "Italy",
+        name: "Bosnia-Herzegovina",
         rank: 4,
         played: 0,
         win: 0,
@@ -38047,7 +38047,7 @@ export const mockedGroups = [
     teams: [
       {
         id: 91,
-        name: "Bolivia",
+        name: "Iraq",
         rank: 1,
         played: 0,
         win: 0,
@@ -38145,7 +38145,7 @@ export const mockedGroups = [
     teams: [
       {
         id: 91,
-        name: "Jamaica",
+        name: "Congo DR",
         rank: 1,
         played: 0,
         win: 0,

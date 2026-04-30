@@ -330,7 +330,7 @@ export const groups = [
     teams: [
       {
         id: 768,
-        name: "Italy",
+        name: "Bosnia And Herzegovina",
         rank: 1,
         played: 0,
         win: 0,
