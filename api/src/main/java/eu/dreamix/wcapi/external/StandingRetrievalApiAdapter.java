@@ -7,12 +7,14 @@ import eu.dreamix.wcapi.external.fbapi.FootballApi;
 import eu.dreamix.wcapi.external.fbapi.LeagueStandingDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Slf4j
 @Component
+@Profile("!mock-data")
 @RequiredArgsConstructor
 public class StandingRetrievalApiAdapter implements StandingRetrievalAdapter {
     private final FootballApi footballApi;

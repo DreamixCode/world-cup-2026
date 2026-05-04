@@ -6,12 +6,14 @@ import eu.dreamix.wcapi.external.fbapi.ApiResponse;
 import eu.dreamix.wcapi.external.fbapi.FootballApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Slf4j
 @Component
+@Profile("!mock-data")
 @RequiredArgsConstructor
 public class FixtureRetrievalApiAdapter implements FixtureRetrievalAdapter {
     private final FootballApi footballApi;

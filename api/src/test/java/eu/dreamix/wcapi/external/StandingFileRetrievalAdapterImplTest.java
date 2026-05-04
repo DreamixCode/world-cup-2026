@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Disabled
-class StandingRetrievalAdapterImplTest {
+class StandingFileRetrievalAdapterImplTest {
     @Autowired
     private StandingRetrievalApiAdapter adapter;
 
