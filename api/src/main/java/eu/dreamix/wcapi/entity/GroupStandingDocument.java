@@ -14,6 +14,15 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents a team's standing in a group stage, stored in the {@code standings} MongoDB collection.
+ * <p>
+ * One document per team per group. Tracks rank, total points, goal difference and a breakdown
+ * of statistics (played/won/drawn/lost/goals) split into overall ({@code all}), home, and away
+ * aggregates. The {@code group} field identifies the tournament group (e.g. "Group A").
+ * <p>
+ * Unknown fields from the API response are captured in {@code additionalProperties}.
+ */
 @Data
 @Document("standings")
 public class GroupStandingDocument {

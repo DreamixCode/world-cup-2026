@@ -6,6 +6,15 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+/**
+ * Represents a user's score prediction for a match, stored in the {@code bets} MongoDB collection.
+ * <p>
+ * Embeds a snapshot of the relevant {@link Match} (id + the actual final score at calculation time)
+ * and the {@link User} who placed the bet. The {@code bet} field holds the predicted home/away goals.
+ * <p>
+ * After the match finishes a background job calculates the earned {@code points} and sets
+ * {@code isCalculated = true} to prevent double-processing.
+ */
 @Data
 @Document("bets")
 public class BetDocument {
