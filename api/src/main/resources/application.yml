@@ -33,7 +33,7 @@ football-api:
   url: ${FOOTBALL_API_URL:https://v3.football.api-sports.io}
   api-key: ${FOOTBALL_API_KEY:}
   api-key-header: x-rapidapi-key
-  league-id: ${FOOTBALL_API_LEAGUE_ID:4}
+  league-id: ${FOOTBALL_API_LEAGUE_ID:1}
   season: ${FOOTBALL_API_SEASON:2024}
 
 #feign
