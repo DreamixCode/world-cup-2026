@@ -44,57 +44,104 @@ Event Flow
 ## Prerequisites
 
 - **Java 21**
-- **Docker + Docker Compose** (for MongoDB)
+- **Podman + podman compose** (for MongoDB)
+- **Node.js + npm** (for UI)
 - A **Google OAuth2 Client ID** (resource server / audience)
 - A **[api-sports.io](https://api-sports.io) API key** — _or_ activate the `mock-data` profile to use bundled JSON files (see below)
 
 ---
 
-## Running Locally
+## Running Locally (Verified)
 
-### 1. Start MongoDB
+### 1. Start MongoDB (Podman)
 
 ```bash
-docker compose up -d
+cd api
+podman compose down
+podman compose up -d
+podman compose ps
 ```
 
 This starts:
 
-- **MongoDB** on `localhost:27017` (credentials: `root` / `wc-dreamix`)
+- **MongoDB 8.3** on `localhost:27017` (credentials: `root` / `wc-dreamix`)
 - **Mongo Express** at `http://localhost:8081` (user: `root`, pass: `pass`)
 
-### 2. Set environment variables
+### 2. Start the backend API
 
-Copy the block below, fill in your values and export them before starting the app:
+For local no-quota testing, use `mock-data` profile:
+
+```bash
+cd api
+GOOGLE_OAUTH2_CLIENT_ID=your-google-client-id \
+CORS_ALLOWED_ORIGINS=http://localhost:5173 \
+./mvnw spring-boot:run -Dspring-boot.run.profiles=mock-data
+```
+
+Verify API health:
+
+```bash
+curl http://localhost:8080/actuator/health
+```
+
+### 3. Start the UI
+
+```bash
+cd ui
+VITE_GOOGLE_CLIENT_ID=your-google-client-id npm run dev -- --host 0.0.0.0 --port 5173
+```
+
+Open `http://localhost:5173`.
+
+### 4. Environment variables
 
 ```bash
 # Required
-export GOOGLE_OAUTH2_CLIENT_ID=your-google-client-id
+GOOGLE_OAUTH2_CLIENT_ID=your-google-client-id
+VITE_GOOGLE_CLIENT_ID=your-google-client-id
 
-# Optional — defaults shown
-export MONGODB_URI=mongodb://root:wc-dreamix@localhost:27017/euro2026?authSource=admin
-export MONGODB_DATABASE=euro2026
-
-export FOOTBALL_API_KEY=           # leave empty to use file-based adapter instead
-export FOOTBALL_API_LEAGUE_ID=1
-export FOOTBALL_API_SEASON=2026
-
-export CORS_ALLOWED_ORIGINS=http://localhost:3000   # set to your UI's URL
-
-export SCHEDULER_ENABLED=false
-export SCHEDULER_MATCH_CRON="0 */30 12-23 * * *"
-export SCHEDULER_STANDING_CRON="0 0 0 * * *"
+# API optional (defaults shown)
+MONGODB_URI=mongodb://root:wc-dreamix@localhost:27017/euro2026?authSource=admin
+MONGODB_DATABASE=euro2026
+FOOTBALL_API_KEY=
+FOOTBALL_API_LEAGUE_ID=1
+FOOTBALL_API_SEASON=2026
+CORS_ALLOWED_ORIGINS=http://localhost:5173
+SCHEDULER_ENABLED=false
 ```
 
-### 3. Run the application
+### 5. Troubleshooting
+
+If `podman compose up -d` fails with `Wrong mongod version` / `featureCompatibilityVersion`:
 
 ```bash
+cd api
+podman compose down -v
+podman compose up -d
+```
+
+This removes old DB files created by a different Mongo major version.
+
+### 6. Using live Football API data (consumes quota)
+
+Start backend without `mock-data` and set `FOOTBALL_API_KEY`:
+
+```bash
+cd api
+GOOGLE_OAUTH2_CLIENT_ID=your-google-client-id \
+FOOTBALL_API_KEY=your-api-football-key \
+CORS_ALLOWED_ORIGINS=http://localhost:5173 \
 ./mvnw spring-boot:run
 ```
 
-Swagger UI: `http://localhost:8080/swagger-ui.html`
+### 7. Stop local services
 
-### 4. Using bundled seed data (no API key needed)
+```bash
+cd api
+podman compose down
+```
+
+### 8. Using bundled seed data (no API key needed)
 
 Activate the `mock-data` Spring profile. The file-based adapters will load `season2022/fixtures.json` and `season2022/standings.json` from the classpath instead of calling the live API.
 
