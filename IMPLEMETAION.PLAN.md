@@ -11,6 +11,7 @@ Constraints:
 - Local development DB: run MongoDB in Podman (compose-compatible) using `api/docker-compose.yml`.
 - New feature delivery rule: each feature PR must be vertical (API + persistence + business logic + UI wiring when applicable).
 - Confirmed provider ID mapping: API-Football league id for World Cup is `1`.
+- UI change policy: backend-driven integration should modify UI as little as possible; avoid style/UX redesign and only replace mock data paths with real endpoint wiring.
 
 ## External Provider Reality Check (api-football)
 
