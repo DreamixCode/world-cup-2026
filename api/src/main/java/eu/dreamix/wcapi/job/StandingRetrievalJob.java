@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 public class StandingRetrievalJob {
     private final UpdateGroupStandingsService updateGroupStandingsService;
 
-    @Scheduled(cron = "${scheduler.standing-retrieval.cron}")
-    public void scheduledRetrieval() {
-        log.info("standing retrieval cron");
+    @Scheduled(cron = "${scheduler.standing-retrieval.active-cron}")
+    public void scheduledRetrievalActiveWindow() {
+        log.info("standing retrieval cron (active window)");
         updateGroupStandingsService.updateGroupStandings();
     }
 }
