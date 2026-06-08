@@ -4,6 +4,10 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 public class Score extends MatchData<Integer> {
+    public Score() {
+        super();
+    }
+
     public Score(Integer home, Integer away) {
         super(home, away);
     }

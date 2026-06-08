@@ -1,9 +1,9 @@
+import { useMedia } from "@/hooks";
 import { useParams } from "react-router-dom";
-import Group from "./Group";
+import { useGroups, useMatches } from "../../api";
 import ContentContainer from "../ContentContainer";
 import { Match } from "../Matches";
-import { matchess, mockedGroups } from "../../const.js";
-import { useMedia } from "@/hooks";
+import Group from "./Group";
 
 const GROUP_MASCOTS = [
   { file: "clutch.jpg", alt: "Clutch" },
@@ -24,27 +24,17 @@ function getMascotForGroup(groupId) {
 
 export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
   const isSmall = useMedia(useMedia.SMALL);
-  // const { groups = [] } = useGroups() ?? {};
-  // const { matches } = useMatches();
-  const groups = mockedGroups;
-  const matches = matchess;
+  const { groups = [] } = useGroups();
+  const { matches = [] } = useMatches();
 
-  const group = groups?.filter(
-    (group) => group?.group?.slice(-1)?.toLowerCase() === id,
-  );
+  const group = groups?.filter((group) => group?.group?.slice(-1)?.toLowerCase() === id);
 
   const groupTeams = group?.map(({ teams }) => teams.map((team) => team.name));
   const groupMatches = matches?.filter((match) =>
-    groupTeams?.find(
-      (teams) =>
-        teams.includes(match?.teams?.home?.name) &&
-        teams.includes(match?.teams?.away?.name),
-    ),
+    groupTeams?.find((teams) => teams.includes(match?.teams?.home?.name) && teams.includes(match?.teams?.away?.name)),
   );
 
-  groupMatches?.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-  );
+  groupMatches?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const mascot = getMascotForGroup(id);
 
@@ -56,19 +46,14 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
             <img
               src={`${import.meta.env.BASE_URL}images/${mascot.file}`}
               alt={mascot.alt}
-              className="h-[200px] w-auto flex shrink-0"
+              className="h-50 w-auto flex shrink-0"
             />
           </div>
         )}
         <div className="flex items-center justify-center gap-4 w-full">
           <div className="flex-1 flex justify-center items-center min-w-0 max-w-xl">
             {group?.map((group) => (
-              <Group
-                singleView
-                number={group?.group}
-                teams={group?.teams}
-                className="w-full"
-              />
+              <Group singleView number={group?.group} teams={group?.teams} className="w-full" />
             ))}
           </div>
         </div>
@@ -88,6 +73,9 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
             />
           );
         })}
+        {!groupMatches?.length && (
+          <div className="text-white font-bold text-center py-4">No group matches available yet.</div>
+        )}
       </div>
     </ContentContainer>
   );

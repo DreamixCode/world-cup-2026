@@ -1,19 +1,17 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { format, isAfter, parseISO } from "date-fns";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-import { useCreateBet } from "../../api";
-import { getFlag } from "../../utils.jsx";
-import MatchLink from "./MatchLink";
-import BetForm from "./BetForm";
-import ScoreDisplay from "./ScoreDisplay";
-
-import { myBets1 } from "@/const";
-import styles from "./Match.module.css";
 import { useMedia } from "@/hooks";
+import { useCreateBet, useMyBets } from "../../api";
+import { getFlag } from "../../utils.jsx";
 import { Modal } from "../Modal/Modal";
+import BetForm from "./BetForm";
+import styles from "./Match.module.css";
+import MatchLink from "./MatchLink";
+import ScoreDisplay from "./ScoreDisplay";
 
 const LazyMatchView = lazy(() => import("./MatchView"));
 
@@ -42,7 +40,7 @@ function Match({
   const isLarge = useMedia(useMedia.LARGE);
   const today = new Date();
 
-  const myBets = myBets1;
+  const { myBets = [] } = useMyBets();
   const myBet = myBets?.find((bet) => bet.matchId === id);
 
   const { register, watch, reset } = useForm({
@@ -102,27 +100,15 @@ function Match({
   const parsedTime = parsedISODate ? format(parsedISODate, "HH:mm") : "--:--";
 
   const canEnterEdit = !started && Boolean(myBet);
-  const canSubmitEdit =
-    Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
+  const canSubmitEdit = Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
   const canOpenModal = !isLink && !disableInteraction;
 
   const matchLink = (
     <>
       {isLink ? (
-        <MatchLink
-          id={id}
-          hostTeam={hostTeam}
-          guestTeam={guestTeam}
-          iconHost={iconHost}
-          iconGuest={iconGuest}
-          isLink
-        />
+        <MatchLink id={id} hostTeam={hostTeam} guestTeam={guestTeam} iconHost={iconHost} iconGuest={iconGuest} isLink />
       ) : canOpenModal ? (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="text-left cursor-pointer"
-        >
+        <button type="button" onClick={() => setOpen(true)} className="text-left cursor-pointer">
           <MatchLink
             id={id}
             hostTeam={hostTeam}
@@ -288,10 +274,7 @@ function Match({
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between gap-3">
                   {isLink ? (
-                    <Link
-                      to={`/matches/${id}`}
-                      className="block min-w-0 flex-1"
-                    >
+                    <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
                       <div className="min-w-0 flex items-center gap-2">
                         {iconHost}
                         <span className="truncate">{hostTeam}</span>
@@ -316,16 +299,11 @@ function Match({
                       </div>
                     </div>
                   )}
-                  <div className="tabular-nums w-8 text-right">
-                    {hostTeamScore ?? "-"}
-                  </div>
+                  <div className="tabular-nums w-8 text-right">{hostTeamScore ?? "-"}</div>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   {isLink ? (
-                    <Link
-                      to={`/matches/${id}`}
-                      className="block min-w-0 flex-1"
-                    >
+                    <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
                       <div className="min-w-0 flex items-center gap-2">
                         {iconGuest}
                         <span className="truncate">{guestTeam}</span>
@@ -350,9 +328,7 @@ function Match({
                       </div>
                     </div>
                   )}
-                  <div className="tabular-nums w-8 text-right">
-                    {guestTeamScore ?? "-"}
-                  </div>
+                  <div className="tabular-nums w-8 text-right">{guestTeamScore ?? "-"}</div>
                 </div>
               </div>
             )}
@@ -362,12 +338,8 @@ function Match({
             <div className="flex flex-col justify-center items-center gap-2">
               <BetFormView
                 layout="compact"
-                handleBet={() =>
-                  handleBetSubmit({ home: homeValue, away: awayValue })
-                }
-                handleEdit={() =>
-                  handleEditSubmit({ home: homeValue, away: awayValue })
-                }
+                handleBet={() => handleBetSubmit({ home: homeValue, away: awayValue })}
+                handleEdit={() => handleEditSubmit({ home: homeValue, away: awayValue })}
               />
             </div>
           ) : (
