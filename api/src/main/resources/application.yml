@@ -9,8 +9,8 @@ spring:
             - ${GOOGLE_OAUTH2_CLIENT_ID:}
 
   mongodb:
-    uri: ${MONGODB_URI:mongodb://root:wc-dreamix@localhost:27017/euro2024?authSource=admin}
-    database: ${MONGODB_DATABASE:euro2024}
+    uri: ${MONGODB_URI:mongodb://root:wc-dreamix@localhost:27017/wc2026?authSource=admin}
+    database: ${MONGODB_DATABASE:wc2026}
   # Single Page
   mvc:
     static-path-pattern: /public*
@@ -34,7 +34,7 @@ football-api:
   api-key: ${FOOTBALL_API_KEY:}
   api-key-header: x-rapidapi-key
   league-id: ${FOOTBALL_API_LEAGUE_ID:1}
-  season: ${FOOTBALL_API_SEASON:2024}
+  season: ${FOOTBALL_API_SEASON:2026}
 
 #feign
 feign:
