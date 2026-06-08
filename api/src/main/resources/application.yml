@@ -49,5 +49,6 @@ feign:
 
 scheduler:
   enabled: ${SCHEDULER_ENABLED:false}
-  match-retrieval.cron: "${SCHEDULER_MATCH_CRON:0 */30 12-23 * * *}"
-  standing-retrieval.cron: "${SCHEDULER_STANDING_CRON:0 0 0 * * *}"
+  match-retrieval.active-cron: "${SCHEDULER_MATCH_ACTIVE_CRON:0 * 0-6,16-23 * * *}"
+  match-retrieval.inactive-cron: "${SCHEDULER_MATCH_INACTIVE_CRON:0 */30 7-15 * * *}"
+  standing-retrieval.active-cron: "${SCHEDULER_STANDING_ACTIVE_CRON:0 */30 0-6,16-23 * * *}"
