@@ -4,7 +4,17 @@ const baseURL = import.meta.env.VITE_API_URL || "/api";
 
 export const getToken = () => {
   try {
-    return localStorage.getItem("id_token");
+    const rawToken = localStorage.getItem("id_token");
+
+    if (!rawToken) {
+      return null;
+    }
+
+    // Normalize pasted token values: drop wrapping quotes and any leading Bearer prefix.
+    return rawToken
+      .trim()
+      .replace(/^['\"]|['\"]$/g, "")
+      .replace(/^Bearer\s+/i, "");
   } catch {
     return null;
   }
@@ -26,8 +36,8 @@ const buildApi = (axios) => ({
   getAllGroups() {
     return axios.get(`${baseURL}/standings/groups`).then(({ data }) => data);
   },
-  getAllMatches() {
-    return axios.get(`${baseURL}/matches`).then(({ data }) => data);
+  getAllMatches(params) {
+    return axios.get(`${baseURL}/matches`, { params }).then(({ data }) => data);
   },
   getMatchById(id) {
     return axios.get(`${baseURL}/matches/${id}`).then(({ data }) => data);
@@ -56,8 +66,8 @@ const buildApi = (axios) => ({
   getMyBets() {
     return axios.get(`${baseURL}/bets/my`).then(({ data }) => data);
   },
-  getBets() {
-    return axios.get(`${baseURL}/bets`).then(({ data }) => data);
+  getBets(params) {
+    return axios.get(`${baseURL}/bets`, { params }).then(({ data }) => data);
   },
   getStandings() {
     return axios.get(`${baseURL}/standings/users`).then(({ data }) => data);

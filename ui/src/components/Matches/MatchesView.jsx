@@ -1,9 +1,9 @@
 import classNames from "classnames";
 import { format, isAfter, isEqual, parseISO } from "date-fns";
-import Match from "./Match";
+import { useMatches } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
-import { matchess } from "@/const";
+import Match from "./Match";
 
 function MatchesView({ frontPage }) {
   const isMedium = useMedia(useMedia.MEDIUM);
@@ -11,22 +11,18 @@ function MatchesView({ frontPage }) {
 
   const today = new Date();
 
-  // const { isLoading } = useMatches();
-  const matches = matchess;
-  const isLoading = false;
+  const { matches = [], isLoading } = useMatches();
 
-  matches?.sort(
-    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-  );
+  const sortedMatches = [...matches].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const todayMatches = matches?.filter((match) =>
+  const todayMatches = sortedMatches?.filter((match) =>
     isEqual(
       new Date(format(parseISO(match?.date), "yyyy-MM-dd")),
       new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")),
     ),
   );
 
-  const nextMatches = matches?.filter((match) =>
+  const nextMatches = sortedMatches?.filter((match) =>
     isAfter(
       new Date(format(parseISO(match?.date), "yyyy-MM-dd")),
       new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")),
@@ -49,7 +45,7 @@ function MatchesView({ frontPage }) {
     } else if (frontPage && !todayMatches?.length) {
       return nextMatches?.slice(0, 4);
     } else {
-      return matches;
+      return sortedMatches;
     }
   }
 
@@ -95,6 +91,9 @@ function MatchesView({ frontPage }) {
                   />
                 );
               })}
+              {!selectMatchesShown()?.length && (
+                <div className="p-4 text-center text-dec-background font-bold">No matches available yet.</div>
+              )}
             </div>
           </div>
         )}

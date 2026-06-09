@@ -1,19 +1,13 @@
 import classNames from "classnames";
 
-import ContentContainer from "../ContentContainer";
-import { getFlag } from "../../utils.jsx";
-import { mockedGroups } from "../../const.js";
-import { Tooltip } from "react-tooltip";
 import { useMedia } from "@/hooks";
+import { Tooltip } from "react-tooltip";
+import { getFlag } from "../../utils.jsx";
+import ContentContainer from "../ContentContainer";
 
-function Group({ number, teams: _teams, className, singleView, style }) {
+function Group({ number, teams = [], className, singleView, style }) {
   const isSmall = useMedia(useMedia.SMALL);
-  // const { groups } = useGroups();
-  const groups = mockedGroups;
-
-  const singleGroup = groups?.filter((group) => group.group === number);
-
-  singleGroup?.map(({ teams }) => teams?.sort((a, b) => a.rank - b.rank));
+  const sortedTeams = [...teams].sort((a, b) => a.rank - b.rank);
 
   const cornerGroupClasses = {
     "Group A": "bg-dec-groupA",
@@ -32,13 +26,7 @@ function Group({ number, teams: _teams, className, singleView, style }) {
 
   return (
     <ContentContainer className="select-none">
-      <div
-        className={classNames(
-          "relative overflow-hidden rounded-md bg-white shadow-md",
-          className,
-        )}
-        style={style}
-      >
+      <div className={classNames("relative overflow-hidden rounded-md bg-white shadow-md", className)} style={style}>
         <div
           className={classNames(
             "pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-bl-[99px]",
@@ -111,36 +99,30 @@ function Group({ number, teams: _teams, className, singleView, style }) {
             )}
           </thead>
           <tbody className="w-full bg-white text-black">
-            {singleGroup?.map((group) =>
-              group?.teams?.map((team) => {
-                const flag = getFlag(team?.name);
+            {sortedTeams?.map((team) => {
+              const flag = getFlag(team?.name);
 
-                return (
-                  <tr className="items-center" key={team?.id}>
-                    <td className="pl-6 pr-2 sm:text-dec-h4 text-dec-sm align-middle">
-                      {team?.rank}
-                    </td>
-                    <td className="sm:text-dec-h4 text-dec-xs py-3 px-2">
-                      <div className="flex items-center gap-2">
-                        <span>{flag}</span>
-                        <span>{team?.name.toUpperCase()}</span>
-                      </div>
-                    </td>
-                    {singleView && isSmall && (
-                      <>
-                        <td className="text-left">{team?.played}</td>
-                        <td className="text-left">{team?.win}</td>
-                        <td className="text-left">{team?.draw}</td>
-                        <td className="text-left">{team?.lose}</td>
-                      </>
-                    )}
-                    <td className="text-right sm:text-dec-h4 text-dec-md pr-6 align-middle">
-                      {team?.points}
-                    </td>
-                  </tr>
-                );
-              }),
-            )}
+              return (
+                <tr className="items-center" key={team?.id}>
+                  <td className="pl-6 pr-2 sm:text-dec-h4 text-dec-sm align-middle">{team?.rank}</td>
+                  <td className="sm:text-dec-h4 text-dec-xs py-3 px-2">
+                    <div className="flex items-center gap-2">
+                      <span>{flag}</span>
+                      <span>{team?.name.toUpperCase()}</span>
+                    </div>
+                  </td>
+                  {singleView && isSmall && (
+                    <>
+                      <td className="text-left">{team?.played}</td>
+                      <td className="text-left">{team?.win}</td>
+                      <td className="text-left">{team?.draw}</td>
+                      <td className="text-left">{team?.lose}</td>
+                    </>
+                  )}
+                  <td className="text-right sm:text-dec-h4 text-dec-md pr-6 align-middle">{team?.points}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
         <Tooltip
