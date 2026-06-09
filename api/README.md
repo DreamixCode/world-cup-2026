@@ -6,12 +6,12 @@ A Spring Boot REST API for a football tournament betting app. Users authenticate
 
 ## Domain Entities
 
-| Collection | Class | Description |
-|---|---|---|
-| `fixtures` | `FixtureDocument` | A football match — teams, date/time, status, score, league. Sourced from the Football API or bundled JSON files. |
-| `standings` | `GroupStandingDocument` | Per-team group-stage standing with rank, points, goal difference and home/away/overall stats. |
-| `bets` | `BetDocument` | A user's home/away score prediction for a match. Stores earned `points` once `isCalculated = true`. |
-| `users` | `UserDocument` | An authenticated user (Google `sub` as ID). Created/updated automatically on first login. |
+| Collection  | Class                   | Description                                                                                                      |
+| ----------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `fixtures`  | `FixtureDocument`       | A football match — teams, date/time, status, score, league. Sourced from the Football API or bundled JSON files. |
+| `standings` | `GroupStandingDocument` | Per-team group-stage standing with rank, points, goal difference and home/away/overall stats.                    |
+| `bets`      | `BetDocument`           | A user's home/away score prediction for a match. Stores earned `points` once `isCalculated = true`.              |
+| `users`     | `UserDocument`          | An authenticated user (Google `sub` as ID). Created/updated automatically on first login.                        |
 
 ---
 
@@ -34,7 +34,7 @@ External Data (two swappable adapters per resource)
 Scheduled Jobs
  ├── Match retrieval  — cron, updates fixtures collection
  └── Standing retrieval — cron, updates standings collection
- 
+
 Event Flow
  └── Fixture update → MatchEventsPublisher → bet point calculator
 ```
@@ -59,6 +59,7 @@ docker compose up -d
 ```
 
 This starts:
+
 - **MongoDB** on `localhost:27017` (credentials: `root` / `wc-dreamix`)
 - **Mongo Express** at `http://localhost:8081` (user: `root`, pass: `pass`)
 
@@ -71,12 +72,12 @@ Copy the block below, fill in your values and export them before starting the ap
 export GOOGLE_OAUTH2_CLIENT_ID=your-google-client-id
 
 # Optional — defaults shown
-export MONGODB_URI=mongodb://root:wc-dreamix@localhost:27017/euro2024?authSource=admin
-export MONGODB_DATABASE=euro2024
+export MONGODB_URI=mongodb://root:wc-dreamix@localhost:27017/euro2026?authSource=admin
+export MONGODB_DATABASE=euro2026
 
 export FOOTBALL_API_KEY=           # leave empty to use file-based adapter instead
-export FOOTBALL_API_LEAGUE_ID=4
-export FOOTBALL_API_SEASON=2024
+export FOOTBALL_API_LEAGUE_ID=1
+export FOOTBALL_API_SEASON=2026
 
 export CORS_ALLOWED_ORIGINS=http://localhost:3000   # set to your UI's URL
 
@@ -98,17 +99,20 @@ Swagger UI: `http://localhost:8080/swagger-ui.html`
 Activate the `mock-data` Spring profile. The file-based adapters will load `season2022/fixtures.json` and `season2022/standings.json` from the classpath instead of calling the live API.
 
 **Terminal / Maven:**
+
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=mock-data
 ```
 
 **Environment variable:**
+
 ```bash
 export SPRING_PROFILES_ACTIVE=mock-data
 ./mvnw spring-boot:run
 ```
 
 **IntelliJ IDEA:**
+
 1. Open **Run → Edit Configurations…**
 2. Select (or create) your Spring Boot run configuration.
 3. In the **Active profiles** field enter `mock-data`.
@@ -118,13 +122,13 @@ export SPRING_PROFILES_ACTIVE=mock-data
 
 ## Deployment Checklist (for UI integration)
 
-| Variable | What to set |
-|---|---|
+| Variable                  | What to set                                           |
+| ------------------------- | ----------------------------------------------------- |
 | `GOOGLE_OAUTH2_CLIENT_ID` | The same Google Client ID the UI uses to issue tokens |
-| `MONGODB_URI` | Production MongoDB connection string |
-| `CORS_ALLOWED_ORIGINS` | The deployed UI URL (e.g. `https://myapp.com`) |
-| `FOOTBALL_API_KEY` | api-sports.io key |
-| `SCHEDULER_ENABLED` | `true` to auto-refresh fixtures and standings |
+| `MONGODB_URI`             | Production MongoDB connection string                  |
+| `CORS_ALLOWED_ORIGINS`    | The deployed UI URL (e.g. `https://myapp.com`)        |
+| `FOOTBALL_API_KEY`        | api-sports.io key                                     |
+| `SCHEDULER_ENABLED`       | `true` to auto-refresh fixtures and standings         |
 
 All `/api/**` endpoints require `Authorization: Bearer <google-id-token>` — the UI must pass the Google ID token on every request.
 
@@ -143,4 +147,3 @@ docker run -p 8080:8080 \
   -e SCHEDULER_ENABLED=true \
   wc-api
 ```
-
