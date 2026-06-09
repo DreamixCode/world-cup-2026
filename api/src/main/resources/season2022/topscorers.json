@@ -1,0 +1,10 @@
+[
+  { "id": 1, "name": "Kylian Mbappé", "nationality": "France", "teamName": "France", "goals": 6 },
+  { "id": 2, "name": "Erling Haaland", "nationality": "Norway", "teamName": "Norway", "goals": 5 },
+  { "id": 3, "name": "Harry Kane", "nationality": "England", "teamName": "England", "goals": 5 },
+  { "id": 4, "name": "Vinícius Júnior", "nationality": "Brazil", "teamName": "Brazil", "goals": 4 },
+  { "id": 5, "name": "Jude Bellingham", "nationality": "England", "teamName": "England", "goals": 4 },
+  { "id": 6, "name": "Lautaro Martínez", "nationality": "Argentina", "teamName": "Argentina", "goals": 4 },
+  { "id": 7, "name": "Robert Lewandowski", "nationality": "Poland", "teamName": "Poland", "goals": 3 },
+  { "id": 8, "name": "Mohamed Salah", "nationality": "Egypt", "teamName": "Egypt", "goals": 3 }
+]

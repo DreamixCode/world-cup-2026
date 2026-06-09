@@ -52,3 +52,4 @@ scheduler:
   match-retrieval.active-cron: "${SCHEDULER_MATCH_ACTIVE_CRON:0 * 0-6,16-23 * * *}"
   match-retrieval.inactive-cron: "${SCHEDULER_MATCH_INACTIVE_CRON:0 */30 7-15 * * *}"
   standing-retrieval.active-cron: "${SCHEDULER_STANDING_ACTIVE_CRON:0 */30 0-6,16-23 * * *}"
+  top-scorer-retrieval.cron: "${SCHEDULER_TOP_SCORER_CRON:0 0 * * * *}"
