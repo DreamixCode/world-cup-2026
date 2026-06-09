@@ -23,6 +23,8 @@ app:
     allowed-origins:
       - ${CORS_ALLOWED_ORIGINS:http://localhost:3000}
 #      We gonna add the Frontend from Tancheto here as well
+  startup-data-refresh:
+    enabled: ${STARTUP_DATA_REFRESH_ENABLED:true}
 
 # OpenAPI
 springdoc.packagesToScan: eu.dreamix

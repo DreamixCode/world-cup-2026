@@ -2,6 +2,7 @@ package eu.dreamix.wcapi.service;
 
 import eu.dreamix.wcapi.dto.GroupStandingDto;
 import eu.dreamix.wcapi.entity.GroupStandingDocument;
+import eu.dreamix.wcapi.external.StandingRetrievalAdapter;
 import eu.dreamix.wcapi.mapper.GroupStandingMapper;
 import eu.dreamix.wcapi.repository.BetRepository;
 import eu.dreamix.wcapi.repository.GroupStandingRepository;
@@ -23,6 +24,7 @@ public class StandingServiceImpl implements StandingService {
     private final BetRepository betRepository;
     private final GroupStandingRepository groupStandingRepository;
     private final GroupStandingMapper groupStandingMapper;
+    private final StandingRetrievalAdapter standingRetrievalAdapter;
 
     @Override
     public List<UserPointsProjection> userStandings() {
@@ -31,7 +33,10 @@ public class StandingServiceImpl implements StandingService {
 
     @Override
     public List<GroupStandingDto> groupStandings() {
-        final List<GroupStandingDocument> all = groupStandingRepository.findAll();
+        List<GroupStandingDocument> all = groupStandingRepository.findAll();
+        if (all.isEmpty()) {
+            all = standingRetrievalAdapter.actualizeGroupStandings().data();
+        }
         return all.stream()
                   .collect(groupingBy(GroupStandingDocument::getGroup,
                                       mapping(groupStandingMapper::documentToTeamDto, Collectors.toList()))

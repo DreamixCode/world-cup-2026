@@ -3,13 +3,16 @@ package eu.dreamix.wcapi.service;
 import eu.dreamix.wcapi.dto.MatchFilter;
 import eu.dreamix.wcapi.entity.FixtureDocument;
 import eu.dreamix.wcapi.entity.StatusType;
+import eu.dreamix.wcapi.external.FixtureRetrievalAdapter;
 import eu.dreamix.wcapi.publisher.MatchEventsPublisher;
 import eu.dreamix.wcapi.repository.MongoFixtureRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -20,21 +23,31 @@ import java.util.Optional;
 public class MatchServiceImpl implements MatchService {
     private final MongoFixtureRepository repository;
     private final MatchEventsPublisher publisher;
+    private final FixtureRetrievalAdapter fixtureRetrievalAdapter;
 
     @Override
     public List<FixtureDocument> retrieveMatchesByCriteria(final MatchFilter filter) {
-        List<FixtureDocument> fixtures;
-
-        if (filter.date() == null) {
-            fixtures = repository.findAll();
-        } else {
-            fixtures = repository.findBetweenDates(
-                    filter.date().atStartOfDay(),
-                    filter.date().atTime(LocalTime.MAX)
-            );
+        if (repository.count() == 0) {
+            final List<FixtureDocument> all = fixtureRetrievalAdapter.actualizeFixtures().data();
+            if (filter.date() == null) {
+                return all;
+            }
+            final Instant from = filter.date().atStartOfDay(ZoneOffset.UTC).toInstant();
+            final Instant to = filter.date().atTime(LocalTime.MAX).atZone(ZoneOffset.UTC).toInstant();
+            return all.stream()
+                    .filter(f -> f.getFixture() != null && f.getFixture().getDate() != null
+                            && !f.getFixture().getDate().isBefore(from)
+                            && f.getFixture().getDate().isBefore(to))
+                    .toList();
         }
 
-        return fixtures;
+        if (filter.date() == null) {
+            return repository.findAll();
+        }
+        return repository.findBetweenDates(
+                filter.date().atStartOfDay(),
+                filter.date().atTime(LocalTime.MAX)
+        );
     }
 
     @Override
