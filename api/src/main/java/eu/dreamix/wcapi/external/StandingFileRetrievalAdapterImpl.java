@@ -37,7 +37,7 @@ public class StandingFileRetrievalAdapterImpl implements StandingRetrievalAdapte
     @Override
     public RetrieveResult<List<GroupStandingDocument>> actualizeGroupStandings() {
         try {
-            final InputStream standingResultStream = new ClassPathResource("season2022/standings.json")
+            final InputStream standingResultStream = new ClassPathResource("season2026/standings.json")
                                                              .getInputStream();
 
             final JsonNode jsonNode = mapper.readTree(standingResultStream);

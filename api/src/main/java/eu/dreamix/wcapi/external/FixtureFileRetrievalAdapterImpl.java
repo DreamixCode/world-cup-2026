@@ -33,7 +33,7 @@ public class FixtureFileRetrievalAdapterImpl implements FixtureRetrievalAdapter 
     @Override
     public RetrieveResult<List<FixtureDocument>> actualizeFixtures() {
         try {
-            final InputStream fixturesStream = new ClassPathResource("season2022/fixtures.json")
+            final InputStream fixturesStream = new ClassPathResource("season2026/fixtures.json")
                                                        .getInputStream();
 
             final List<FixtureDocument> result = mapper.readValue(

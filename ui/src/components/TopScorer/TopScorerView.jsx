@@ -2,7 +2,6 @@ import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import Button from "../Button";
 import { useSelectTopScorer, useTopScorers } from "../../api/queryHooks";
-import { mockedTopScorers } from "@/const";
 import { getFlag } from "@/utils.jsx";
 
 function getName(item) {
@@ -41,10 +40,8 @@ function getCountry(item) {
 }
 
 export default function TopScorerView() {
-  const { isLoading, isFetching } = useTopScorers();
+  const { isLoading, isFetching, topScorers } = useTopScorers();
   const { selectTopScorer, isLoadingSelect } = useSelectTopScorer();
-
-  const topScorers = mockedTopScorers;
 
   const rows = Array.isArray(topScorers)
     ? topScorers
@@ -89,9 +86,10 @@ export default function TopScorerView() {
               <tbody className="sm:text-dec-base text-dec-2xs">
                 {rows?.map((item) => {
                   const key = item?.id ?? getName(item);
+                  const isSelected = item?.selected;
                   return (
                     <tr
-                      className="border-b-4 border-dec-primary-light"
+                      className={`border-b-4 border-dec-primary-light${isSelected ? " bg-dec-primary-middleBlue" : ""}`}
                       key={key}
                     >
                       <td className="py-2 pl-2">
@@ -110,6 +108,7 @@ export default function TopScorerView() {
                         <Button
                           className="px-3 py-1 rounded-tr-[10px] rounded-bl-[10px]"
                           loading={isLoadingSelect}
+                          disabled={isSelected}
                           onClick={() =>
                             selectTopScorer({
                               id: item?.id,
@@ -117,7 +116,7 @@ export default function TopScorerView() {
                             })
                           }
                         >
-                          Select
+                          {isSelected ? "Selected" : "Select"}
                         </Button>
                       </td>
                     </tr>

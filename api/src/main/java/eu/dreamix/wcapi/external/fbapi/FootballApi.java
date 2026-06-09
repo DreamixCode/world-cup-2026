@@ -17,4 +17,7 @@ public interface FootballApi {
 
     @GetMapping("/standings")
     ApiResponse<List<LeagueStandingDto>> getStandings(@RequestParam Integer league, @RequestParam Integer season);
+
+    @GetMapping("/players/topscorers")
+    ApiResponse<List<TopScorerApiDto>> getTopScorers(@RequestParam Integer league, @RequestParam Integer season);
 }
