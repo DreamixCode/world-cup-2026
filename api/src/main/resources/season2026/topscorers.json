@@ -1,0 +1,12 @@
+[
+  { "id": 278,   "name": "Kylian Mbappé",       "nationality": "France",      "teamName": "France",    "goals": 0 },
+  { "id": 1100,  "name": "Erling Haaland",       "nationality": "Norway",      "teamName": "Norway",    "goals": 0 },
+  { "id": 184,   "name": "Harry Kane",           "nationality": "England",     "teamName": "England",   "goals": 0 },
+  { "id": 1438,  "name": "Vinícius Júnior",      "nationality": "Brazil",      "teamName": "Brazil",    "goals": 0 },
+  { "id": 35327, "name": "Cody Gakpo",           "nationality": "Netherlands", "teamName": "Netherlands","goals": 0 },
+  { "id": 521,   "name": "Lautaro Martínez",     "nationality": "Argentina",   "teamName": "Argentina", "goals": 0 },
+  { "id": 183,   "name": "Romelu Lukaku",        "nationality": "Belgium",     "teamName": "Belgium",   "goals": 0 },
+  { "id": 2295,  "name": "Christian Pulisic",    "nationality": "USA",         "teamName": "USA",       "goals": 0 },
+  { "id": 747,   "name": "Youssef En-Nesyri",    "nationality": "Morocco",     "teamName": "Morocco",   "goals": 0 },
+  { "id": 19220, "name": "Florian Wirtz",        "nationality": "Germany",     "teamName": "Germany",   "goals": 0 }
+]

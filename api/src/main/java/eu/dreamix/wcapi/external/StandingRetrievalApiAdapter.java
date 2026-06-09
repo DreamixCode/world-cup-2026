@@ -34,7 +34,7 @@ public class StandingRetrievalApiAdapter implements StandingRetrievalAdapter {
                                                                            footballApiConfig.leagueId(),
                                                                            footballApiConfig.season());
 
-        return new RetrieveResult<>(apiResponse.getResults(), apiResponse.getResults(), standings);
+        return new RetrieveResult<>(apiResponse.getResults(), standings.size(), standings);
     }
 
     List<GroupStandingDocument> extractFlatStandings(List<LeagueStandingDto> response, Integer leagueId, Integer season) {
@@ -51,9 +51,9 @@ public class StandingRetrievalApiAdapter implements StandingRetrievalAdapter {
                                             .stream()
                                             .flatMap(List::stream)
                                             .toList())
-                       .orElseThrow(() -> {
-                           String message = String.format("Error extracting info for league %s, season %s", leagueId, season);
-                           return new RuntimeException(message);
+                       .orElseGet(() -> {
+                           log.warn("No standings found for league {} season {} in provider response", leagueId, season);
+                           return List.of();
                        });
     }
 }

@@ -37,6 +37,7 @@ public class Fixture {
     }
 
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Status {
         @JsonProperty("long")
         @Field("long")

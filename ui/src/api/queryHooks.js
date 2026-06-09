@@ -8,6 +8,7 @@ export const queryKeys = {
   matches: () => ["matches"],
   matchById: (id) => [...queryKeys.matches(), id],
   bets: () => ["bets"],
+  betsByFilters: (params) => ["bets", params?.userId ?? null, params?.matchId ?? null],
   myBets: () => ["myBets"],
   matchesByDate: (date) => [...queryKeys.matches(), date],
   users: () => ["users"],
@@ -55,7 +56,7 @@ export function useGroups() {
 
 export function useMatches(params) {
   const { data: matches, ...rest } = useQuery({
-    queryKey: queryKeys.matches(),
+    queryKey: queryKeys.matchesByDate(params?.date ?? null),
     queryFn: () => {
       const queryParams = {
         date: params?.date,
@@ -67,6 +68,7 @@ export function useMatches(params) {
 }
 
 export function useMatchById(id) {
+  const hasValidId = Number.isFinite(Number(id));
   const {
     data: match,
     isFetching: isLoading,
@@ -74,6 +76,7 @@ export function useMatchById(id) {
   } = useQuery({
     queryKey: queryKeys.matchById(id),
     queryFn: () => EuroCupApi.getMatchById(id),
+    enabled: hasValidId,
     keepPreviousData: true,
     ...defaultQueryOptions,
   });
@@ -86,7 +89,7 @@ export function useBets(params) {
     isLoading: isLoadingBets,
     ...rest
   } = useQuery({
-    queryKey: queryKeys.bets(),
+    queryKey: queryKeys.betsByFilters(params),
     queryFn: () => {
       const queryParams = {
         userId: params?.userId,
@@ -149,6 +152,7 @@ export function usePlayerById(id) {
   } = useQuery({
     queryKey: queryKeys.userById(id),
     queryFn: () => EuroCupApi.getUserById(id),
+    enabled: Boolean(id),
     keepPreviousData: true,
     ...defaultQueryOptions,
   });

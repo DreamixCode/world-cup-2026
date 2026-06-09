@@ -1,27 +1,21 @@
 import { Tooltip } from "react-tooltip";
-// import { useStandings } from "../../api";
+import { useStandings } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
-import Spinner from "../Spinner";
 import { BronzeMedal, GoldMedal, SilverMedal } from "../icons/index.jsx";
-import { standings } from "../../const.js";
 import { Modal } from "../Modal/Modal";
+import Spinner from "../Spinner";
 import UserView from "./UserView";
 
 function LeaderBoardView({ frontPage }) {
   const isSmall = useMedia(useMedia.SMALL);
 
-  // const { standings, isLoading } = useStandings();
-  // const standings = standingss
-  const isLoading = false;
+  const { standings = [], isLoading } = useStandings();
 
-  const leadersView = standings;
+  const leadersView = [...standings];
 
   leadersView?.sort((a, b) => {
-    return (
-      b.totalPoints - a.totalPoints ||
-      a.user.firstName.localeCompare(b.user.firstName)
-    );
+    return b.totalPoints - a.totalPoints || a.user.firstName.localeCompare(b.user.firstName);
   });
 
   return (
@@ -33,10 +27,7 @@ function LeaderBoardView({ frontPage }) {
         backgroundSize: !frontPage && "contain",
       }}
     >
-      <ContentContainer
-        className="py-4 grow justify-center select-none h-full"
-        maxWidthClassName="max-w-4xl px-4"
-      >
+      <ContentContainer className="py-4 grow justify-center select-none h-full" maxWidthClassName="max-w-4xl px-4">
         {isLoading && !frontPage && (
           <div className="flex justify-center pt-28 items-center">
             <Spinner className="h-16 w-16" />
@@ -46,11 +37,7 @@ function LeaderBoardView({ frontPage }) {
           <div className={!frontPage ? "sm:mt-24" : undefined}>
             {!frontPage && (
               <div className="sm:absolute sm:top-10 sm:left-0 flex justify-center sm:justify-start">
-                <img
-                  src="/images/trio-mascots-2.jpg"
-                  alt="Leaderboard"
-                  className="w-10/12 sm:w-[40%]"
-                />
+                <img src="/images/trio-mascots-2.jpg" alt="Leaderboard" className="w-10/12 sm:w-[40%]" />
               </div>
             )}
             {isSmall && (
@@ -69,10 +56,7 @@ function LeaderBoardView({ frontPage }) {
               <tbody className="sm:text-dec-base text-dec-2xs">
                 {leadersView?.map((leader, index) => {
                   return (
-                    <tr
-                      className="border-b-4 border-dec-primary-light"
-                      key={leader.user.id}
-                    >
+                    <tr className="border-b-4 border-dec-primary-light" key={leader.user.id}>
                       <td className="py-1">
                         <div className="flex items-center space-x-2 pl-2">
                           <span>{index + 1}</span>
@@ -90,10 +74,7 @@ function LeaderBoardView({ frontPage }) {
                         <Modal
                           title={`${leader.user.firstName} ${leader.user.lastName}`}
                           trigger={
-                            <button
-                              type="button"
-                              className="flex items-center space-x-2 text-left cursor-pointer"
-                            >
+                            <button type="button" className="flex items-center space-x-2 text-left cursor-pointer">
                               <img
                                 src={leader?.user?.picture}
                                 alt={leader.user.firstName}
@@ -107,13 +88,7 @@ function LeaderBoardView({ frontPage }) {
                                 data-place="top"
                               >
                                 {leader.user.firstName} {leader.user.lastName}
-                                {!isSmall && (
-                                  <Tooltip
-                                    id="User"
-                                    textColor="dec-primary"
-                                    backgroundColor="white"
-                                  />
-                                )}
+                                {!isSmall && <Tooltip id="User" textColor="dec-primary" backgroundColor="white" />}
                               </div>
                             </button>
                           }
@@ -129,6 +104,13 @@ function LeaderBoardView({ frontPage }) {
                     </tr>
                   );
                 })}
+                {!leadersView?.length && (
+                  <tr>
+                    <td className="px-3 py-4 text-center" colSpan={3}>
+                      No standings available yet.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

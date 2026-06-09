@@ -3,14 +3,14 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: accounts.google.com
+          issuer-uri: https://accounts.google.com
           jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
           audiences:
             - ${GOOGLE_OAUTH2_CLIENT_ID:}
 
   mongodb:
-    uri: ${MONGODB_URI:mongodb://root:wc-dreamix@localhost:27017/euro2024?authSource=admin}
-    database: ${MONGODB_DATABASE:euro2024}
+    uri: ${MONGODB_URI:mongodb://root:wc-dreamix@localhost:27017/wc2026?authSource=admin}
+    database: ${MONGODB_DATABASE:wc2026}
   # Single Page
   mvc:
     static-path-pattern: /public*
@@ -34,7 +34,7 @@ football-api:
   api-key: ${FOOTBALL_API_KEY:}
   api-key-header: x-rapidapi-key
   league-id: ${FOOTBALL_API_LEAGUE_ID:1}
-  season: ${FOOTBALL_API_SEASON:2024}
+  season: ${FOOTBALL_API_SEASON:2026}
 
 #feign
 feign:
@@ -49,5 +49,7 @@ feign:
 
 scheduler:
   enabled: ${SCHEDULER_ENABLED:false}
-  match-retrieval.cron: "${SCHEDULER_MATCH_CRON:0 */30 12-23 * * *}"
-  standing-retrieval.cron: "${SCHEDULER_STANDING_CRON:0 0 0 * * *}"
+  match-retrieval.active-cron: "${SCHEDULER_MATCH_ACTIVE_CRON:0 * 0-6,16-23 * * *}"
+  match-retrieval.inactive-cron: "${SCHEDULER_MATCH_INACTIVE_CRON:0 */30 7-15 * * *}"
+  standing-retrieval.active-cron: "${SCHEDULER_STANDING_ACTIVE_CRON:0 */30 0-6,16-23 * * *}"
+  top-scorer-retrieval.cron: "${SCHEDULER_TOP_SCORER_CRON:0 0 * * * *}"
