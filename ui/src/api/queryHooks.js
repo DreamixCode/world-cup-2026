@@ -149,6 +149,7 @@ export function usePlayerById(id) {
   } = useQuery({
     queryKey: queryKeys.userById(id),
     queryFn: () => EuroCupApi.getUserById(id),
+    enabled: Boolean(id),
     keepPreviousData: true,
     ...defaultQueryOptions,
   });

@@ -1,5 +1,5 @@
-import React from "react";
 import { ContentContainer } from "../components";
+import { LogoWhite as EuroLogo } from "../components/icons/index.jsx";
 import GoogleLoginBtn from "./GoogleLoginButton";
 
 function Unauthenticated() {
