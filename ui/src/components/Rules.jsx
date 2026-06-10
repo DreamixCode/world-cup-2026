@@ -25,7 +25,7 @@ function Rules() {
           the match. Extra time and penalties won't be considered.
         </p>
         <p>
-          At the end of the Euro 2024 Championship the one with most points wins
+          At the end of the World Cup 2026 the one with most points wins
           :)
         </p>
       </ContentContainer>
