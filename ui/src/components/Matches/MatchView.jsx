@@ -1,22 +1,25 @@
 import classNames from "classnames";
-import { isBefore } from "date-fns";
+import { isAfter } from "date-fns";
 import { Link, useParams } from "react-router-dom";
 import { useBets, useMatchById } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
 import { ChevronLeft } from "../icons/index.jsx";
 import Spinner from "../Spinner";
+import { getQueryErrorMessage } from "../../utils.jsx";
 import Match from "./Match";
 
 function MatchView({ matchId, embedded = false }) {
   const params = useParams();
   const id = matchId ?? params?.id;
   const numericMatchId = Number(id);
-  const { match, isLoading } = useMatchById(numericMatchId);
+  const { match, isLoading, isError, error } = useMatchById(numericMatchId);
 
   const isSmall = useMedia(useMedia.SMALL);
   const today = new Date();
-  const { bets = [], isLoadingBets } = useBets({ matchId: numericMatchId });
+  const { bets = [], isLoadingBets, isError: isBetsError, error: betsError } = useBets({
+    matchId: numericMatchId,
+  });
 
   const shownBets = bets.filter((bet) => bet?.bet);
 
@@ -24,12 +27,19 @@ function MatchView({ matchId, embedded = false }) {
     <div className="bg-black grow uppercase">
       {!embedded && isSmall && (
         <div className="absolute top-50 left-0 w-[25%] h-[25%]">
-          <img src="/images/trio-mascots-2.jpg" alt="Leaderboard" className="w-full h-full object-cover" />
+          <img
+            src="/images/trio-mascots-2.jpg"
+            alt="Leaderboard"
+            className="w-full h-full object-cover"
+          />
         </div>
       )}
       <ContentContainer
         maxWidthClassName="max-w-4xl"
-        className={classNames("py-4 grow justify-center select-none h-full", embedded && "mt-0")}
+        className={classNames(
+          "py-4 grow justify-center select-none h-full",
+          embedded && "mt-0",
+        )}
       >
         {!embedded && (
           <div className="flex justify-between mt-20 bg-black text-dec-background">
@@ -41,10 +51,17 @@ function MatchView({ matchId, embedded = false }) {
             </Link>
           </div>
         )}
-        {!isLoading && (
+        {!isLoading && isError && (
+          <div className="flex justify-center text-dec-background text-dec-h3 py-8 text-center px-4">
+            {getQueryErrorMessage(error, "this match")}
+          </div>
+        )}
+        {!isLoading && !isError && (
           <div className="flex flex-col space-y-8 sm:space-y-0">
             {!match && (
-              <div className="flex justify-center text-dec-background text-dec-h3 py-8">Match is not available.</div>
+              <div className="flex justify-center text-dec-background text-dec-h3 py-8">
+                Match is not available.
+              </div>
             )}
             {match && (
               <div className="h-full pb-2 sm:pb-4">
@@ -71,13 +88,23 @@ function MatchView({ matchId, embedded = false }) {
                 <Spinner className="h-16 w-16" />
               </div>
             )}
-            {isBefore(today, new Date(match?.date)) ? (
+            {!isLoadingBets && isBetsError && (
+              <div className="text-center text-dec-background font-bold px-4 py-8">
+                {getQueryErrorMessage(betsError, "bets")}
+              </div>
+            )}
+            {!isLoadingBets && !isBetsError && match && isAfter(today, new Date(match?.date)) ? (
               <table className="bg-dec-primary w-full text-dec-background font-extrabold">
                 <thead>
                   <tr className="border-b-4 border-dec-primary-light h-16 text-dec-h4">
                     <th className="text-left font-extrabold px-2">User</th>
                     <th className="text-left font-extrabold">Bet</th>
-                    <th className="text-left font-extrabold" data-tip="Points" data-for="Points" data-place="left">
+                    <th
+                      className="text-left font-extrabold"
+                      data-tip="Points"
+                      data-for="Points"
+                      data-place="left"
+                    >
                       {isSmall ? "Points" : "P"}
                     </th>
                   </tr>
@@ -85,7 +112,10 @@ function MatchView({ matchId, embedded = false }) {
                 <tbody>
                   {shownBets?.map((bet) => {
                     return (
-                      <tr className=" border-b-4 border-black bg-white text-black rounded-md" key={bet.user.email}>
+                      <tr
+                        className=" border-b-4 border-black bg-white text-black rounded-md"
+                        key={bet.user.email}
+                      >
                         <td className="pl-2 bg-white text-black">
                           <Link to={`/user/${bet.user.id}`}>
                             <div className="flex sm:space-x-2 items-start sm:items-center sm:flex-row flex-col space-y-2 sm:space-y-0 py-2 sm:py-0">
@@ -122,10 +152,18 @@ function MatchView({ matchId, embedded = false }) {
                 </tbody>
               </table>
             ) : (
-              <div className="flex flex-col justify-center text-center text-dec-background text-dec-h3 space-y-4">
-                <p>You'll see all the bets when the match starts!</p>
-                <img src="/images/trio-mascots.jpg" alt="Match start" className="w-1/2 mx-auto" />
-              </div>
+              !isLoadingBets &&
+              !isBetsError &&
+              match && (
+                <div className="flex flex-col justify-center text-center text-dec-background text-dec-h3 space-y-4">
+                  <p>You'll see all the bets when the match starts!</p>
+                  <img
+                    src="/images/trio-mascots.jpg"
+                    alt="Match start"
+                    className="w-1/2 mx-auto"
+                  />
+                </div>
+              )
             )}
           </div>
         )}
@@ -135,582 +173,3 @@ function MatchView({ matchId, embedded = false }) {
 }
 
 export default MatchView;
-
-export const bets = [
-  {
-    matchId: 1145509,
-    user: {
-      id: "108660143969251608578",
-      firstName: "Stefan",
-      lastName: "Borislavov Stefanov",
-      email: "stefan.borislavov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJ7ssTTsf6YhDSYosN1rtui7xr7jzmXz-dJ9wr7yA2rt1kCLHE=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "102108675941673090281",
-      firstName: "Volen",
-      lastName: "Vashev",
-      email: "volen.vashev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocI7ybN8BsdRzRgcyTgka6fqeV63soBR-Hug6lL1JBf-nvMjDTk=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 7,
-      symbol: "2",
-    },
-    points: 1,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "102108675941673090281",
-      firstName: "Volen",
-      lastName: "Vashev",
-      email: "volen.vashev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocI7ybN8BsdRzRgcyTgka6fqeV63soBR-Hug6lL1JBf-nvMjDTk=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 7,
-      symbol: "2",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "102108675941673090281",
-      firstName: "Volen",
-      lastName: "Vashev",
-      email: "volen.vashev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocI7ybN8BsdRzRgcyTgka6fqeV63soBR-Hug6lL1JBf-nvMjDTk=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 1,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "112529453352592387904",
-      firstName: "Tania",
-      lastName: "Kasabova",
-      email: "tania.kasabova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1189847,
-    user: {
-      id: "112529453352592387904",
-      firstName: "Tania",
-      lastName: "Kasabova",
-      email: "tania.kasabova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 2,
-      symbol: "2",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "102108675941673090281",
-      firstName: "Volen",
-      lastName: "Vashev",
-      email: "volen.vashev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocI7ybN8BsdRzRgcyTgka6fqeV63soBR-Hug6lL1JBf-nvMjDTk=s96-c",
-    },
-    bet: {
-      home: 4,
-      away: 4,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145534,
-    user: {
-      id: "102108675941673090281",
-      firstName: "Volen",
-      lastName: "Vashev",
-      email: "volen.vashev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocI7ybN8BsdRzRgcyTgka6fqeV63soBR-Hug6lL1JBf-nvMjDTk=s96-c",
-    },
-    bet: {
-      home: 5,
-      away: 5,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "108660143969251608578",
-      firstName: "Stefan",
-      lastName: "Borislavov Stefanov",
-      email: "stefan.borislavov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJ7ssTTsf6YhDSYosN1rtui7xr7jzmXz-dJ9wr7yA2rt1kCLHE=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 2,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "103069009589768100704",
-      firstName: "Stefaniya",
-      lastName: "Talambazova",
-      email: "stefaniya.talambazova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocIb3o_0KaNTkl09eZgy3HP54TtHOlDBqKuTaiWX7HPNTC8XcWK5=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "102107052476999637957",
-      firstName: "Deyan",
-      lastName: "Bozhilov",
-      email: "deyan.bozhilov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocK0tcpCYLw5Wv7QKJlMJ1HPXuuMQEnJHY9fUl1xuZl2nso4hbA=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 1,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "103069009589768100704",
-      firstName: "Stefaniya",
-      lastName: "Talambazova",
-      email: "stefaniya.talambazova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocIb3o_0KaNTkl09eZgy3HP54TtHOlDBqKuTaiWX7HPNTC8XcWK5=s96-c",
-    },
-    bet: {
-      home: 0,
-      away: 0,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "108660143969251608578",
-      firstName: "Stefan",
-      lastName: "Borislavov Stefanov",
-      email: "stefan.borislavov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJ7ssTTsf6YhDSYosN1rtui7xr7jzmXz-dJ9wr7yA2rt1kCLHE=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 3,
-      symbol: "2",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "108660143969251608578",
-      firstName: "Stefan",
-      lastName: "Borislavov Stefanov",
-      email: "stefan.borislavov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJ7ssTTsf6YhDSYosN1rtui7xr7jzmXz-dJ9wr7yA2rt1kCLHE=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 3,
-      symbol: "2",
-    },
-    points: null,
-  },
-  {
-    matchId: 1189846,
-    user: {
-      id: "108660143969251608578",
-      firstName: "Stefan",
-      lastName: "Borislavov Stefanov",
-      email: "stefan.borislavov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJ7ssTTsf6YhDSYosN1rtui7xr7jzmXz-dJ9wr7yA2rt1kCLHE=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 1,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "112529453352592387904",
-      firstName: "Tania",
-      lastName: "Kasabova",
-      email: "tania.kasabova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocLm6z4WfWsxrvmyNGHFYGL-BRjOQ5gdeTytvn_jndIghJ9r21Y=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 1,
-      symbol: "1",
-    },
-    points: 3,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "109427602538919890177",
-      firstName: "Aleksandar",
-      lastName: "Sergiev",
-      email: "aleksandar.sergiev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKIRifhJz9x03OQt6CJrXRFR1t9xGtFzJm3CQYuHeXOxhPQoeg=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "109427602538919890177",
-      firstName: "Aleksandar",
-      lastName: "Sergiev",
-      email: "aleksandar.sergiev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKIRifhJz9x03OQt6CJrXRFR1t9xGtFzJm3CQYuHeXOxhPQoeg=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "109427602538919890177",
-      firstName: "Aleksandar",
-      lastName: "Sergiev",
-      email: "aleksandar.sergiev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKIRifhJz9x03OQt6CJrXRFR1t9xGtFzJm3CQYuHeXOxhPQoeg=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 1,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "109427602538919890177",
-      firstName: "Aleksandar",
-      lastName: "Sergiev",
-      email: "aleksandar.sergiev@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKIRifhJz9x03OQt6CJrXRFR1t9xGtFzJm3CQYuHeXOxhPQoeg=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "115960322353843957863",
-      firstName: "Mihail",
-      lastName: "Markov",
-      email: "mihaill.markov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKzY3gn_9EFJJl0eiRU3OgpSM_5jPDL2UzJ-A73r-n6NH0pQg=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "115960322353843957863",
-      firstName: "Mihail",
-      lastName: "Markov",
-      email: "mihaill.markov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKzY3gn_9EFJJl0eiRU3OgpSM_5jPDL2UzJ-A73r-n6NH0pQg=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 1,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "115960322353843957863",
-      firstName: "Mihail",
-      lastName: "Markov",
-      email: "mihaill.markov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKzY3gn_9EFJJl0eiRU3OgpSM_5jPDL2UzJ-A73r-n6NH0pQg=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "115960322353843957863",
-      firstName: "Mihail",
-      lastName: "Markov",
-      email: "mihaill.markov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKzY3gn_9EFJJl0eiRU3OgpSM_5jPDL2UzJ-A73r-n6NH0pQg=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "110160959706446020015",
-      firstName: "Milen",
-      lastName: "Stefanov",
-      email: "milen.stefanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKP231c9V4K6hH3wCMJpt6O9do4hERtL8Eqa__sjcBaFfGGugc=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "106574676594795310012",
-      firstName: "Ivaylo",
-      lastName: "Stoyanov",
-      email: "ivaylo.stoyanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJa0fnTG92DhmJ_ejtmdEkdo-zHvrAWWnZE1SAdQdE4v1EQpko=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 2,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "106574676594795310012",
-      firstName: "Ivaylo",
-      lastName: "Stoyanov",
-      email: "ivaylo.stoyanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJa0fnTG92DhmJ_ejtmdEkdo-zHvrAWWnZE1SAdQdE4v1EQpko=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 2,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "106574676594795310012",
-      firstName: "Ivaylo",
-      lastName: "Stoyanov",
-      email: "ivaylo.stoyanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJa0fnTG92DhmJ_ejtmdEkdo-zHvrAWWnZE1SAdQdE4v1EQpko=s96-c",
-    },
-    bet: {
-      home: 4,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "106574676594795310012",
-      firstName: "Ivaylo",
-      lastName: "Stoyanov",
-      email: "ivaylo.stoyanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJa0fnTG92DhmJ_ejtmdEkdo-zHvrAWWnZE1SAdQdE4v1EQpko=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145509,
-    user: {
-      id: "101571857991952384165",
-      firstName: "Elena",
-      lastName: "Kyorova",
-      email: "elena.kyorova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJsu2pqUxsbCjXvlxfpbabOUq7dSYQ1bR6o86ZzurH-f67555E=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "101571857991952384165",
-      firstName: "Elena",
-      lastName: "Kyorova",
-      email: "elena.kyorova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJsu2pqUxsbCjXvlxfpbabOUq7dSYQ1bR6o86ZzurH-f67555E=s96-c",
-    },
-    bet: {
-      home: 1,
-      away: 2,
-      symbol: "2",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "101571857991952384165",
-      firstName: "Elena",
-      lastName: "Kyorova",
-      email: "elena.kyorova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJsu2pqUxsbCjXvlxfpbabOUq7dSYQ1bR6o86ZzurH-f67555E=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 3,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "101571857991952384165",
-      firstName: "Elena",
-      lastName: "Kyorova",
-      email: "elena.kyorova@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocJsu2pqUxsbCjXvlxfpbabOUq7dSYQ1bR6o86ZzurH-f67555E=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 1,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145510,
-    user: {
-      id: "110160959706446020015",
-      firstName: "Milen",
-      lastName: "Stefanov",
-      email: "milen.stefanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKP231c9V4K6hH3wCMJpt6O9do4hERtL8Eqa__sjcBaFfGGugc=s96-c",
-    },
-    bet: {
-      home: 2,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145511,
-    user: {
-      id: "110160959706446020015",
-      firstName: "Milen",
-      lastName: "Stefanov",
-      email: "milen.stefanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKP231c9V4K6hH3wCMJpt6O9do4hERtL8Eqa__sjcBaFfGGugc=s96-c",
-    },
-    bet: {
-      home: 0,
-      away: 0,
-      symbol: "X",
-    },
-    points: null,
-  },
-  {
-    matchId: 1145512,
-    user: {
-      id: "110160959706446020015",
-      firstName: "Milen",
-      lastName: "Stefanov",
-      email: "milen.stefanov@dreamix.eu",
-      picture: "https://lh3.googleusercontent.com/a/ACg8ocKP231c9V4K6hH3wCMJpt6O9do4hERtL8Eqa__sjcBaFfGGugc=s96-c",
-    },
-    bet: {
-      home: 3,
-      away: 0,
-      symbol: "1",
-    },
-    points: null,
-  },
-];

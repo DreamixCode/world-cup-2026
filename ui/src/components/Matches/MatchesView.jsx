@@ -3,6 +3,8 @@ import { format, isAfter, isEqual, parseISO } from "date-fns";
 import { useMatches } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
+import Spinner from "../Spinner";
+import { getQueryErrorMessage } from "../../utils.jsx";
 import Match from "./Match";
 
 function MatchesView({ frontPage }) {
@@ -11,7 +13,7 @@ function MatchesView({ frontPage }) {
 
   const today = new Date();
 
-  const { matches = [], isLoading } = useMatches();
+  const { matches = [], isLoading, isError, error } = useMatches();
 
   const sortedMatches = [...matches].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
@@ -55,7 +57,27 @@ function MatchesView({ frontPage }) {
         className={classNames("sm:p-4 select-none", frontPage ? "" : "h-full")}
         maxWidthClassName="max-w-5xl px-4"
       >
-        {!isLoading && (
+        {isLoading && (
+          <div
+            className={classNames(
+              "flex justify-center items-center",
+              frontPage ? "py-8" : "pt-28",
+            )}
+          >
+            <Spinner className="h-16 w-16" />
+          </div>
+        )}
+        {!isLoading && isError && (
+          <div
+            className={classNames(
+              "p-4 text-center text-dec-background font-bold",
+              !frontPage && "sm:mt-24 mt-14 2xl:pt-28",
+            )}
+          >
+            {getQueryErrorMessage(error, "matches")}
+          </div>
+        )}
+        {!isLoading && !isError && (
           <div className={!frontPage ? "sm:mt-24 mt-14 2xl:pt-28" : undefined}>
             <div className="text-center font-extrabold text-white bg-transparent text-dec-h3 pb-4 md:text-dec-t2">
               <h1>{selectTitle()}</h1>

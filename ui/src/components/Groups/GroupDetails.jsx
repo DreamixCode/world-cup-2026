@@ -1,6 +1,7 @@
 import { useMedia } from "@/hooks";
 import { useParams } from "react-router-dom";
 import { useGroups, useMatches } from "../../api";
+import { getQueryErrorMessage } from "../../utils.jsx";
 import ContentContainer from "../ContentContainer";
 import { Match } from "../Matches";
 import Group from "./Group";
@@ -24,8 +25,8 @@ function getMascotForGroup(groupId) {
 
 export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
   const isSmall = useMedia(useMedia.SMALL);
-  const { groups = [] } = useGroups();
-  const { matches = [] } = useMatches();
+  const { groups = [], isError: isGroupsError, error: groupsError } = useGroups();
+  const { matches = [], isError: isMatchesError, error: matchesError } = useMatches();
 
   const group = groups?.filter((group) => group?.group?.slice(-1)?.toLowerCase() === id);
 
@@ -57,23 +58,34 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
             ))}
           </div>
         </div>
-        {groupMatches?.map((match) => {
-          return (
-            <Match
-              key={match?.id}
-              hostTeam={match?.teams?.home?.name}
-              guestTeam={match?.teams?.away?.name}
-              date={match?.date}
-              id={match?.id}
-              hostTeamScore={match?.score?.goals?.home}
-              guestTeamScore={match?.score?.goals?.away}
-              longStatus={match?.status?.long}
-              shortStatus={match?.status?.short}
-              isLink
-            />
-          );
-        })}
-        {!groupMatches?.length && (
+        {isGroupsError && (
+          <div className="text-white font-bold text-center py-4">
+            {getQueryErrorMessage(groupsError, "groups")}
+          </div>
+        )}
+        {!isGroupsError &&
+          groupMatches?.map((match) => {
+            return (
+              <Match
+                key={match?.id}
+                hostTeam={match?.teams?.home?.name}
+                guestTeam={match?.teams?.away?.name}
+                date={match?.date}
+                id={match?.id}
+                hostTeamScore={match?.score?.goals?.home}
+                guestTeamScore={match?.score?.goals?.away}
+                longStatus={match?.status?.long}
+                shortStatus={match?.status?.short}
+                isLink
+              />
+            );
+          })}
+        {!isGroupsError && isMatchesError && (
+          <div className="text-white font-bold text-center py-4">
+            {getQueryErrorMessage(matchesError, "group matches")}
+          </div>
+        )}
+        {!isGroupsError && !isMatchesError && !groupMatches?.length && (
           <div className="text-white font-bold text-center py-4">No group matches available yet.</div>
         )}
       </div>

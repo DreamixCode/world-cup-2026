@@ -102,19 +102,24 @@ const FLAGS = {
 
 const FLAG_ALIASES = {
   Brazil: Brasil,
-  "Cabo Verde": CaboVerde,
-  "Côte d'Ivoire": CotDIvoire,
-  "Cote d'Ivoire": CotDIvoire,
-  "Ivory Coast": CotDIvoire,
-  "Congo DR": CongoDR,
-  Morocco: Marocco,
-  "New Zealand": NewZealand,
+  "Bosnia & Herzegovina": BosniaAndHerzegovina,
   "Bosnia And Herzegovina": BosniaAndHerzegovina,
   "Bosnia-Herzegovina": BosniaAndHerzegovina,
+  "Cabo Verde": CaboVerde,
+  "Cape Verde Islands": CaboVerde,
+  "Congo DR": CongoDR,
+  "Côte d'Ivoire": CotDIvoire,
+  "Cote d'Ivoire": CotDIvoire,
   "Czech Republic": CzechRepublic,
-  "Saudi Arabia": SaudiArabia,
+  Curaçao: Curacao,
+  "IR Iran": Iran,
+  "Ivory Coast": CotDIvoire,
   "Korea Republic": SouthKorea,
+  Morocco: Marocco,
+  "New Zealand": NewZealand,
+  "Saudi Arabia": SaudiArabia,
   "South Africa": SouthAfrica,
+  "South Korea": SouthKorea,
   Turkey: Turkey,
   Türkiye: Turkey,
   Turkiye: Turkey,
@@ -128,4 +133,14 @@ export function getFlag(id) {
   const FlagComponent = FLAGS[id] ?? FLAG_ALIASES[id];
   if (!FlagComponent) return null;
   return <FlagComponent className={classIcon} />;
+}
+
+export function getQueryErrorMessage(error, resourceLabel) {
+  const apiMessage = error?.response?.data?.message ?? error?.response?.data?.error;
+
+  if (typeof apiMessage === "string" && apiMessage.trim()) {
+    return apiMessage;
+  }
+
+  return `Something went wrong while loading ${resourceLabel}. Please try again.`;
 }

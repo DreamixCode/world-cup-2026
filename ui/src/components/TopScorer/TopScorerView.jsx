@@ -1,8 +1,8 @@
 import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import Button from "../Button";
-import { useSelectTopScorer, useTopScorers } from "../../api/queryHooks";
-import { getFlag } from "@/utils.jsx";
+import { useSelectTopScorer, useTopScorers } from "../../api";
+import { getFlag, getQueryErrorMessage } from "@/utils.jsx";
 
 function getName(item) {
   if (!item) return "";
@@ -40,7 +40,7 @@ function getCountry(item) {
 }
 
 export default function TopScorerView() {
-  const { isLoading, isFetching, topScorers } = useTopScorers();
+  const { isLoading, isFetching, topScorers, isError, error } = useTopScorers();
   const { selectTopScorer, isLoadingSelect } = useSelectTopScorer();
 
   const rows = Array.isArray(topScorers)
@@ -71,7 +71,12 @@ export default function TopScorerView() {
             </div>
           )}
 
-          {!isLoading && (
+          {!isLoading && isError && (
+            <p className="text-center text-white font-bold px-4 py-8">
+              {getQueryErrorMessage(error, "top scorers")}
+            </p>
+          )}
+          {!isLoading && !isError && (
             <table className="bg-dec-primary w-full text-dec-background font-extrabold">
               <thead>
                 <tr className="border-b-4 border-dec-primary-light h-8">
@@ -84,7 +89,8 @@ export default function TopScorerView() {
                 </tr>
               </thead>
               <tbody className="sm:text-dec-base text-dec-2xs">
-                {rows?.map((item) => {
+                {rows?.length ? (
+                  rows.map((item) => {
                   const key = item?.id ?? getName(item);
                   const isSelected = item?.selected;
                   return (
@@ -121,7 +127,14 @@ export default function TopScorerView() {
                       </td>
                     </tr>
                   );
-                })}
+                  })
+                ) : (
+                  <tr>
+                    <td className="px-3 py-4 text-center" colSpan={4}>
+                      No top scorers available yet.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           )}

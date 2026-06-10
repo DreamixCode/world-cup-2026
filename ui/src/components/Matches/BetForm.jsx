@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import Button from "../Button";
 import { Tick } from "../icons";
 import { Pencil } from "lucide-react";
 import BtnLoader from "../BtnLoader";
@@ -10,9 +9,6 @@ export default function BetForm({
   awayRow,
   homeRegister,
   awayRegister,
-  bet,
-  homeValue,
-  awayValue,
   inactive,
   handleBet,
   handleEdit,
@@ -20,6 +16,7 @@ export default function BetForm({
   editMode,
   canEnterEdit,
   canSubmitEdit,
+  canSubmitBet,
   onEdit,
   firstInputRef,
   secondInputRef,
@@ -76,6 +73,9 @@ export default function BetForm({
     />
   );
 
+  const buttonBaseClassName =
+    "relative flex items-center justify-center text-white bg-black rounded-sm cursor-pointer disabled:cursor-not-allowed disabled:text-gray-400";
+
   const awayInput = (
     <input
       id="away"
@@ -97,33 +97,24 @@ export default function BetForm({
   if (layout === "compact") {
     return (
       <div className="flex items-center justify-center gap-2 whitespace-nowrap">
-        <Button
+        <button
           type="button"
-          className={classNames(
-            "w-12 h-8 border-2 text-dec-primary-darkBlue rounded-sm bg-white",
-            (homeValue || awayValue || inactive || editMode || isLoading) &&
-              "text-dec-primary-inactive",
-          )}
+          className={classNames(buttonBaseClassName, "w-12 h-8")}
           onClick={handleBet}
-          disabled={
-            !homeValue || !awayValue || inactive || bet || editMode || isLoading
-          }
+          disabled={!canSubmitBet}
         >
-          {isLoading && !editMode && <BtnLoader />}
-          Bet
-        </Button>
+          {isLoading && !editMode ? <BtnLoader /> : "Bet"}
+        </button>
 
         <button
           type="button"
-          className={classNames(
-            "w-8 h-8 flex items-center justify-center text-white bg-black rounded-sm",
-            ((editMode && !canSubmitEdit) || (!editMode && !canEnterEdit)) &&
-              "text-dec-primary-inactive",
-          )}
+          className={classNames(buttonBaseClassName, "w-8 h-8")}
           onClick={editMode ? handleEdit : onEdit}
           disabled={editMode ? !canSubmitEdit : !canEnterEdit}
         >
-          {editMode ? (
+          {isLoading && editMode ? (
+            <BtnLoader />
+          ) : editMode ? (
             <Tick className="w-5 h-5" />
           ) : (
             <Pencil className="w-5 h-5" />
@@ -160,33 +151,24 @@ export default function BetForm({
         {awayInput}
       </div>
 
-      <Button
+      <button
         type="button"
-        className={classNames(
-          "lg:w-16 w-10 h-8 border-2 text-dec-primary-darkBlue rounded-sm",
-          (homeValue || awayValue || inactive || editMode || isLoading) &&
-            "text-dec-primary-inactive",
-        )}
+        className={classNames(buttonBaseClassName, "lg:w-16 w-10 h-8")}
         onClick={handleBet}
-        disabled={
-          !homeValue || !awayValue || inactive || bet || editMode || isLoading
-        }
+        disabled={!canSubmitBet}
       >
-        {isLoading && !editMode && <BtnLoader />}
-        Bet
-      </Button>
+        {isLoading && !editMode ? <BtnLoader /> : "Bet"}
+      </button>
 
       <button
         type="button"
-        className={classNames(
-          "w-6 h-8 text-white bg-black",
-          ((editMode && !canSubmitEdit) || (!editMode && !canEnterEdit)) &&
-            "text-dec-primary-inactive",
-        )}
+        className={classNames(buttonBaseClassName, "w-6 h-8")}
         onClick={editMode ? handleEdit : onEdit}
         disabled={editMode ? !canSubmitEdit : !canEnterEdit}
       >
-        {editMode ? (
+        {isLoading && editMode ? (
+          <BtnLoader />
+        ) : editMode ? (
           <Tick className="w-6 h-6" />
         ) : (
           <Pencil className="w-6 h-6" />

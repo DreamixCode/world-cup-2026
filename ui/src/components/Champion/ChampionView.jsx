@@ -1,11 +1,11 @@
 import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import Button from "../Button";
-import { useChampions, useSelectChampion } from "../../api/queryHooks";
-import { getFlag } from "@/utils.jsx";
+import { useChampions, useSelectChampion } from "../../api";
+import { getFlag, getQueryErrorMessage } from "@/utils.jsx";
 
 export default function ChampionView() {
-  const { champions, isLoading, isFetching } = useChampions();
+  const { champions, isLoading, isFetching, isError, error } = useChampions();
   const { selectChampion, isLoadingSelect } = useSelectChampion();
 
   const rows = Array.isArray(champions)
@@ -36,7 +36,12 @@ export default function ChampionView() {
             </div>
           )}
 
-          {!isLoading && (
+          {!isLoading && isError && (
+            <p className="text-center text-white font-bold px-4 py-8">
+              {getQueryErrorMessage(error, "champions")}
+            </p>
+          )}
+          {!isLoading && !isError && (
             <table className="bg-dec-primary w-full text-dec-background font-extrabold">
               <thead>
                 <tr className="border-b-4 border-dec-primary-light h-8">
@@ -48,7 +53,8 @@ export default function ChampionView() {
                 </tr>
               </thead>
               <tbody className="sm:text-dec-base text-dec-2xs">
-                {rows?.map((item) => {
+                {rows?.length ? (
+                  rows.map((item) => {
                   const isSelected = item?.selected === true;
                   return (
                     <tr
@@ -81,7 +87,14 @@ export default function ChampionView() {
                       </td>
                     </tr>
                   );
-                })}
+                  })
+                ) : (
+                  <tr>
+                    <td className="px-3 py-4 text-center" colSpan={3}>
+                      No champions available yet.
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           )}

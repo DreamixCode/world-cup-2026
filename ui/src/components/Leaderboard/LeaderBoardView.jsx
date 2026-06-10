@@ -5,12 +5,13 @@ import ContentContainer from "../ContentContainer";
 import { BronzeMedal, GoldMedal, SilverMedal } from "../icons/index.jsx";
 import { Modal } from "../Modal/Modal";
 import Spinner from "../Spinner";
+import { getQueryErrorMessage } from "../../utils.jsx";
 import UserView from "./UserView";
 
 function LeaderBoardView({ frontPage }) {
   const isSmall = useMedia(useMedia.SMALL);
 
-  const { standings = [], isLoading } = useStandings();
+  const { standings = [], isLoading, isError, error } = useStandings();
 
   const leadersView = [...standings];
 
@@ -28,12 +29,21 @@ function LeaderBoardView({ frontPage }) {
       }}
     >
       <ContentContainer className="py-4 grow justify-center select-none h-full" maxWidthClassName="max-w-4xl px-4">
-        {isLoading && !frontPage && (
-          <div className="flex justify-center pt-28 items-center">
+        {isLoading && (
+          <div
+            className={frontPage ? "flex justify-center py-8 items-center" : "flex justify-center pt-28 items-center"}
+          >
             <Spinner className="h-16 w-16" />
           </div>
         )}
-        {!isLoading && (
+        {!isLoading && isError && (
+          <div
+            className={frontPage ? "text-center text-white font-bold px-4 py-8" : "text-center text-white font-bold px-4 py-8 sm:mt-24"}
+          >
+            {getQueryErrorMessage(error, "standings")}
+          </div>
+        )}
+        {!isLoading && !isError && (
           <div className={!frontPage ? "sm:mt-24" : undefined}>
             {!frontPage && (
               <div className="sm:absolute sm:top-10 sm:left-0 flex justify-center sm:justify-start">

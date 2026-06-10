@@ -1,11 +1,14 @@
 import { Close, Menu } from "../components/icons/index.jsx";
 import { MenuNavLink } from "./MenuItem";
 
+// TODO: set to true when topscorer and champion backend endpoints are ready
+const SHOW_TOP_SCORER_AND_CHAMPION_MENU = false;
+
 function HamburgerMenu({ children }) {
   return <div className="grid items-start gap-2">{children}</div>;
 }
 
-function HamburgerMenuItems({ onItemClick, isSmall }) {
+function HamburgerMenuItems({ onItemClick }) {
   const handleClick = () => {
     onItemClick?.();
   };
@@ -24,12 +27,16 @@ function HamburgerMenuItems({ onItemClick, isSmall }) {
       <MenuNavLink to="/standings" onClick={handleClick}>
         Standings
       </MenuNavLink>
-      <MenuNavLink to="/topscorer" onClick={handleClick}>
-        Top-scorer
-      </MenuNavLink>
-      <MenuNavLink to="/champion" onClick={handleClick}>
-        Champion
-      </MenuNavLink>
+      {SHOW_TOP_SCORER_AND_CHAMPION_MENU && (
+        <MenuNavLink to="/topscorer" onClick={handleClick}>
+          Top-scorer
+        </MenuNavLink>
+      )}
+      {SHOW_TOP_SCORER_AND_CHAMPION_MENU && (
+        <MenuNavLink to="/champion" onClick={handleClick}>
+          Champion
+        </MenuNavLink>
+      )}
       <MenuNavLink to="/rules" onClick={handleClick}>
         Rules
       </MenuNavLink>

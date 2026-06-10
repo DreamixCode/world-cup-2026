@@ -34,7 +34,7 @@ function Match({
 }) {
   const firstInputRef = useRef(null);
   const secondInputRef = useRef(null);
-  const [_, setBet] = useState(false);
+  const [betSubmitted, setBetSubmitted] = useState(false);
   const [editMode, setEditMode] = useState(false);
   const [open, setOpen] = useState(false);
   const isLarge = useMedia(useMedia.LARGE);
@@ -54,8 +54,10 @@ function Match({
         home: String(myBet?.bet?.home ?? ""),
         away: String(myBet?.bet?.away ?? ""),
       });
+      setBetSubmitted(true);
     } else if (!myBet && !editMode) {
       reset({ home: "", away: "" });
+      setBetSubmitted(false);
     }
   }, [myBet, editMode, reset]);
 
@@ -81,16 +83,27 @@ function Match({
   const sanitizeScore = (value) => value.replace(/\D/g, "").slice(0, 1);
 
   const handleBetSubmit = (data) => {
-    setBet(true);
-    createBet({ matchId: id, home: data.home, away: data.away });
+    createBet(
+      { matchId: id, home: data.home, away: data.away },
+      { onSuccess: () => setBetSubmitted(true) },
+    );
   };
   const handleEditSubmit = (data) => {
-    setBet(true);
-    createBet({ matchId: id, home: data.home, away: data.away });
-    setEditMode(false);
+    createBet(
+      { matchId: id, home: data.home, away: data.away },
+      {
+        onSuccess: () => {
+          setEditMode(false);
+          setBetSubmitted(true);
+        },
+      },
+    );
   };
 
-  const onEdit = () => setEditMode(true);
+  const onEdit = () => {
+    setEditMode(true);
+    setBetSubmitted(false);
+  };
 
   const iconHost = getFlag(hostTeam);
   const iconGuest = getFlag(guestTeam);
@@ -99,8 +112,10 @@ function Match({
   const parsedDate = parsedISODate ? format(parsedISODate, "dd-MM-yyyy") : "--";
   const parsedTime = parsedISODate ? format(parsedISODate, "HH:mm") : "--:--";
 
-  const canEnterEdit = !started && Boolean(myBet);
+  const canEnterEdit = !started && Boolean(myBet) && !isLoadingCreate;
   const canSubmitEdit = Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
+  const canSubmitBet =
+    Boolean(homeValue) && Boolean(awayValue) && !inactive && !editMode && !isLoadingCreate && !betSubmitted;
   const canOpenModal = !isLink && !disableInteraction;
 
   const matchLink = (
@@ -154,6 +169,7 @@ function Match({
       editMode={editMode}
       canEnterEdit={canEnterEdit}
       canSubmitEdit={canSubmitEdit}
+      canSubmitBet={canSubmitBet}
       onEdit={onEdit}
       firstInputRef={firstInputRef}
       secondInputRef={secondInputRef}
