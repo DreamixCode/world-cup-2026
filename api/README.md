@@ -167,30 +167,19 @@ export SPRING_PROFILES_ACTIVE=mock-data
 
 ---
 
-## Deployment Checklist (for UI integration)
+## Production Deployment
 
-| Variable                  | What to set                                           |
-| ------------------------- | ----------------------------------------------------- |
-| `GOOGLE_OAUTH2_CLIENT_ID` | The same Google Client ID the UI uses to issue tokens |
-| `MONGODB_URI`             | Production MongoDB connection string                  |
-| `CORS_ALLOWED_ORIGINS`    | The deployed UI URL (e.g. `https://myapp.com`)        |
-| `FOOTBALL_API_KEY`        | api-sports.io key                                     |
-| `SCHEDULER_ENABLED`       | `true` to auto-refresh fixtures and standings         |
+The production stack runs on EC2 (`35.156.215.22`) via Podman. Caddy provides TLS termination at `https://35-156-215-22.sslip.io`. The frontend static build is deployed to S3 (`arn:aws:s3:::dreamix-worldcup-bucket`) and served via CloudFront at `https://worldcup2026.dreamixsoft.com`.
 
-All `/api/**` endpoints require `Authorization: Bearer <google-id-token>` — the UI must pass the Google ID token on every request.
+See the root [README.md](../README.md) for the full deployment guide.
 
-### Docker
+### Required environment variables (`api/.env` on the VM)
 
-```bash
-# Build image
-docker build -t wc-api .
+| Variable                  | Required | Default      | Description                                           |
+| ------------------------- | -------- | ------------ | ----------------------------------------------------- |
+| `GOOGLE_OAUTH2_CLIENT_ID` | Yes      | —            | The same Google Client ID the UI uses to issue tokens |
+| `FOOTBALL_API_KEY`        | Yes      | —            | api-sports.io key from RapidAPI                       |
+| `MONGO_USER`              | No       | `root`       | MongoDB root username                                 |
+| `MONGO_PASSWORD`          | No       | `wc-dreamix` | MongoDB root password                                 |
 
-# Run
-docker run -p 8080:8080 \
-  -e GOOGLE_OAUTH2_CLIENT_ID=... \
-  -e MONGODB_URI=... \
-  -e FOOTBALL_API_KEY=... \
-  -e CORS_ALLOWED_ORIGINS=https://myapp.com \
-  -e SCHEDULER_ENABLED=true \
-  wc-api
-```
+All other variables have safe defaults in `application.yml`. All `/api/**` endpoints require `Authorization: Bearer <google-id-token>`.
