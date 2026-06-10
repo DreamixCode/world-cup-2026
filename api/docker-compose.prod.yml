@@ -1,0 +1,52 @@
+services:
+  mongo:
+    image: mongo:8.3
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-wc-dreamix}
+      MONGO_INITDB_DATABASE: admin
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - db-data:/data/db
+      - ./scripts/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MONGODB_URI: mongodb://${MONGO_USER:-root}:${MONGO_PASSWORD:-wc-dreamix}@mongo:27017/wc2026?authSource=admin
+      MONGODB_DATABASE: wc2026
+      GOOGLE_OAUTH2_CLIENT_ID: ${GOOGLE_OAUTH2_CLIENT_ID}
+      CORS_ALLOWED_ORIGINS: https://worldcup2026.dreamixsoft.com
+      FOOTBALL_API_URL: https://v3.football.api-sports.io
+      FOOTBALL_API_KEY: ${FOOTBALL_API_KEY}
+      FOOTBALL_API_LEAGUE_ID: 1
+      FOOTBALL_API_SEASON: 2026
+      STARTUP_DATA_REFRESH_ENABLED: "true"
+      SCHEDULER_ENABLED: "true"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  db-data:
+  caddy-data:
+  caddy-config:

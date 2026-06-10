@@ -1,15 +1,20 @@
-FROM eclipse-temurin:17-jdk as build
+FROM eclipse-temurin:21-jdk AS build
 
 WORKDIR /build
-COPY . .
-RUN ./mvnw package -DskipTests
-COPY ./target/wc-api-*.jar ./app.jar
+# Copy Maven wrapper and pom.xml first so dependency resolution is cached
+# as a separate layer and only re-runs when pom.xml changes.
+COPY .mvn/ .mvn/
+COPY mvnw pom.xml ./
+RUN chmod +x mvnw && ./mvnw dependency:go-offline -q
 
-FROM eclipse-temurin:17-jre
+COPY src/ src/
+RUN ./mvnw package -DskipTests -q
+
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
-COPY --from=build /build/app.jar ./app.jar
+COPY --from=build /build/target/wc-api-*.jar ./app.jar
+
+EXPOSE 8080
 
 CMD ["java", "-jar", "app.jar"]
-
-
