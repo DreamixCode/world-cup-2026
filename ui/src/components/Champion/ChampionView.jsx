@@ -2,32 +2,11 @@ import ContentContainer from "../ContentContainer";
 import Spinner from "../Spinner";
 import Button from "../Button";
 import { useChampions, useSelectChampion } from "../../api/queryHooks";
-import { mockedChampions } from "@/const";
 import { getFlag } from "@/utils.jsx";
 
-function getName(item) {
-  if (!item) return "";
-  if (typeof item === "string") return item;
-  return item.name || item.teamName || item.country || item.id || "";
-}
-
-function getCoefficient(item) {
-  if (!item) return "";
-  return (
-    item.coefficient ??
-    item.coeficient ??
-    item.odds ??
-    item.coef ??
-    item.price ??
-    ""
-  );
-}
-
 export default function ChampionView() {
-  const { isLoading, isFetching } = useChampions();
+  const { champions, isLoading, isFetching } = useChampions();
   const { selectChampion, isLoadingSelect } = useSelectChampion();
-
-  const champions = mockedChampions;
 
   const rows = Array.isArray(champions)
     ? champions
@@ -70,33 +49,34 @@ export default function ChampionView() {
               </thead>
               <tbody className="sm:text-dec-base text-dec-2xs">
                 {rows?.map((item) => {
-                  const key = item?.id ?? getName(item);
+                  const isSelected = item?.selected === true;
                   return (
                     <tr
-                      className="border-b-4 border-dec-primary-light"
-                      key={key}
+                      className={`border-b-4 border-dec-primary-light ${isSelected ? "bg-dec-primary-middleBlue text-white" : ""}`}
+                      key={item?.id}
                     >
                       <td className="py-2 pl-2">
                         <div className="flex items-center gap-2">
-                          <span>{getFlag(getName(item))}</span>
-                          <span>{getName(item)}</span>
+                          <span>{getFlag(item?.name)}</span>
+                          <span>{item?.name}</span>
                         </div>
                       </td>
                       <td className="py-2 pr-2 text-right">
-                        {getCoefficient(item)}
+                        {item?.coefficient ?? ""}
                       </td>
                       <td className="py-2 pr-2 text-right">
                         <Button
                           className="px-3 py-1 rounded-tr-[10px] rounded-bl-[10px]"
                           loading={isLoadingSelect}
+                          disabled={isSelected}
                           onClick={() =>
                             selectChampion({
                               id: item?.id,
-                              name: getName(item),
+                              name: item?.name,
                             })
                           }
                         >
-                          Select
+                          {isSelected ? "Selected" : "Select"}
                         </Button>
                       </td>
                     </tr>
