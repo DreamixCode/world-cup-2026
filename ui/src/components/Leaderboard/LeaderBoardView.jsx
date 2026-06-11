@@ -19,6 +19,8 @@ function LeaderBoardView({ frontPage }) {
     return b.totalPoints - a.totalPoints || a.user.firstName.localeCompare(b.user.firstName);
   });
 
+  const displayedLeaders = frontPage ? leadersView.slice(0, 5) : leadersView;
+
   return (
     <div
       className="bg-black grow uppercase sm:text-dec-base text-dec-2xs"
@@ -64,7 +66,7 @@ function LeaderBoardView({ frontPage }) {
                 </tr>
               </thead>
               <tbody className="sm:text-dec-base text-dec-2xs">
-                {leadersView?.map((leader, index) => {
+                {displayedLeaders?.map((leader, index) => {
                   return (
                     <tr className="border-b-4 border-dec-primary-light" key={leader.user.id}>
                       <td className="py-1">
@@ -114,7 +116,7 @@ function LeaderBoardView({ frontPage }) {
                     </tr>
                   );
                 })}
-                {!leadersView?.length && (
+                {!displayedLeaders?.length && (
                   <tr>
                     <td className="px-3 py-4 text-center" colSpan={3}>
                       No standings available yet.
