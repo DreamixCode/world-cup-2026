@@ -108,50 +108,39 @@ To also delete persisted data (database, certs): add `--volumes`. **This is dest
 
 ### AWS credentials setup
 
-The Dreamix AWS account uses SSO — there are no long-term IAM access keys. Credentials are short-lived (~1 hour) and must be refreshed each session.
+The Dreamix AWS account uses SSO — there are no long-term IAM access keys. Credentials are short-lived (~1 hour) and must be re-exported each session.
 
 1. Go to `https://dreamix.awsapps.com/start/#/?tab=accounts`
-2. Click your account → click **Access keys** next to `AdministratorAccess`
-3. Copy the values shown and paste them into `~/.aws/credentials`:
+2. Click **Access keys** next to `AdministratorAccess` under the `word-cup-26` account
 
-```ini
-[word-cup-26]
-aws_access_key_id     = ASIA...
-aws_secret_access_key = ...
-aws_session_token     = ...
+   ![AWS access portal — Access keys link](docs/aws.access.keys.png)
+
+3. Select **Option 1: Set AWS environment variables** and copy the three export commands:
+
+   ![Get credentials dialog — Option 1 highlighted](docs/copy.aws.env.vars.png)
+
+```bash
+export AWS_ACCESS_KEY_ID="ASIA..."
+export AWS_SECRET_ACCESS_KEY="..."
+export AWS_SESSION_TOKEN="..."
 ```
 
-When the credentials expire, repeat steps 1–3 (the file already exists — just overwrite the three values).
+4. Paste them into your terminal — the AWS CLI picks them up automatically, no profile flag needed.
 
-### Build
+When the credentials expire, repeat steps 1–4 in the same terminal session.
+
+### Build, deploy and invalidate cache
 
 The production values are committed in `ui/.env.production` and are picked up automatically by `vite build`.
 
-```bash
-cd ui
-npm ci
-npm run build
-# Output is in ui/dist/
-```
-
-### Deploy to S3
+Run the deploy script from the repo root — it installs dependencies, builds, uploads to S3 and invalidates the CloudFront cache in one go:
 
 ```bash
-aws s3 sync dist/ s3://dreamix-worldcup-bucket --delete --profile word-cup-26
+./scripts/deploy-ui.sh
 ```
 
-S3 bucket ARN: `arn:aws:s3:::dreamix-worldcup-bucket`
-
-### Invalidate CloudFront cache
-
-After uploading new files, invalidate the CDN cache so users get the latest build immediately:
-
-```bash
-aws cloudfront create-invalidation \
-  --distribution-id E1SNI95NIHJ3RV \
-  --paths "/*" \
-  --profile word-cup-26
-```
+S3 bucket ARN: `arn:aws:s3:::dreamix-worldcup-bucket`  
+CloudFront distribution ID: `E1SNI95NIHJ3RV`
 
 ### CloudFront SPA routing (one-time console setting)
 
