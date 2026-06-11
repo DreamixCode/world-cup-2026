@@ -113,17 +113,34 @@ function Match({
   const parsedTime = parsedISODate ? format(parsedISODate, "HH:mm") : "--:--";
 
   const canEnterEdit = !started && Boolean(myBet) && !isLoadingCreate;
-  const canSubmitEdit = Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
+  const canSubmitEdit =
+    Boolean(homeValue) && Boolean(awayValue) && !isLoadingCreate;
   const canSubmitBet =
-    Boolean(homeValue) && Boolean(awayValue) && !inactive && !editMode && !isLoadingCreate && !betSubmitted;
+    Boolean(homeValue) &&
+    Boolean(awayValue) &&
+    !inactive &&
+    !editMode &&
+    !isLoadingCreate &&
+    !betSubmitted;
   const canOpenModal = !isLink && !disableInteraction;
 
   const matchLink = (
     <>
       {isLink ? (
-        <MatchLink id={id} hostTeam={hostTeam} guestTeam={guestTeam} iconHost={iconHost} iconGuest={iconGuest} isLink />
+        <MatchLink
+          id={id}
+          hostTeam={hostTeam}
+          guestTeam={guestTeam}
+          iconHost={iconHost}
+          iconGuest={iconGuest}
+          isLink
+        />
       ) : canOpenModal ? (
-        <button type="button" onClick={() => setOpen(true)} className="text-left cursor-pointer">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="text-left cursor-pointer"
+        >
           <MatchLink
             id={id}
             hostTeam={hostTeam}
@@ -163,8 +180,8 @@ function Match({
       homeValue={homeValue}
       awayValue={awayValue}
       inactive={inactive}
-      handleBet={handleBetSubmit}
-      handleEdit={handleEditSubmit}
+      handleBet={() => handleBetSubmit({ home: homeValue, away: awayValue })}
+      handleEdit={() => handleEditSubmit({ home: homeValue, away: awayValue })}
       isLoading={isLoadingCreate}
       editMode={editMode}
       canEnterEdit={canEnterEdit}
@@ -290,7 +307,10 @@ function Match({
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between gap-3">
                   {isLink ? (
-                    <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
+                    <Link
+                      to={`/matches/${id}`}
+                      className="block min-w-0 flex-1"
+                    >
                       <div className="min-w-0 flex items-center gap-2">
                         {iconHost}
                         <span className="truncate">{hostTeam}</span>
@@ -315,11 +335,16 @@ function Match({
                       </div>
                     </div>
                   )}
-                  <div className="tabular-nums w-8 text-right">{hostTeamScore ?? "-"}</div>
+                  <div className="tabular-nums w-8 text-right">
+                    {hostTeamScore ?? "-"}
+                  </div>
                 </div>
                 <div className="flex items-center justify-between gap-3">
                   {isLink ? (
-                    <Link to={`/matches/${id}`} className="block min-w-0 flex-1">
+                    <Link
+                      to={`/matches/${id}`}
+                      className="block min-w-0 flex-1"
+                    >
                       <div className="min-w-0 flex items-center gap-2">
                         {iconGuest}
                         <span className="truncate">{guestTeam}</span>
@@ -344,7 +369,9 @@ function Match({
                       </div>
                     </div>
                   )}
-                  <div className="tabular-nums w-8 text-right">{guestTeamScore ?? "-"}</div>
+                  <div className="tabular-nums w-8 text-right">
+                    {guestTeamScore ?? "-"}
+                  </div>
                 </div>
               </div>
             )}
@@ -352,11 +379,7 @@ function Match({
 
           {!finished ? (
             <div className="flex flex-col justify-center items-center gap-2">
-              <BetFormView
-                layout="compact"
-                handleBet={() => handleBetSubmit({ home: homeValue, away: awayValue })}
-                handleEdit={() => handleEditSubmit({ home: homeValue, away: awayValue })}
-              />
+              <BetFormView layout="compact" />
             </div>
           ) : (
             <div className="flex items-center justify-center">
