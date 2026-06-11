@@ -99,26 +99,30 @@ export default function BetForm({
       <div className="flex items-center justify-center gap-2 whitespace-nowrap">
         <button
           type="button"
-          className={classNames(buttonBaseClassName, "w-12 h-8")}
+          className={classNames(buttonBaseClassName, "w-12 h-8", {
+            "pointer-events-none overflow-hidden": isLoading && !editMode,
+          })}
           onClick={handleBet}
           disabled={!canSubmitBet}
         >
-          {isLoading && !editMode ? <BtnLoader /> : "Bet"}
+          {isLoading && !editMode && <BtnLoader className="size-5" />}
+          {isLoading && !editMode ? (
+            <span className="invisible size-5" aria-hidden />
+          ) : (
+            "Bet"
+          )}
         </button>
 
         <button
           type="button"
-          className={classNames(buttonBaseClassName, "w-8 h-8")}
+          className={classNames(buttonBaseClassName, "w-8 h-8", {
+            "pointer-events-none overflow-hidden": isLoading && editMode,
+          })}
           onClick={editMode ? handleEdit : onEdit}
           disabled={editMode ? !canSubmitEdit : !canEnterEdit}
         >
-          {isLoading && editMode ? (
-            <BtnLoader />
-          ) : editMode ? (
-            <Tick className="w-5 h-5" />
-          ) : (
-            <Pencil className="w-5 h-5" />
-          )}
+          {isLoading && editMode && <BtnLoader className="size-5" />}
+          {editMode ? <Tick className="w-5 h-5" /> : <Pencil className="w-5 h-5" />}
         </button>
       </div>
     );
@@ -153,26 +157,30 @@ export default function BetForm({
 
       <button
         type="button"
-        className={classNames(buttonBaseClassName, "lg:w-16 w-10 h-8")}
+        className={classNames(buttonBaseClassName, "lg:w-16 w-10 h-8", {
+          "pointer-events-none overflow-hidden": isLoading && !editMode,
+        })}
         onClick={handleBet}
         disabled={!canSubmitBet}
       >
-        {isLoading && !editMode ? <BtnLoader /> : "Bet"}
+        {isLoading && !editMode && <BtnLoader className="size-6" />}
+        {isLoading && !editMode ? (
+          <span className="invisible size-6" aria-hidden />
+        ) : (
+          "Bet"
+        )}
       </button>
 
       <button
         type="button"
-        className={classNames(buttonBaseClassName, "w-6 h-8")}
+        className={classNames(buttonBaseClassName, "w-6 h-8", {
+          "pointer-events-none overflow-hidden": isLoading && editMode,
+        })}
         onClick={editMode ? handleEdit : onEdit}
         disabled={editMode ? !canSubmitEdit : !canEnterEdit}
       >
-        {isLoading && editMode ? (
-          <BtnLoader />
-        ) : editMode ? (
-          <Tick className="w-6 h-6" />
-        ) : (
-          <Pencil className="w-6 h-6" />
-        )}
+        {isLoading && editMode && <BtnLoader className="size-6" />}
+        {editMode ? <Tick className="w-6 h-6" /> : <Pencil className="w-6 h-6" />}
       </button>
     </form>
   );
