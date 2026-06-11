@@ -1,15 +1,15 @@
 import classNames from "classnames";
 import { Loading } from "./icons/index.jsx";
 
-function BtnLoader() {
+function BtnLoader({ className }) {
   return (
     <span
       className={classNames(
-        "absolute inset-1 flex items-center justify-center bg-inherit",
+        "absolute inset-0 flex items-center justify-center bg-inherit",
         { color: "primary" }
       )}
     >
-      <Loading className={classNames("animate-spin")} />
+      <Loading className={classNames("shrink-0 animate-spin", className)} />
     </span>
   );
 }
