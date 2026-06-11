@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { format, isAfter, isEqual, parseISO } from "date-fns";
+import { addHours, isAfter, isBefore, parseISO } from "date-fns";
 import { useMatches } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
@@ -7,34 +7,34 @@ import Spinner from "../Spinner";
 import { getQueryErrorMessage } from "../../utils.jsx";
 import Match from "./Match";
 
+const UPCOMING_HOURS_START = parseInt(import.meta.env.VITE_UPCOMING_HOURS_START ?? "3", 10);
+const UPCOMING_HOURS_WINDOW = parseInt(import.meta.env.VITE_UPCOMING_HOURS_WINDOW ?? "24", 10);
+
 function MatchesView({ frontPage }) {
   const isMedium = useMedia(useMedia.MEDIUM);
   const isLarge = useMedia(useMedia.LARGE);
 
-  const today = new Date();
+  const now = new Date();
+  const windowStart = addHours(now, -UPCOMING_HOURS_START);
+  const windowEnd = addHours(now, UPCOMING_HOURS_WINDOW);
 
   const { matches = [], isLoading, isError, error } = useMatches();
 
   const sortedMatches = [...matches].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  const todayMatches = sortedMatches?.filter((match) =>
-    isEqual(
-      new Date(format(parseISO(match?.date), "yyyy-MM-dd")),
-      new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")),
-    ),
-  );
+  const upcomingMatches = sortedMatches?.filter((match) => {
+    const matchDate = parseISO(match?.date);
+    return isAfter(matchDate, windowStart) && isBefore(matchDate, windowEnd);
+  });
 
   const nextMatches = sortedMatches?.filter((match) =>
-    isAfter(
-      new Date(format(parseISO(match?.date), "yyyy-MM-dd")),
-      new Date(format(parseISO(today.toISOString()), "yyyy-MM-dd")),
-    ),
+    isAfter(parseISO(match?.date), windowEnd),
   );
 
   function selectTitle() {
-    if (frontPage && todayMatches?.length) {
-      return `Today's matches`;
-    } else if (frontPage && !todayMatches?.length) {
+    if (frontPage && upcomingMatches?.length) {
+      return "Upcoming matches";
+    } else if (frontPage && !upcomingMatches?.length) {
       return "Next matches";
     } else {
       return "";
@@ -42,9 +42,9 @@ function MatchesView({ frontPage }) {
   }
 
   function selectMatchesShown() {
-    if (frontPage && todayMatches?.length) {
-      return todayMatches;
-    } else if (frontPage && !todayMatches?.length) {
+    if (frontPage && upcomingMatches?.length) {
+      return upcomingMatches;
+    } else if (frontPage && !upcomingMatches?.length) {
       return nextMatches?.slice(0, 4);
     } else {
       return sortedMatches;
