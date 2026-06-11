@@ -2,6 +2,31 @@ import axios from "axios";
 
 const baseURL = import.meta.env.VITE_API_URL || "/api";
 
+export function parseJwtPayload(token) {
+  try {
+    // JWTs are three base64url segments separated by dots; the payload is the middle one
+    const base64Url = token.split(".")[1];
+    // base64url uses '-' and '_' instead of '+' and '/'; convert to standard base64
+    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    // atob gives a binary string; percent-encode each byte so decodeURIComponent
+    // can reconstruct multi-byte UTF-8 characters correctly
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
+        .join("")
+    );
+    return JSON.parse(jsonPayload);
+  } catch {
+    return null;
+  }
+}
+
+function clearSession() {
+  localStorage.removeItem("id_token");
+  localStorage.removeItem("user_profile");
+}
+
 export const getToken = () => {
   try {
     const rawToken = localStorage.getItem("id_token");
@@ -11,10 +36,18 @@ export const getToken = () => {
     }
 
     // Normalize pasted token values: drop wrapping quotes and any leading Bearer prefix.
-    return rawToken
+    const token = rawToken
       .trim()
       .replace(/^['\"]|['\"]$/g, "")
       .replace(/^Bearer\s+/i, "");
+
+    const payload = parseJwtPayload(token);
+    if (payload?.exp && Date.now() / 1000 > payload.exp) {
+      clearSession();
+      return null;
+    }
+
+    return token;
   } catch {
     return null;
   }
@@ -31,6 +64,20 @@ const bearerInterceptor = (config) => {
 };
 
 axios.interceptors.request.use(bearerInterceptor);
+
+let reloadPending = false;
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 && !reloadPending) {
+      reloadPending = true;
+      clearSession();
+      sessionStorage.setItem("session_expired", "1");
+      window.location.reload();
+    }
+    return Promise.reject(error);
+  }
+);
 
 const buildApi = (axios) => ({
   getAllGroups() {
