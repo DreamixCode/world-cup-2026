@@ -1,4 +1,5 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { CACHE_TIMES } from "./queryClient";
 import { EuroCupApi } from "./queries";
 
 export const queryKeys = {
@@ -20,26 +21,30 @@ export const queryKeys = {
 
 const defaultQueryOptions = {
   onError: console.log,
+  staleTime: CACHE_TIMES.staleTime,
+  gcTime: CACHE_TIMES.gcTime,
+  refetchOnWindowFocus: false,
+  placeholderData: keepPreviousData,
 };
 
 function useBetsInvalidator() {
   const queryClient = useQueryClient();
   return {
-    invalidateBets: () => queryClient.invalidateQueries(queryKeys.bets()),
+    invalidateBets: () => queryClient.invalidateQueries({ queryKey: queryKeys.bets() }),
   };
 }
 
 function useMyBetsInvalidator() {
   const queryClient = useQueryClient();
   return {
-    invalidateMyBets: () => queryClient.invalidateQueries(queryKeys.myBets()),
+    invalidateMyBets: () => queryClient.invalidateQueries({ queryKey: queryKeys.myBets() }),
   };
 }
 
 function useMatchesInvalidator() {
   const queryClient = useQueryClient();
   return {
-    invalidateMatches: () => queryClient.invalidateQueries(queryKeys.matches()),
+    invalidateMatches: () => queryClient.invalidateQueries({ queryKey: queryKeys.matches() }),
   };
 }
 
@@ -48,7 +53,6 @@ export function useGroups() {
     queryKey: queryKeys.groups(),
     queryFn: async () => EuroCupApi.getAllGroups(),
     ...defaultQueryOptions,
-    keepPreviousData: true,
   });
 
   return { groups, ...rest };
@@ -63,6 +67,7 @@ export function useMatches(params) {
       };
       return EuroCupApi.getAllMatches(queryParams);
     },
+    ...defaultQueryOptions,
   });
   return { matches, ...rest };
 }
@@ -77,7 +82,6 @@ export function useMatchById(id) {
     queryKey: queryKeys.matchById(id),
     queryFn: () => EuroCupApi.getMatchById(id),
     enabled: hasValidId,
-    keepPreviousData: true,
     ...defaultQueryOptions,
   });
   return { match, isLoading, ...rest };
@@ -97,6 +101,7 @@ export function useBets(params) {
       };
       return EuroCupApi.getBets(queryParams);
     },
+    ...defaultQueryOptions,
   });
   return { bets, isLoadingBets, ...rest };
 }
@@ -105,7 +110,6 @@ export function useStandings() {
   const { data: standings, ...rest } = useQuery({
     queryKey: queryKeys.standings(),
     queryFn: () => EuroCupApi.getStandings(),
-    keepPreviousData: true,
     ...defaultQueryOptions,
   });
 
@@ -116,7 +120,6 @@ export function useTopScorers() {
   const { data: topScorers, ...rest } = useQuery({
     queryKey: queryKeys.topScorers(),
     queryFn: () => EuroCupApi.getTopScorers(),
-    keepPreviousData: true,
     ...defaultQueryOptions,
   });
 
@@ -127,7 +130,6 @@ export function useChampions() {
   const { data: champions, ...rest } = useQuery({
     queryKey: queryKeys.champions(),
     queryFn: () => EuroCupApi.getChampions(),
-    keepPreviousData: true,
     ...defaultQueryOptions,
   });
 
@@ -138,7 +140,6 @@ export function useMyBets() {
   const { data: myBets, ...rest } = useQuery({
     queryKey: queryKeys.myBets(),
     queryFn: () => EuroCupApi.getMyBets(),
-    keepPreviousData: true,
     ...defaultQueryOptions,
   });
   return { myBets, ...rest };
@@ -153,7 +154,6 @@ export function usePlayerById(id) {
     queryKey: queryKeys.userById(id),
     queryFn: () => EuroCupApi.getUserById(id),
     enabled: Boolean(id),
-    keepPreviousData: true,
     ...defaultQueryOptions,
   });
   return { player, isLoading, ...rest };
@@ -165,7 +165,7 @@ export function useCreateBet() {
   const { invalidateMatches } = useMatchesInvalidator();
   const {
     mutate: createBet,
-    isLoading: isLoadingCreate,
+    isPending: isLoadingCreate,
     ...rest
   } = useMutation({
     mutationFn: (bet) => EuroCupApi.createBet(bet),
@@ -184,12 +184,12 @@ export function useSelectTopScorer() {
   const queryClient = useQueryClient();
   const {
     mutate: selectTopScorer,
-    isLoading: isLoadingSelect,
+    isPending: isLoadingSelect,
     ...rest
   } = useMutation({
     mutationFn: (payload) => EuroCupApi.selectTopScorer(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKeys.topScorers());
+      queryClient.invalidateQueries({ queryKey: queryKeys.topScorers() });
     },
     ...defaultQueryOptions,
   });
@@ -201,12 +201,12 @@ export function useSelectChampion() {
   const queryClient = useQueryClient();
   const {
     mutate: selectChampion,
-    isLoading: isLoadingSelect,
+    isPending: isLoadingSelect,
     ...rest
   } = useMutation({
     mutationFn: (payload) => EuroCupApi.selectChampion(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(queryKeys.champions());
+      queryClient.invalidateQueries({ queryKey: queryKeys.champions() });
     },
     ...defaultQueryOptions,
   });
