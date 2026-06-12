@@ -40,17 +40,16 @@ public class StandingServiceImpl implements StandingService {
         if (all.isEmpty()) {
             all = standingRetrievalAdapter.actualizeGroupStandings().data();
         }
-        List<GroupStandingDto> standings = all.stream()
+        // TODO: Possibly generalize as TournamentCustomizations to accommodate other tournaments
+        return all.stream()
                   .collect(groupingBy(GroupStandingDocument::getGroup,
                                       mapping(groupStandingMapper::documentToTeamDto, Collectors.toList()))
                   )
                   .entrySet()
                   .stream()
                   .map(entry -> new GroupStandingDto(entry.getKey(), entry.getValue()))
+                  .map(worldCup2026StandingsCustomizations::applyToGroup)
                   .sorted(Comparator.comparing(GroupStandingDto::group))
                   .toList();
-        
-        // TODO: Possibly generalize as TournamentCustomizations to accomodate other tournaments
-        return worldCup2026StandingsCustomizations.apply(standings);
     }
 }
