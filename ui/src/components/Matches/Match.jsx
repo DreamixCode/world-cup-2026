@@ -226,7 +226,7 @@ function Match({
           trigger={null}
           open={open}
           onOpenChange={setOpen}
-          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
+          contentClassName="w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
           closeButtonClassName="text-white sm:text-white "
           overlayClassName="bg-white/30 supports-backdrop-filter:backdrop-blur-md"
         >

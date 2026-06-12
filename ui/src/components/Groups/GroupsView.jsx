@@ -1,5 +1,6 @@
 import { useGroups } from "../../api";
 import { useMedia } from "../../hooks";
+import { getGroupColorIndex } from "../../groupColors";
 import ContentContainer from "../ContentContainer";
 import { Modal } from "../Modal/Modal";
 import Spinner from "../Spinner";
@@ -13,22 +14,21 @@ function GroupsView() {
 
   const { groups = [], isLoading, isError, error } = useGroups();
 
-  const sortedGroups = [...groups].sort((a, b) => a.group?.localeCompare(b.group));
+  const groupsWC = groups?.map((group, index) => {
+    const colorIndex = getGroupColorIndex(index);
 
-  const groupsWC = sortedGroups?.map((group) => {
-    const groupId = group?.group?.slice(-1)?.toLowerCase();
     return (
-      <li className="w-auto" key={group.group}>
+      <li className="w-auto" key={group.id ?? group.group}>
         <Modal
           title={group.group}
           trigger={
             <button type="button" className="w-full text-left cursor-pointer">
-              <Group number={group.group} teams={group.teams} />
+              <Group number={group.group} teams={group.teams} colorIndex={colorIndex} />
             </button>
           }
-          contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
+          contentClassName="w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
         >
-          <GroupDetails id={groupId} showBackLink={false} />
+          <GroupDetails id={group.id} colorIndex={colorIndex} showBackLink={false} />
         </Modal>
       </li>
     );

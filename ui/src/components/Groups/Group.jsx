@@ -2,27 +2,21 @@ import classNames from "classnames";
 
 import { useMedia } from "@/hooks";
 import { Tooltip } from "react-tooltip";
+import { getGroupColorIndex, GROUP_CORNER_CLASSES } from "../../groupColors";
 import { getFlag } from "../../utils.jsx";
 import ContentContainer from "../ContentContainer";
 
-function Group({ number, teams = [], className, singleView, style }) {
+function Group({
+  number,
+  teams = [],
+  className,
+  singleView,
+  style,
+  colorIndex = 0,
+}) {
   const isSmall = useMedia(useMedia.SMALL);
   const sortedTeams = [...teams].sort((a, b) => a.rank - b.rank);
-
-  const cornerGroupClasses = {
-    "Group A": "bg-dec-groupA",
-    "Group B": "bg-dec-groupB",
-    "Group C": "bg-dec-groupC",
-    "Group D": "bg-dec-groupD",
-    "Group E": "bg-dec-groupE",
-    "Group F": "bg-dec-groupF",
-    "Group G": "bg-dec-groupG",
-    "Group H": "bg-dec-groupH",
-    "Group I": "bg-dec-groupI",
-    "Group J": "bg-dec-groupJ",
-    "Group K": "bg-dec-groupK",
-    "Group L": "bg-dec-groupL",
-  };
+  const cornerColorClass = GROUP_CORNER_CLASSES[getGroupColorIndex(colorIndex)];
 
   return (
     <ContentContainer className="select-none">
@@ -36,7 +30,7 @@ function Group({ number, teams = [], className, singleView, style }) {
         <div
           className={classNames(
             "pointer-events-none absolute top-0 right-0 h-40 w-40 rounded-bl-[99px]",
-            cornerGroupClasses[number],
+            cornerColorClass,
           )}
         />
         <div
