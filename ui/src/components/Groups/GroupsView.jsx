@@ -13,22 +13,19 @@ function GroupsView() {
 
   const { groups = [], isLoading, isError, error } = useGroups();
 
-  const sortedGroups = [...groups].sort((a, b) => a.group?.localeCompare(b.group));
-
-  const groupsWC = sortedGroups?.map((group) => {
-    const groupId = group?.group?.slice(-1)?.toLowerCase();
+  const groupsWC = groups?.map((group, index) => {
     return (
-      <li className="w-auto" key={group.group}>
+      <li className="w-auto" key={group.id ?? group.group}>
         <Modal
           title={group.group}
           trigger={
             <button type="button" className="w-full text-left cursor-pointer">
-              <Group number={group.group} teams={group.teams} />
+              <Group number={group.group} teams={group.teams} colorIndex={index} />
             </button>
           }
           contentClassName="bg-dec-primary border-0 w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
         >
-          <GroupDetails id={groupId} showBackLink={false} />
+          <GroupDetails id={group.id} colorIndex={index} showBackLink={false} />
         </Modal>
       </li>
     );

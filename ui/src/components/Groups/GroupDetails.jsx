@@ -23,19 +23,36 @@ function getMascotForGroup(groupId) {
   return GROUP_MASCOTS[index % GROUP_MASCOTS.length];
 }
 
-export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
+export function GroupDetails({ id, colorIndex, showBackLink: _showBackLink = true }) {
   const isSmall = useMedia(useMedia.SMALL);
-  const { groups = [], isError: isGroupsError, error: groupsError } = useGroups();
-  const { matches = [], isError: isMatchesError, error: matchesError } = useMatches();
+  const {
+    groups = [],
+    isError: isGroupsError,
+    error: groupsError,
+  } = useGroups();
+  const {
+    matches = [],
+    isError: isMatchesError,
+    error: matchesError,
+  } = useMatches();
 
-  const group = groups?.filter((group) => group?.group?.slice(-1)?.toLowerCase() === id);
+  const groupIndex =
+    colorIndex ??
+    groups.findIndex((group) => group?.id === id);
+  const group = groupIndex >= 0 ? groups[groupIndex] : undefined;
 
-  const groupTeams = group?.map(({ teams }) => teams.map((team) => team.name));
+  const groupTeams = group ? [group.teams.map((team) => team.name)] : [];
   const groupMatches = matches?.filter((match) =>
-    groupTeams?.find((teams) => teams.includes(match?.teams?.home?.name) && teams.includes(match?.teams?.away?.name)),
+    groupTeams?.find(
+      (teams) =>
+        teams.includes(match?.teams?.home?.name) &&
+        teams.includes(match?.teams?.away?.name),
+    ),
   );
 
-  groupMatches?.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  groupMatches?.sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+  );
 
   const mascot = getMascotForGroup(id);
 
@@ -53,9 +70,15 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
         )}
         <div className="flex items-center justify-center gap-4 w-full">
           <div className="flex-1 flex justify-center items-center min-w-0 max-w-xl">
-            {group?.map((group) => (
-              <Group singleView number={group?.group} teams={group?.teams} className="w-full" />
-            ))}
+            {group && (
+              <Group
+                singleView
+                number={group.group}
+                teams={group.teams}
+                className="w-full"
+                colorIndex={groupIndex}
+              />
+            )}
           </div>
         </div>
         {isGroupsError && (
@@ -86,7 +109,9 @@ export function GroupDetails({ id, showBackLink: _showBackLink = true }) {
           </div>
         )}
         {!isGroupsError && !isMatchesError && !groupMatches?.length && (
-          <div className="text-white font-bold text-center py-4">No group matches available yet.</div>
+          <div className="text-white font-bold text-center py-4">
+            No group matches available yet.
+          </div>
         )}
       </div>
     </ContentContainer>
