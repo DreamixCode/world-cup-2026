@@ -16,13 +16,23 @@
               "name": "Mexico",
               "logo": "https://media.api-sports.io/football/teams/16.png"
             },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Group A",
-            "form": null,
+            "points": 3,
+            "goalsDiff": 2,
+            "group": "Group Stage - Group A",
+            "form": "W",
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
+              "played": 1,
+              "win": 1,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 2,
+                "against": 0
+              }
+            },
+            "home": {
               "played": 0,
               "win": 0,
               "draw": 0,
@@ -32,87 +42,42 @@
                 "against": 0
               }
             },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
-            "team": {
-              "id": 1531,
-              "name": "South Africa",
-              "logo": "https://media.api-sports.io/football/teams/1531.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Group A",
-            "form": null,
-            "status": "same",
-            "description": "Playoffs",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 3,
             "team": {
               "id": 17,
               "name": "South Korea",
               "logo": "https://media.api-sports.io/football/teams/17.png"
             },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Group A",
-            "form": null,
+            "points": 3,
+            "goalsDiff": 1,
+            "group": "Group Stage - Group A",
+            "form": "W",
             "status": "same",
-            "description": null,
+            "description": "Advancing to the Round of 32",
             "all": {
+              "played": 1,
+              "win": 1,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 2,
+                "against": 1
+              }
+            },
+            "home": {
               "played": 0,
               "win": 0,
               "draw": 0,
@@ -122,42 +87,42 @@
                 "against": 0
               }
             },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
-            "rank": 4,
+            "rank": 3,
             "team": {
               "id": 770,
               "name": "Czech Republic",
               "logo": "https://media.api-sports.io/football/teams/770.png"
             },
             "points": 0,
-            "goalsDiff": 0,
-            "group": "Group A",
-            "form": null,
+            "goalsDiff": -1,
+            "group": "Group Stage - Group A",
+            "form": "L",
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
+              "played": 1,
+              "win": 0,
+              "draw": 0,
+              "lose": 1,
+              "goals": {
+                "for": 1,
+                "against": 2
+              }
+            },
+            "home": {
               "played": 0,
               "win": 0,
               "draw": 0,
@@ -167,27 +132,62 @@
                 "against": 0
               }
             },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 4,
+            "team": {
+              "id": 1531,
+              "name": "South Africa",
+              "logo": "https://media.api-sports.io/football/teams/1531.png"
+            },
+            "points": 0,
+            "goalsDiff": -2,
+            "group": "Group Stage - Group A",
+            "form": "L",
+            "status": "same",
+            "description": null,
+            "all": {
+              "played": 1,
+              "win": 0,
+              "draw": 0,
+              "lose": 1,
+              "goals": {
+                "for": 0,
+                "against": 2
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -200,10 +200,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group B",
+            "group": "Group Stage - Group B",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -215,26 +215,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -245,10 +245,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group B",
+            "group": "Group Stage - Group B",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -260,26 +260,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -290,10 +290,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group B",
+            "group": "Group Stage - Group B",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -305,26 +305,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -335,7 +335,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group B",
+            "group": "Group Stage - Group B",
             "form": null,
             "status": "same",
             "description": null,
@@ -350,26 +350,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -382,10 +382,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group C",
+            "group": "Group Stage - Group C",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -397,26 +397,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -427,10 +427,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group C",
+            "group": "Group Stage - Group C",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -442,26 +442,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -472,10 +472,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group C",
+            "group": "Group Stage - Group C",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -487,26 +487,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -517,7 +517,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group C",
+            "group": "Group Stage - Group C",
             "form": null,
             "status": "same",
             "description": null,
@@ -532,26 +532,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -564,10 +564,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group D",
+            "group": "Group Stage - Group D",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -579,26 +579,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -609,10 +609,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group D",
+            "group": "Group Stage - Group D",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -624,26 +624,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -654,10 +654,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group D",
+            "group": "Group Stage - Group D",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -669,26 +669,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -699,7 +699,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group D",
+            "group": "Group Stage - Group D",
             "form": null,
             "status": "same",
             "description": null,
@@ -714,26 +714,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -746,10 +746,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group E",
+            "group": "Group Stage - Group E",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -761,26 +761,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -791,10 +791,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group E",
+            "group": "Group Stage - Group E",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -806,26 +806,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -836,10 +836,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group E",
+            "group": "Group Stage - Group E",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -851,26 +851,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -881,7 +881,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group E",
+            "group": "Group Stage - Group E",
             "form": null,
             "status": "same",
             "description": null,
@@ -896,26 +896,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -928,10 +928,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group F",
+            "group": "Group Stage - Group F",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -943,26 +943,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -973,10 +973,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group F",
+            "group": "Group Stage - Group F",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -988,26 +988,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -1018,10 +1018,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group F",
+            "group": "Group Stage - Group F",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -1033,26 +1033,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -1063,7 +1063,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group F",
+            "group": "Group Stage - Group F",
             "form": null,
             "status": "same",
             "description": null,
@@ -1078,26 +1078,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -1110,10 +1110,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group G",
+            "group": "Group Stage - Group G",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1125,26 +1125,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -1155,10 +1155,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group G",
+            "group": "Group Stage - Group G",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1170,26 +1170,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -1200,10 +1200,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group G",
+            "group": "Group Stage - Group G",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -1215,26 +1215,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -1245,7 +1245,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group G",
+            "group": "Group Stage - Group G",
             "form": null,
             "status": "same",
             "description": null,
@@ -1260,26 +1260,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -1292,10 +1292,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group H",
+            "group": "Group Stage - Group H",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1307,26 +1307,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -1337,10 +1337,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group H",
+            "group": "Group Stage - Group H",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1352,26 +1352,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -1382,10 +1382,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group H",
+            "group": "Group Stage - Group H",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -1397,26 +1397,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -1427,7 +1427,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group H",
+            "group": "Group Stage - Group H",
             "form": null,
             "status": "same",
             "description": null,
@@ -1442,26 +1442,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -1474,10 +1474,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group I",
+            "group": "Group Stage - Group I",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1489,26 +1489,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -1519,10 +1519,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group I",
+            "group": "Group Stage - Group I",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1534,26 +1534,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -1564,10 +1564,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group I",
+            "group": "Group Stage - Group I",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -1579,26 +1579,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -1609,7 +1609,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group I",
+            "group": "Group Stage - Group I",
             "form": null,
             "status": "same",
             "description": null,
@@ -1624,26 +1624,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -1656,10 +1656,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group J",
+            "group": "Group Stage - Group J",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1671,26 +1671,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -1701,10 +1701,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group J",
+            "group": "Group Stage - Group J",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1716,26 +1716,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -1746,10 +1746,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group J",
+            "group": "Group Stage - Group J",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -1761,26 +1761,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -1791,7 +1791,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group J",
+            "group": "Group Stage - Group J",
             "form": null,
             "status": "same",
             "description": null,
@@ -1806,26 +1806,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -1838,10 +1838,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group K",
+            "group": "Group Stage - Group K",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1853,26 +1853,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -1883,10 +1883,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group K",
+            "group": "Group Stage - Group K",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -1898,26 +1898,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -1928,10 +1928,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group K",
+            "group": "Group Stage - Group K",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -1943,26 +1943,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -1973,7 +1973,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group K",
+            "group": "Group Stage - Group K",
             "form": null,
             "status": "same",
             "description": null,
@@ -1988,26 +1988,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
@@ -2020,10 +2020,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group L",
+            "group": "Group Stage - Group L",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -2035,26 +2035,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 2,
@@ -2065,10 +2065,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group L",
+            "group": "Group Stage - Group L",
             "form": null,
             "status": "same",
-            "description": "Playoffs",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -2080,26 +2080,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 3,
@@ -2110,10 +2110,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group L",
+            "group": "Group Stage - Group L",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Possible Advanced",
             "all": {
               "played": 0,
               "win": 0,
@@ -2125,26 +2125,26 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
             "rank": 4,
@@ -2155,7 +2155,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Group L",
+            "group": "Group Stage - Group L",
             "form": null,
             "status": "same",
             "description": null,
@@ -2170,301 +2170,31 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ],
         [
           {
             "rank": 1,
-            "team": {
-              "id": 17,
-              "name": "South Korea",
-              "logo": "https://media.api-sports.io/football/teams/17.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 2,
-            "team": {
-              "id": 1569,
-              "name": "Qatar",
-              "logo": "https://media.api-sports.io/football/teams/1569.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 3,
-            "team": {
-              "id": 2386,
-              "name": "Haiti",
-              "logo": "https://media.api-sports.io/football/teams/2386.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 4,
-            "team": {
-              "id": 20,
-              "name": "Australia",
-              "logo": "https://media.api-sports.io/football/teams/20.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 5,
-            "team": {
-              "id": 1501,
-              "name": "Ivory Coast",
-              "logo": "https://media.api-sports.io/football/teams/1501.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 6,
-            "team": {
-              "id": 5,
-              "name": "Sweden",
-              "logo": "https://media.api-sports.io/football/teams/5.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
-              "played": 0,
-              "win": 0,
-              "draw": 0,
-              "lose": 0,
-              "goals": {
-                "for": 0,
-                "against": 0
-              }
-            },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 7,
             "team": {
               "id": 22,
               "name": "Iran",
@@ -2472,10 +2202,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
+            "group": "Group Stage",
             "form": null,
             "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -2487,41 +2217,6 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 8,
-            "team": {
-              "id": 23,
-              "name": "Saudi Arabia",
-              "logo": "https://media.api-sports.io/football/teams/23.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": "Promotion - World Cup (Play Offs)",
-            "all": {
               "played": 0,
               "win": 0,
               "draw": 0,
@@ -2531,42 +2226,7 @@
                 "against": 0
               }
             },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
-          },
-          {
-            "rank": 9,
-            "team": {
-              "id": 1567,
-              "name": "Iraq",
-              "logo": "https://media.api-sports.io/football/teams/1567.png"
-            },
-            "points": 0,
-            "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
-            "form": null,
-            "status": "same",
-            "description": null,
-            "all": {
               "played": 0,
               "win": 0,
               "draw": 0,
@@ -2576,30 +2236,10 @@
                 "against": 0
               }
             },
-            "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
-              "goals": {
-                "for": null,
-                "against": null
-              }
-            },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
-            "rank": 10,
+            "rank": 2,
             "team": {
               "id": 775,
               "name": "Austria",
@@ -2607,10 +2247,10 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
+            "group": "Group Stage",
             "form": null,
             "status": "same",
-            "description": null,
+            "description": "Advancing to the Round of 32",
             "all": {
               "played": 0,
               "win": 0,
@@ -2622,29 +2262,164 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
-            "rank": 11,
+            "rank": 3,
+            "team": {
+              "id": 20,
+              "name": "Australia",
+              "logo": "https://media.api-sports.io/football/teams/20.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": "Advancing to the Round of 32",
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 4,
+            "team": {
+              "id": 1501,
+              "name": "Ivory Coast",
+              "logo": "https://media.api-sports.io/football/teams/1501.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": "Advancing to the Round of 32",
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 5,
+            "team": {
+              "id": 5,
+              "name": "Sweden",
+              "logo": "https://media.api-sports.io/football/teams/5.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": "Advancing to the Round of 32",
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 6,
             "team": {
               "id": 1568,
               "name": "Uzbekistan",
@@ -2652,7 +2427,142 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": "Advancing to the Round of 32",
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 7,
+            "team": {
+              "id": 1569,
+              "name": "Qatar",
+              "logo": "https://media.api-sports.io/football/teams/1569.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": "Advancing to the Round of 32",
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 8,
+            "team": {
+              "id": 1567,
+              "name": "Iraq",
+              "logo": "https://media.api-sports.io/football/teams/1567.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": "Advancing to the Round of 32",
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 9,
+            "team": {
+              "id": 23,
+              "name": "Saudi Arabia",
+              "logo": "https://media.api-sports.io/football/teams/23.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
             "form": null,
             "status": "same",
             "description": null,
@@ -2667,29 +2577,29 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
           },
           {
-            "rank": 12,
+            "rank": 10,
             "team": {
               "id": 1504,
               "name": "Ghana",
@@ -2697,7 +2607,7 @@
             },
             "points": 0,
             "goalsDiff": 0,
-            "group": "Ranking of third-placed teams",
+            "group": "Group Stage",
             "form": null,
             "status": "same",
             "description": null,
@@ -2712,26 +2622,116 @@
               }
             },
             "home": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
             "away": {
-              "played": null,
-              "win": null,
-              "draw": null,
-              "lose": null,
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
               "goals": {
-                "for": null,
-                "against": null
+                "for": 0,
+                "against": 0
               }
             },
-            "update": "2026-05-26T00:00:00+00:00"
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 11,
+            "team": {
+              "id": 2386,
+              "name": "Haiti",
+              "logo": "https://media.api-sports.io/football/teams/2386.png"
+            },
+            "points": 0,
+            "goalsDiff": 0,
+            "group": "Group Stage",
+            "form": null,
+            "status": "same",
+            "description": null,
+            "all": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
+          },
+          {
+            "rank": 12,
+            "team": {
+              "id": 770,
+              "name": "Czech Republic",
+              "logo": "https://media.api-sports.io/football/teams/770.png"
+            },
+            "points": 0,
+            "goalsDiff": -1,
+            "group": "Group Stage",
+            "form": "L",
+            "status": "same",
+            "description": null,
+            "all": {
+              "played": 1,
+              "win": 0,
+              "draw": 0,
+              "lose": 1,
+              "goals": {
+                "for": 1,
+                "against": 2
+              }
+            },
+            "home": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "away": {
+              "played": 0,
+              "win": 0,
+              "draw": 0,
+              "lose": 0,
+              "goals": {
+                "for": 0,
+                "against": 0
+              }
+            },
+            "update": "2026-06-12T00:00:00+00:00"
           }
         ]
       ]
