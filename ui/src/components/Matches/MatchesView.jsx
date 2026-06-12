@@ -3,12 +3,19 @@ import { addHours, isAfter, isBefore, parseISO } from "date-fns";
 import { useMatches } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
+import { SegmentedBorder } from "../SegmentedBorder";
 import Spinner from "../Spinner";
 import { getQueryErrorMessage } from "../../utils.jsx";
 import Match from "./Match";
 
-const UPCOMING_HOURS_START = parseInt(import.meta.env.VITE_UPCOMING_HOURS_START ?? "3", 10);
-const UPCOMING_HOURS_WINDOW = parseInt(import.meta.env.VITE_UPCOMING_HOURS_WINDOW ?? "24", 10);
+const UPCOMING_HOURS_START = parseInt(
+  import.meta.env.VITE_UPCOMING_HOURS_START ?? "3",
+  10,
+);
+const UPCOMING_HOURS_WINDOW = parseInt(
+  import.meta.env.VITE_UPCOMING_HOURS_WINDOW ?? "24",
+  10,
+);
 
 function MatchesView({ frontPage }) {
   const isMedium = useMedia(useMedia.MEDIUM);
@@ -20,7 +27,9 @@ function MatchesView({ frontPage }) {
 
   const { matches = [], isLoading, isError, error } = useMatches();
 
-  const sortedMatches = [...matches].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const sortedMatches = [...matches].sort(
+    (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+  );
 
   const upcomingMatches = sortedMatches?.filter((match) => {
     const matchDate = parseISO(match?.date);
@@ -82,7 +91,10 @@ function MatchesView({ frontPage }) {
             <div className="text-center font-extrabold text-white bg-transparent text-dec-h3 pb-4 md:text-dec-t2">
               <h1>{selectTitle()}</h1>
             </div>
-            <div className="flex flex-col border-2 ">
+            <SegmentedBorder
+              borderRadius="0.75rem"
+              innerClassName="flex flex-col"
+            >
               <div className="grid grid-cols-11 text-dec-primary-darkBlue h-28 w-full bg-dec-background border-b-4 border-dec-primary text-dec-h2.5 font-extrabold px-2 items-center">
                 <div className="col-span-6 md:col-span-5 text-dec-h3.5 sm:text-dec-h2.5 flex justify-start lg:pl-20">
                   Match
@@ -114,9 +126,11 @@ function MatchesView({ frontPage }) {
                 );
               })}
               {!selectMatchesShown()?.length && (
-                <div className="p-4 text-center text-dec-background font-bold">No matches available yet.</div>
+                <div className="p-4 text-center text-dec-background font-bold">
+                  No matches available yet.
+                </div>
               )}
-            </div>
+            </SegmentedBorder>
           </div>
         )}
       </ContentContainer>
