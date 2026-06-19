@@ -1,4 +1,10 @@
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  keepPreviousData,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { buildTeamsFromStandings } from "../userMascots";
 import { CACHE_TIMES } from "./queryClient";
 import { EuroCupApi } from "./queries";
 
@@ -9,7 +15,11 @@ export const queryKeys = {
   matches: () => ["matches"],
   matchById: (id) => [...queryKeys.matches(), id],
   bets: () => ["bets"],
-  betsByFilters: (params) => ["bets", params?.userId ?? null, params?.matchId ?? null],
+  betsByFilters: (params) => [
+    "bets",
+    params?.userId ?? null,
+    params?.matchId ?? null,
+  ],
   myBets: () => ["myBets"],
   matchesByDate: (date) => [...queryKeys.matches(), date],
   users: () => ["users"],
@@ -30,28 +40,49 @@ const defaultQueryOptions = {
 function useBetsInvalidator() {
   const queryClient = useQueryClient();
   return {
-    invalidateBets: () => queryClient.invalidateQueries({ queryKey: queryKeys.bets() }),
+    invalidateBets: () =>
+      queryClient.invalidateQueries({ queryKey: queryKeys.bets() }),
   };
 }
 
 function useMyBetsInvalidator() {
   const queryClient = useQueryClient();
   return {
-    invalidateMyBets: () => queryClient.invalidateQueries({ queryKey: queryKeys.myBets() }),
+    invalidateMyBets: () =>
+      queryClient.invalidateQueries({ queryKey: queryKeys.myBets() }),
   };
 }
 
 function useMatchesInvalidator() {
   const queryClient = useQueryClient();
   return {
-    invalidateMatches: () => queryClient.invalidateQueries({ queryKey: queryKeys.matches() }),
+    invalidateMatches: () =>
+      queryClient.invalidateQueries({ queryKey: queryKeys.matches() }),
+  };
+}
+
+function useStandingsInvalidator() {
+  const queryClient = useQueryClient();
+  return {
+    invalidateStandings: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.standings() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.teams() });
+    },
+  };
+}
+
+function useUsersInvalidator() {
+  const queryClient = useQueryClient();
+  return {
+    invalidateUsers: () =>
+      queryClient.invalidateQueries({ queryKey: queryKeys.users() }),
   };
 }
 
 export function useGroups() {
   const { data: groups, ...rest } = useQuery({
     queryKey: queryKeys.groups(),
-    queryFn: async () => EuroCupApi.getAllGroups(),
+    queryFn: () => EuroCupApi.getAllGroups(),
     ...defaultQueryOptions,
   });
 
@@ -61,12 +92,10 @@ export function useGroups() {
 export function useMatches(params) {
   const { data: matches, ...rest } = useQuery({
     queryKey: queryKeys.matchesByDate(params?.date ?? null),
-    queryFn: () => {
-      const queryParams = {
-        date: params?.date,
-      };
-      return EuroCupApi.getAllMatches(queryParams);
-    },
+    queryFn: () =>
+      EuroCupApi.getAllMatches(
+        params?.date ? { date: params.date } : undefined,
+      ),
     ...defaultQueryOptions,
   });
   return { matches, ...rest };
@@ -94,13 +123,11 @@ export function useBets(params) {
     ...rest
   } = useQuery({
     queryKey: queryKeys.betsByFilters(params),
-    queryFn: () => {
-      const queryParams = {
+    queryFn: () =>
+      EuroCupApi.getBets({
         userId: params?.userId,
         matchId: params?.matchId,
-      };
-      return EuroCupApi.getBets(queryParams);
-    },
+      }),
     ...defaultQueryOptions,
   });
   return { bets, isLoadingBets, ...rest };
@@ -114,6 +141,23 @@ export function useStandings() {
   });
 
   return { standings, ...rest };
+}
+
+export function useTeams() {
+  const queryClient = useQueryClient();
+  const { data: teams, ...rest } = useQuery({
+    queryKey: queryKeys.teams(),
+    queryFn: async () => {
+      const standings = await queryClient.ensureQueryData({
+        queryKey: queryKeys.standings(),
+        queryFn: () => EuroCupApi.getStandings(),
+      });
+      return buildTeamsFromStandings(standings);
+    },
+    ...defaultQueryOptions,
+  });
+
+  return { teams, ...rest };
 }
 
 export function useTopScorers() {
@@ -163,6 +207,8 @@ export function useCreateBet() {
   const { invalidateBets } = useBetsInvalidator();
   const { invalidateMyBets } = useMyBetsInvalidator();
   const { invalidateMatches } = useMatchesInvalidator();
+  const { invalidateStandings } = useStandingsInvalidator();
+  const { invalidateUsers } = useUsersInvalidator();
   const {
     mutate: createBet,
     isPending: isLoadingCreate,
@@ -173,6 +219,8 @@ export function useCreateBet() {
       invalidateMyBets();
       invalidateBets();
       invalidateMatches();
+      invalidateStandings();
+      invalidateUsers();
     },
     ...defaultQueryOptions,
   });
