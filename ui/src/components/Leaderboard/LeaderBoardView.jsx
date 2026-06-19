@@ -23,7 +23,19 @@ function LeaderBoardView({ frontPage }) {
     );
   });
 
-  const displayedLeaders = frontPage ? leadersView.slice(0, 5) : leadersView;
+  const rankedLeaders = [];
+  for (let index = 0; index < leadersView.length; index++) {
+    const leader = leadersView[index];
+    const rank =
+      index === 0 || leader.totalPoints !== leadersView[index - 1].totalPoints
+        ? index + 1
+        : rankedLeaders[index - 1].rank;
+    rankedLeaders.push({ ...leader, rank });
+  }
+
+  const displayedLeaders = frontPage
+    ? rankedLeaders.filter((leader) => leader.rank <= 5)
+    : rankedLeaders;
 
   return (
     <div
@@ -89,7 +101,7 @@ function LeaderBoardView({ frontPage }) {
                   </tr>
                 </thead>
                 <tbody className="sm:text-dec-base text-dec-2xs">
-                  {displayedLeaders?.map((leader, index) => {
+                  {displayedLeaders?.map((leader) => {
                     return (
                       <tr
                         className="border-b-4 border-dec-primary-light"
@@ -97,12 +109,12 @@ function LeaderBoardView({ frontPage }) {
                       >
                         <td className="py-1">
                           <div className="flex items-center space-x-2 pl-2">
-                            <span>{index + 1}</span>
-                            {index + 1 === 1 ? (
+                            <span>{leader.rank}</span>
+                            {leader.rank === 1 ? (
                               <GoldMedal className="h-6 w-6" />
-                            ) : index + 1 === 2 ? (
+                            ) : leader.rank === 2 ? (
                               <SilverMedal className="h-6 w-6" />
-                            ) : index + 1 === 3 ? (
+                            ) : leader.rank === 3 ? (
                               <BronzeMedal className="h-6 w-6" />
                             ) : null}
                           </div>
