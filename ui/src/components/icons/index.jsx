@@ -37,6 +37,7 @@ export { default as Marocco } from "./marocco.svg?react";
 export { default as Menu } from "./menu.svg?react";
 export { default as Mexico } from "./mexico.svg?react";
 export { default as Netherlands } from "./netherlands.svg?react";
+export { default as NewBadge } from "./new-badge.svg?react";
 export { default as NewZealand } from "./new-zealand.svg?react";
 export { default as Norway } from "./norway.svg?react";
 export { default as Panama } from "./panama.svg?react";

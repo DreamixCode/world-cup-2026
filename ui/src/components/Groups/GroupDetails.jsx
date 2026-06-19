@@ -1,29 +1,18 @@
 import { useMedia } from "@/hooks";
 import { useParams } from "react-router-dom";
 import { useGroups, useMatches } from "../../api";
+import { getMascotForGroup } from "../../userMascots";
 import { getQueryErrorMessage } from "../../utils.jsx";
 import ContentContainer from "../ContentContainer";
 import { Match } from "../Matches";
 import Group from "./Group";
 
-const GROUP_MASCOTS = [
-  { file: "clutch.jpg", alt: "Clutch" },
-  { file: "maple.jpg", alt: "Maple" },
-  { file: "zayu.jpg", alt: "Zayu" },
-];
-
-function getMascotForGroup(groupId) {
-  const letter = String(groupId ?? "")
-    .trim()
-    .slice(0, 1)
-    .toLowerCase();
-
-  const index = letter >= "a" && letter <= "z" ? letter.charCodeAt(0) - 97 : 0;
-
-  return GROUP_MASCOTS[index % GROUP_MASCOTS.length];
-}
-
-export function GroupDetails({ id, colorIndex, showBackLink: _showBackLink = true }) {
+export function GroupDetails({
+  id,
+  colorIndex,
+  groupIndex,
+  showBackLink: _showBackLink = true,
+}) {
   const isSmall = useMedia(useMedia.SMALL);
   const {
     groups = [],
@@ -36,10 +25,12 @@ export function GroupDetails({ id, colorIndex, showBackLink: _showBackLink = tru
     error: matchesError,
   } = useMatches();
 
-  const groupIndex =
+  const resolvedGroupIndex =
+    groupIndex ??
     colorIndex ??
-    groups.findIndex((group) => group?.id === id);
-  const group = groupIndex >= 0 ? groups[groupIndex] : undefined;
+    groups.findIndex((group) => group?.group === id);
+  const group =
+    resolvedGroupIndex >= 0 ? groups[resolvedGroupIndex] : undefined;
 
   const groupTeams = group ? [group.teams.map((team) => team.name)] : [];
   const groupMatches = matches?.filter((match) =>
@@ -54,7 +45,7 @@ export function GroupDetails({ id, colorIndex, showBackLink: _showBackLink = tru
     (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
   );
 
-  const mascot = getMascotForGroup(id);
+  const mascot = getMascotForGroup(group?.group ?? id, resolvedGroupIndex);
 
   return (
     <ContentContainer className="bg-dec-primary px-8 py-4 space-y-4 flex flex-col select-none">
@@ -76,7 +67,8 @@ export function GroupDetails({ id, colorIndex, showBackLink: _showBackLink = tru
                 number={group.group}
                 teams={group.teams}
                 className="w-full"
-                colorIndex={groupIndex}
+                colorIndex={resolvedGroupIndex}
+                groupIndex={resolvedGroupIndex}
               />
             )}
           </div>

@@ -1,4 +1,4 @@
-import { Close, Menu } from "../components/icons/index.jsx";
+import { Close, Menu, NewBadge } from "../components/icons/index.jsx";
 import { MenuNavLink } from "./MenuItem";
 
 // TODO: set to true when topscorer and champion backend endpoints are ready
@@ -26,6 +26,15 @@ function HamburgerMenuItems({ onItemClick }) {
       </MenuNavLink>
       <MenuNavLink to="/standings" onClick={handleClick}>
         Standings
+      </MenuNavLink>
+      <MenuNavLink to="/teams" onClick={handleClick}>
+        <span className="inline-flex items-center gap-1.5">
+          Teams
+          <NewBadge
+            className="h-6 w-6 shrink-0 rotate-35 text-red-600"
+            aria-hidden
+          />
+        </span>
       </MenuNavLink>
       {SHOW_TOP_SCORER_AND_CHAMPION_MENU && (
         <MenuNavLink to="/topscorer" onClick={handleClick}>

@@ -23,12 +23,22 @@ function GroupsView() {
           title={group.group}
           trigger={
             <button type="button" className="w-full text-left cursor-pointer">
-              <Group number={group.group} teams={group.teams} colorIndex={colorIndex} />
+              <Group
+                number={group.group}
+                teams={group.teams}
+                colorIndex={colorIndex}
+                groupIndex={index}
+              />
             </button>
           }
           contentClassName="w-screen sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl"
         >
-          <GroupDetails id={group.id} colorIndex={colorIndex} showBackLink={false} />
+          <GroupDetails
+            id={group.group}
+            colorIndex={colorIndex}
+            groupIndex={index}
+            showBackLink={false}
+          />
         </Modal>
       </li>
     );
