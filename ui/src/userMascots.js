@@ -4,20 +4,49 @@ export const USER_MASCOTS = [
   { file: "zayu.jpg", alt: "Zayu" },
 ];
 
-export function buildMascotByUserId(standings = []) {
-  const sortedUserIds = [...standings]
-    .map((entry) => String(entry.user?.id ?? "").trim())
-    .filter(Boolean)
-    .sort();
+function createEmptyTeamStats() {
+  return USER_MASCOTS.map((mascot) => ({
+    mascot,
+    memberCount: 0,
+    totalPoints: 0,
+  }));
+}
 
-  const mascotByUserId = new Map();
-  sortedUserIds.forEach((userId, index) => {
-    mascotByUserId.set(userId, USER_MASCOTS[index % USER_MASCOTS.length]);
+function pickTeamForNewMember(teamStats) {
+  return teamStats.reduce((best, team) => {
+    if (team.memberCount < best.memberCount) return team;
+    if (team.memberCount > best.memberCount) return best;
+    if (team.totalPoints < best.totalPoints) return team;
+    if (team.totalPoints > best.totalPoints) return best;
+
+    return USER_MASCOTS.indexOf(team.mascot) <
+      USER_MASCOTS.indexOf(best.mascot)
+      ? team
+      : best;
   });
+}
+
+export function buildMascotByUserId(standings = []) {
+  const sortedEntries = [...standings]
+    .filter((entry) => entry.user?.id)
+    .sort((a, b) =>
+      String(a.user.id).localeCompare(String(b.user.id)),
+    );
+
+  const teamStats = createEmptyTeamStats();
+  const mascotByUserId = new Map();
+
+  for (const entry of sortedEntries) {
+    const team = pickTeamForNewMember(teamStats);
+    const userId = String(entry.user.id).trim();
+
+    mascotByUserId.set(userId, team.mascot);
+    team.memberCount += 1;
+    team.totalPoints += entry.totalPoints ?? 0;
+  }
 
   return mascotByUserId;
 }
-
 export function getMascotForUser(userId, mascotByUserId) {
   const id = String(userId ?? "").trim();
   const mascot = mascotByUserId?.get(id);
