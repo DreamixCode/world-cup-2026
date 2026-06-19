@@ -11,6 +11,7 @@ import FrontPage from "./ui/FrontPage";
 import { GroupView, GroupsView } from "./components/Groups";
 import { MatchView, MatchesView } from "./components/Matches";
 import LeaderBoardView from "./components/Leaderboard/LeaderBoardView";
+import TeamsView from "./components/Leaderboard/TeamsView";
 import UserView from "./components/Leaderboard/UserView";
 import { getToken } from "./api/queries";
 import Unauthenticated from "./ui/Unauthenticated";
@@ -36,6 +37,7 @@ function AppRoutes() {
                 <Route path="/matches" element={<MatchesView />} />
                 <Route path="/matches/:id" element={<MatchView />} />
                 <Route path="/standings" element={<LeaderBoardView />} />
+                <Route path="/teams" element={<TeamsView />} />
                 <Route path="/topscorer" element={<TopScorerView />} />
                 <Route path="/champion" element={<ChampionView />} />
                 <Route path="/user/:id" element={<UserView />} />

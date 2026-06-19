@@ -111,6 +111,7 @@ const FLAG_ALIASES = {
   "Côte d'Ivoire": CotDIvoire,
   "Cote d'Ivoire": CotDIvoire,
   "Czech Republic": CzechRepublic,
+  Czechia: CzechRepublic,
   Curaçao: Curacao,
   "IR Iran": Iran,
   "Ivory Coast": CotDIvoire,
@@ -136,7 +137,8 @@ export function getFlag(id) {
 }
 
 export function getQueryErrorMessage(error, resourceLabel) {
-  const apiMessage = error?.response?.data?.message ?? error?.response?.data?.error;
+  const apiMessage =
+    error?.response?.data?.message ?? error?.response?.data?.error;
 
   if (typeof apiMessage === "string" && apiMessage.trim()) {
     return apiMessage;

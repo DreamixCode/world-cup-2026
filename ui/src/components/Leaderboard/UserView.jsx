@@ -1,24 +1,14 @@
+import { useMemo } from "react";
 import { isAfter } from "date-fns";
 import { Link, useParams } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import { usePlayerById } from "../../api";
+import { usePlayerById, useStandings } from "../../api";
 import { useMedia } from "../../hooks";
 import ContentContainer from "../ContentContainer";
 
+import { buildMascotByUserId, getMascotForUser } from "../../userMascots";
 import { getFlag, getQueryErrorMessage } from "../../utils.jsx";
 import Spinner from "../Spinner";
-
-const USER_MASCOTS = [
-  { file: "clutch.jpg", alt: "Clutch" },
-  { file: "maple.jpg", alt: "Maple" },
-  { file: "zayu.jpg", alt: "Zayu" },
-];
-
-function getMascotForUser(userId) {
-  const id = String(userId ?? "").trim();
-  const hash = [...id].reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  return USER_MASCOTS[hash % USER_MASCOTS.length];
-}
 
 function isMatchStartedOrFinished(match, now = new Date()) {
   if (!match) return false;
@@ -38,9 +28,14 @@ function UserView({ userId, embedded = false }) {
   const params = useParams();
   const id = userId ?? params?.id;
   const { player, isLoading, isError, error } = usePlayerById(id);
+  const { standings = [] } = useStandings();
 
   const isSmall = useMedia(useMedia.SMALL);
   const user = player?.user;
+  const mascotByUserId = useMemo(
+    () => buildMascotByUserId(standings),
+    [standings],
+  );
 
   const today = new Date();
 
@@ -51,7 +46,7 @@ function UserView({ userId, embedded = false }) {
         new Date(a?.match?.date).getTime() - new Date(b?.match?.date).getTime(),
     );
 
-  const mascot = getMascotForUser(user?.id);
+  const mascot = getMascotForUser(user?.id, mascotByUserId);
 
   return (
     <div
