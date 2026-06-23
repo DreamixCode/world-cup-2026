@@ -3,6 +3,7 @@ import { MenuNavLink } from "./MenuItem";
 
 // TODO: set to true when topscorer and champion backend endpoints are ready
 const SHOW_TOP_SCORER_AND_CHAMPION_MENU = false;
+const SHOW_TEAMS_MENU = false;
 
 function HamburgerMenu({ children }) {
   return <div className="grid items-start gap-2">{children}</div>;
@@ -27,15 +28,17 @@ function HamburgerMenuItems({ onItemClick }) {
       <MenuNavLink to="/standings" onClick={handleClick}>
         Standings
       </MenuNavLink>
-      <MenuNavLink to="/teams" onClick={handleClick}>
-        <span className="inline-flex items-center gap-1.5">
-          Teams
-          <NewBadge
-            className="h-6 w-6 shrink-0 rotate-35 text-red-600"
-            aria-hidden
-          />
-        </span>
-      </MenuNavLink>
+      {SHOW_TEAMS_MENU && (
+        <MenuNavLink to="/teams" onClick={handleClick}>
+          <span className="inline-flex items-center gap-1.5">
+            Teams
+            <NewBadge
+              className="h-6 w-6 shrink-0 rotate-35 text-red-600"
+              aria-hidden
+            />
+          </span>
+        </MenuNavLink>
+      )}
       {SHOW_TOP_SCORER_AND_CHAMPION_MENU && (
         <MenuNavLink to="/topscorer" onClick={handleClick}>
           Top-scorer
