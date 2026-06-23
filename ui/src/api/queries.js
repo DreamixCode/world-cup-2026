@@ -119,6 +119,9 @@ const buildApi = (axios) => ({
   getStandings() {
     return axios.get(`${baseURL}/standings/users`).then(({ data }) => data);
   },
+  getCrews() {
+    return axios.get(`${baseURL}/crews`).then(({ data }) => data);
+  },
 });
 
 export const EuroCupApi = buildApi(axios);

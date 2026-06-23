@@ -121,7 +121,7 @@ function TeamsView() {
                   {teams.map((team, index) => (
                     <tr
                       className="border-b-4 border-dec-primary-light"
-                      key={team.mascot.file}
+                      key={team.id}
                     >
                       <td className="py-1 pl-2">
                         <div className="flex items-center space-x-2">
@@ -154,7 +154,7 @@ function TeamsView() {
             </SegmentedBorder>
 
             {teams.map((team, index) => (
-              <div key={team.mascot.file} className="space-y-2">
+              <div key={team.id} className="space-y-2">
                 <div className="flex items-center space-x-3 text-white font-extrabold text-dec-h4 sm:text-dec-h3">
                   <span>{index + 1}.</span>
                   <img

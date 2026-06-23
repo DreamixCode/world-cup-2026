@@ -46,7 +46,7 @@ function UserView({ userId, embedded = false }) {
         new Date(a?.match?.date).getTime() - new Date(b?.match?.date).getTime(),
     );
 
-  const mascot = getMascotForUser(user?.id, mascotByUserId);
+  const mascot = getMascotForUser(user?.id, mascotByUserId, user?.crew);
 
   return (
     <div

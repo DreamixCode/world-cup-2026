@@ -4,12 +4,13 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { buildTeamsFromStandings } from "../userMascots";
+import { buildTeamsFromCrews } from "../userMascots";
 import { CACHE_TIMES } from "./queryClient";
 import { EuroCupApi } from "./queries";
 
 export const queryKeys = {
   teams: () => ["teams"],
+  crews: () => ["crews"],
   groups: () => ["groups"],
   groupById: (id) => [...queryKeys.groups(), id],
   matches: () => ["matches"],
@@ -148,11 +149,17 @@ export function useTeams() {
   const { data: teams, ...rest } = useQuery({
     queryKey: queryKeys.teams(),
     queryFn: async () => {
-      const standings = await queryClient.ensureQueryData({
-        queryKey: queryKeys.standings(),
-        queryFn: () => EuroCupApi.getStandings(),
-      });
-      return buildTeamsFromStandings(standings);
+      const [crews, standings] = await Promise.all([
+        queryClient.ensureQueryData({
+          queryKey: queryKeys.crews(),
+          queryFn: () => EuroCupApi.getCrews(),
+        }),
+        queryClient.ensureQueryData({
+          queryKey: queryKeys.standings(),
+          queryFn: () => EuroCupApi.getStandings(),
+        }),
+      ]);
+      return buildTeamsFromCrews(crews, standings);
     },
     ...defaultQueryOptions,
   });
