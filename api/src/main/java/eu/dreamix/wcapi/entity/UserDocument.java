@@ -22,4 +22,5 @@ public class UserDocument {
     private String lastName;
     private String email;
     private String picture;
+    private String crew;
 }
