@@ -25,7 +25,7 @@ class UserControllerUnitTest {
     @Test
     void getByIdShouldDelegateToService() {
         final UserProfileDto expected = new UserProfileDto(
-                new UserData("u-1", "Ana", "Ivanova", "ana@dreamix.eu", "http://img"),
+                new UserData("u-1", "Ana", "Ivanova", "ana@dreamix.eu", "http://img", null),
                 7,
                 List.of()
         );

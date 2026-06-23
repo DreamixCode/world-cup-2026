@@ -37,7 +37,7 @@ public class CurrentUserDataImpl implements CurrentUserData {
             final String email = (String)claims.get(GoogleConstants.JWT_CLAIM_EMAIL);
             final String picture = (String)claims.get(GoogleConstants.JWT_CLAIM_PICTURE);
 
-            return new UserDocument(id, firstName, lastName, email, picture);
+            return new UserDocument(id, firstName, lastName, email, picture, null);
         }
 
         // Non supported login method. Should not happen
