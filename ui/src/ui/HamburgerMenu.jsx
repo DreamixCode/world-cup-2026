@@ -3,7 +3,7 @@ import { MenuNavLink } from "./MenuItem";
 
 // TODO: set to true when topscorer and champion backend endpoints are ready
 const SHOW_TOP_SCORER_AND_CHAMPION_MENU = false;
-const SHOW_TEAMS_MENU = false;
+const SHOW_TEAMS_MENU = true;
 
 function HamburgerMenu({ children }) {
   return <div className="grid items-start gap-2">{children}</div>;
